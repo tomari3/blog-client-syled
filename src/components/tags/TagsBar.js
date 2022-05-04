@@ -1,4 +1,5 @@
 import React from "react";
+import { StyledTag } from "../../styles/StyledTag";
 import { StyledTagsBar } from "../../styles/StyledTagsBar";
 
 export const TagsBar = ({ tagsData }) => {
@@ -7,9 +8,7 @@ export const TagsBar = ({ tagsData }) => {
     ? null
     : tagsData.map((tagData, index) => {
         return index >= 10 ? null : (
-          <div key={tagData._id}>
-            <p>{tagData.name}</p>
-          </div>
+          <StyledTag key={tagData._id}>{tagData.name}</StyledTag>
         );
       });
 

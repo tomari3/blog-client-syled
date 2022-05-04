@@ -1,5 +1,8 @@
 import { StyledPost } from "../../styles/StyledPost";
 
+import { Tag } from "../tags/Tag";
+import { CommentSection } from "./commentSection/CommentSection";
+
 export const Post = ({ postData }) => {
   const {
     author,
@@ -14,11 +17,19 @@ export const Post = ({ postData }) => {
     tags,
   } = postData;
 
+  const tagsList = tags.map((tag, index) => {
+    return index >= 4 ? null : <Tag key={tag._id} tagData={tag} />;
+  });
+
   return (
     <StyledPost>
-      <p>name: {author.username}</p>
-      <p>header: {header}</p>
-      <p>content: {content}</p>
+      <p>{author.username}</p>
+      <div>{tagsList}</div>
+      <p>{header}</p>
+      <p>{content}</p>
+      <div>
+        <CommentSection postId={postData._id} postComments={comments} />
+      </div>
     </StyledPost>
   );
 };

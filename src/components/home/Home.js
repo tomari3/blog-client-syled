@@ -11,10 +11,13 @@ const BaseUrl = "http://localhost:3000/";
 export const Home = () => {
   const [data, setData] = useState([null]);
 
+  const fetchData = async () => {
+    const { data } = await axios(BaseUrl);
+    setData(data);
+  };
+
   useEffect(() => {
-    axios.get(BaseUrl).then((res) => {
-      setData(res.data);
-    });
+    fetchData();
   }, []);
 
   return (

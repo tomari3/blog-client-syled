@@ -6,5 +6,5 @@ export const StyledHome = styled(motion.main)`
   gap: 1rem;
   margin: auto auto;
   padding: 3rem 5px;
-  max-width: 800px;
+  max-width: 850px;
 `;
