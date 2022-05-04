@@ -2,6 +2,8 @@ import { StyledPost } from "../../styles/StyledPost";
 
 import { Tag } from "../tags/Tag";
 import { CommentSection } from "./commentSection/CommentSection";
+import { LikeBtn } from "./LikeBtn";
+import { SaveBtn } from "./SaveBtn";
 
 export const Post = ({ postData }) => {
   const {
@@ -23,11 +25,15 @@ export const Post = ({ postData }) => {
 
   return (
     <StyledPost>
-      <p>{author.username}</p>
-      <div>{tagsList}</div>
-      <p>{header}</p>
-      <p>{content}</p>
       <div>
+        <p>{author.username}</p>
+        <p>{header}</p>
+        <div>{tagsList}</div>
+        <p>{content}</p>
+      </div>
+      <div>
+        <LikeBtn postLikes={likes} />
+        <SaveBtn postSaves={saves} />
         <CommentSection postId={postData._id} postComments={comments} />
       </div>
     </StyledPost>

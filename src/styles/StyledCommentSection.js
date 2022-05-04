@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const StyledComment = styled(motion.div)`
+export const StyledCommentSection = styled(motion.div)`
   .open-comment {
     border-radius: 10px;
     padding: 2px 5px;

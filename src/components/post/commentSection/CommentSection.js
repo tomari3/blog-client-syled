@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import axios from "axios";
 
-import { StyledComment } from "../../../styles/StyledComment";
+import { StyledCommentSection } from "../../../styles/StyledCommentSection";
+
 import { Comments } from "./Comments";
 import { CommentBtn } from "./CommentBtn";
 import { CommentInput } from "./CommentInput";
@@ -37,8 +38,8 @@ export const CommentSection = ({ postId, postComments }) => {
   };
 
   return (
-    <StyledComment>
-      <CommentBtn toggle={toggleComments} />
+    <StyledCommentSection>
+      <CommentBtn toggle={toggleComments} amount={comments.length} />
       {active ? (
         <>
           <CommentInput
@@ -49,6 +50,6 @@ export const CommentSection = ({ postId, postComments }) => {
           <Comments data={comments} />
         </>
       ) : null}
-    </StyledComment>
+    </StyledCommentSection>
   );
 };

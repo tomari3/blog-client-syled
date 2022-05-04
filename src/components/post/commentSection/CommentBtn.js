@@ -1,7 +1,7 @@
-export const CommentBtn = ({ toggle }) => {
+export const CommentBtn = ({ toggle, amount }) => {
   return (
     <div className="open-comment" onClick={toggle}>
-      Comment
+      see all {amount} comments
     </div>
   );
 };
