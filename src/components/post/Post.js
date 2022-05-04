@@ -1,9 +1,12 @@
+import { StyledPost } from "../../styles/StyledPost";
+
 export const Post = ({ postData }) => {
   const {
     author,
     comments,
     content,
     header,
+    date,
     isPinned,
     likes,
     saves,
@@ -12,10 +15,10 @@ export const Post = ({ postData }) => {
   } = postData;
 
   return (
-    <div>
-      <p>{author.username}</p>
-      <p>{header}</p>
-      <p>{content}</p>
-    </div>
+    <StyledPost>
+      <p>name: {author.username}</p>
+      <p>header: {header}</p>
+      <p>content: {content}</p>
+    </StyledPost>
   );
 };
