@@ -1,7 +1,9 @@
+import { StyledHeader } from "../../styles/StyledHeader";
+
 export const Header = () => {
   return (
-    <div>
+    <StyledHeader>
       <h1>header</h1>
-    </div>
+    </StyledHeader>
   );
 };
