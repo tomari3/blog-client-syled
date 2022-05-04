@@ -1,4 +1,4 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const StyledHome = styled(motion.header)``;
+export const StyledHome = styled(motion.main)``;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const StyledFooter = styled(motion.header)`
+export const StyledFooter = styled(motion.footer)`
   display: flex;
   justify-content: center;
   align-items: center;
