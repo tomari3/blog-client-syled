@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { HashRouter } from "react-router-dom";
 
-import { lightTheme, darkTheme } from "./settings/Theme";
 import { ThemeProvider } from "styled-components";
-import Global from "./settings/Global";
+import { lightTheme, darkTheme } from "./styles/settings/Theme";
+import { Global } from "./styles/settings/Global";
 
 import { AnimatedRoutes } from "./components/AnimatedRoutes";
 
