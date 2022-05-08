@@ -29,5 +29,9 @@ export const CommentLike = ({ commentId, commentLikes }) => {
     }
   };
 
-  return <span>{likes.length}likes</span>;
+  return (
+    <div className="like-btn" onClick={toggleLike}>
+      <span className={`${active ? "active" : ""}`}></span>
+    </div>
+  );
 };

@@ -7,5 +7,5 @@ export const Comments = ({ data }) => {
         return <Comment key={comment._id} data={comment} />;
       });
 
-  return <div>{comments}</div>;
+  return <div className="comments">{comments}</div>;
 };

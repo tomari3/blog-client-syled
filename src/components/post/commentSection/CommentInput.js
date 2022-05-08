@@ -1,5 +1,5 @@
 export const CommentInput = ({ send, value, set, main }) => {
-  const styled = main ? "main" : null;
+  const styled = main ? "main" : "sub";
 
   const resize = (e) => {
     e.target.style.height = "inherit";

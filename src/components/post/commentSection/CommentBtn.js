@@ -1,5 +1,5 @@
 export const CommentBtn = ({ toggle, amount, main }) => {
-  const styled = main ? "main" : null;
+  const styled = main ? "main" : "sub";
 
   return (
     <div className={`comment-btn ${styled}`} onClick={toggle}>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { DateTime } from "luxon";
 import axios from "axios";
 
 import { CommentLike } from "./CommentLike";
@@ -13,6 +14,8 @@ export const Comment = ({ data }) => {
   const [active, setActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [comments, setComments] = useState(data.comments);
+
+  const date = DateTime.fromISO(data.date).toFormat("yyyy LLL dd");
 
   const toggleComments = () => {
     setActive(!active);
@@ -37,11 +40,20 @@ export const Comment = ({ data }) => {
   };
 
   return (
-    <div>
-      <p>{data.content}</p>
-      <div style={{ display: "flex", justifyContent: "end" }}>
-        <CommentLike commentId={data._id} commentLikes={data.likes} />
-        <CommentBtn toggle={toggleComments} />
+    <div className="comment">
+      <div className="comment-details">
+        <div className="comment-details_user">
+          <p className="comment-details_user_img">img</p>
+          <p className="comment-details_user_name">user</p>
+          <p className="comment-details_user_date">{date}</p>
+        </div>
+        <p className="comment-details_content">{data.content}</p>
+      </div>
+      <div className="comment-interact">
+        <div className="comment-interact_btn">
+          <CommentBtn toggle={toggleComments} />
+          <CommentLike commentId={data._id} commentLikes={data.likes} />
+        </div>
         {active ? (
           <>
             <CommentInput
