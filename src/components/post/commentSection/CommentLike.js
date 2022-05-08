@@ -4,9 +4,9 @@ import axios from "axios";
 
 const BaseUrl = "http://localhost:3000/";
 
-export const LikeBtn = ({ postId, postLikes }) => {
+export const CommentLike = ({ commentId, commentLikes }) => {
   const [active, setActive] = useState(false);
-  const [likes, setLikes] = useState(postLikes);
+  const [likes, setLikes] = useState(commentLikes);
 
   const toggleLike = () => {
     setActive(!active);
@@ -18,7 +18,7 @@ export const LikeBtn = ({ postId, postLikes }) => {
     const payload = {
       // userId: user._id,
     };
-    const postUrl = BaseUrl + `post/${postId}/like`;
+    const postUrl = BaseUrl + `comment/${commentId}/like/`;
 
     try {
       const { data } = await axios.post(postUrl, payload);
@@ -29,9 +29,5 @@ export const LikeBtn = ({ postId, postLikes }) => {
     }
   };
 
-  return (
-    <div>
-      <p>{likes.length} likes</p>
-    </div>
-  );
+  return <span>{likes.length}likes</span>;
 };

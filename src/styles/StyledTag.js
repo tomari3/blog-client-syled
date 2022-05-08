@@ -2,9 +2,16 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const StyledTag = styled(motion.div)`
-  display: inline-block;
-  background-color: brown;
-  border-radius: 10px;
+  color: var(--primary-text);
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  padding: 2px 5px;
+  padding: 0.2rem 0.5rem;
+
+  &::before {
+    color: var(--primary-accent);
+    content: "#";
+  }
 `;
