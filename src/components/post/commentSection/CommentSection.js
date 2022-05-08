@@ -39,10 +39,11 @@ export const CommentSection = ({ postId, postComments }) => {
 
   return (
     <StyledCommentSection>
-      <CommentBtn toggle={toggleComments} amount={comments.length} />
+      <CommentBtn main toggle={toggleComments} amount={comments.length} />
       {active ? (
         <>
           <CommentInput
+            main
             send={sendComment}
             value={inputValue}
             set={setInputValue}
