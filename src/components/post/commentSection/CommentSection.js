@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import { StyledCommentSection } from "../../../styles/StyledCommentSection";
+import { ModalBasis } from "../../../styles/ModalBasis";
 
 import { Comments } from "./Comments";
-import { CommentBtn } from "./CommentBtn";
 import { CommentInput } from "./CommentInput";
 
 const BaseUrl = "http://localhost:3000/";
@@ -33,18 +33,17 @@ export const CommentSection = ({ postId, postComments, className, active }) => {
   };
 
   return (
-    <StyledCommentSection className={className}>
-      {active ? (
-        <div className={`${className}_comments-modal `}>
-          <CommentInput
-            main
-            send={sendComment}
-            value={inputValue}
-            set={setInputValue}
-          />
-          <Comments data={comments} />
-        </div>
-      ) : null}
+    <StyledCommentSection
+      onClick={(e) => e.stopPropagation()}
+      className={`${className} comments-modal `}
+    >
+      <CommentInput
+        main
+        send={sendComment}
+        value={inputValue}
+        set={setInputValue}
+      />
+      <Comments data={comments} />
     </StyledCommentSection>
   );
 };

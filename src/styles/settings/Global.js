@@ -34,6 +34,7 @@ export const Global = createGlobalStyle`
     --primary-active: ${({ theme }) => theme.primaryActive};
 
     --drop-shadow: ${({ theme }) => theme.dropShadow};
+    --bg-overlay: ${({ theme }) => theme.bgOverlay};
     
     --default-transition: color 2s ease;
     

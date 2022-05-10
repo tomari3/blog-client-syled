@@ -1,12 +1,19 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const StyledCommentSection = styled(motion.div)`
+export const StyledCommentSection = styled(motion.section)`
+  --transition: all 0.1s ease;
+  background-color: blue;
+  padding: 1rem;
+
+  width: 80vw;
+
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  --transition: all 0.1s ease;
+
+  z-index: 2;
 
   .sub {
     font-size: 0.8rem;

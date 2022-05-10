@@ -9,6 +9,7 @@ import { CommentSection } from "./commentSection/CommentSection";
 import { CommentBtn } from "./commentSection/CommentBtn";
 import { LikeBtn } from "./LikeBtn";
 import { SaveBtn } from "./SaveBtn";
+import { ModalBasis } from "../../styles/ModalBasis";
 
 export const Post = ({ postData }) => {
   const [active, setActive] = useState(false);
@@ -52,14 +53,15 @@ export const Post = ({ postData }) => {
         </div>
       </div>
       <CommentBtn main toggle={toggleComments} amount={comments.length} />
-      <div className="post-comments">
-        <CommentSection
-          active={active}
-          className="post-comments_modal"
-          postId={postData._id}
-          postComments={comments}
-        />
-      </div>
+      {active ? (
+        <ModalBasis onClick={toggleComments}>
+          <CommentSection
+            className="post-comments_modal"
+            postId={postData._id}
+            postComments={comments}
+          />
+        </ModalBasis>
+      ) : null}
     </StyledPost>
   );
 };

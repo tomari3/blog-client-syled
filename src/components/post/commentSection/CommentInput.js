@@ -14,7 +14,7 @@ export const CommentInput = ({ send, value, set, main }) => {
           autoComplete="on"
           autoCorrect="on"
           autoFocus
-          maxLength={180}
+          maxLength={1400}
           rows={1}
           spellCheck="true"
           wrap="hard"
