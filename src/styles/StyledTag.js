@@ -8,7 +8,6 @@ export const StyledTag = styled(motion.div)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  padding: 0.2rem 0.5rem;
 
   &::before {
     color: var(--primary-accent);

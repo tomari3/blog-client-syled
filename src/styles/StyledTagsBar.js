@@ -6,6 +6,7 @@ export const StyledTagsBar = styled(motion.section)`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  padding: 1rem;
 
   .tags-bar {
     width: 100%;

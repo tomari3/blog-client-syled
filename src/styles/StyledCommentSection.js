@@ -140,7 +140,7 @@ export const StyledCommentSection = styled(motion.div)`
   .comment-details_user_img {
     height: 2rem;
     aspect-ratio: 1;
-    background-color: blue;
+    background-color: var(--primary-accent);
     border-radius: 100%;
     display: flex;
     justify-content: center;

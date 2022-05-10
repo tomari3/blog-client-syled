@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-import { DateTime } from "luxon";
 import axios from "axios";
+
+import { longMonth } from "../../../utils/dateFormat";
 
 import { CommentLike } from "./CommentLike";
 import { CommentBtn } from "./CommentBtn";
@@ -14,8 +15,6 @@ export const Comment = ({ data }) => {
   const [active, setActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [comments, setComments] = useState(data.comments);
-
-  const date = DateTime.fromISO(data.date).toFormat("yyyy LLL dd");
 
   const toggleComments = () => {
     setActive(!active);
@@ -45,7 +44,7 @@ export const Comment = ({ data }) => {
         <div className="comment-details_user">
           <p className="comment-details_user_img">img</p>
           <p className="comment-details_user_name">user</p>
-          <p className="comment-details_user_date">{date}</p>
+          <p className="comment-details_user_date">{longMonth(data.date)}</p>
         </div>
         <p className="comment-details_content">{data.content}</p>
       </div>

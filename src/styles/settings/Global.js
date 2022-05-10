@@ -27,10 +27,13 @@ export const Global = createGlobalStyle`
     --head-font: 'Hamlet', serif;
     
     --primary-bg: ${({ theme }) => theme.primaryBG};
+    --secondary-bg: ${({ theme }) => theme.secondaryBG};
     --primary-text: ${({ theme }) => theme.primaryText};
     --primary-accent: ${({ theme }) => theme.primaryAccent};
     --primary-input: ${({ theme }) => theme.primaryInput};
     --primary-active: ${({ theme }) => theme.primaryActive};
+
+    --drop-shadow: ${({ theme }) => theme.dropShadow};
     
     --default-transition: color 2s ease;
     

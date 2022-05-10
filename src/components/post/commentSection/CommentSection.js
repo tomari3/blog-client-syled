@@ -10,7 +10,7 @@ import { CommentInput } from "./CommentInput";
 
 const BaseUrl = "http://localhost:3000/";
 
-export const CommentSection = ({ postId, postComments }) => {
+export const CommentSection = ({ postId, postComments, className }) => {
   const [active, setActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [comments, setComments] = useState(postComments);
@@ -38,7 +38,7 @@ export const CommentSection = ({ postId, postComments }) => {
   };
 
   return (
-    <StyledCommentSection>
+    <StyledCommentSection className={className}>
       <CommentBtn main toggle={toggleComments} amount={comments.length} />
       {active ? (
         <>

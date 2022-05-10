@@ -1,5 +1,6 @@
 export const lightTheme = {
   primaryBG: "#eff0f3",
+  secondaryBG: "#fffffe",
   primaryText: "#0d0d0d",
 
   primaryAccent: "#d9376e",
@@ -7,6 +8,8 @@ export const lightTheme = {
 
   primaryInput: "#fff",
   primaryActive: "#6D6F6D",
+
+  dropShadow: "rgba(17, 12, 46, 0.05)",
 };
 
 export const darkTheme = {
