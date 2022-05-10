@@ -1,11 +1,14 @@
-import { StyledButton } from "../../../styles/StyledButton";
+import { StyledCommentButton } from "../../../styles/StyledButton";
 
-export const CommentBtn = ({ toggle, amount, main }) => {
+export const CommentBtn = ({ toggle, amount, main, className }) => {
   const styled = main ? "main" : "sub";
 
   return (
-    <StyledButton className={`comment-btn ${styled}`} onClick={toggle}>
+    <StyledCommentButton
+      className={`comment-btn ${styled} ${className}`}
+      onClick={toggle}
+    >
       {!amount ? `comment` : `see all ${amount} comments`}
-    </StyledButton>
+    </StyledCommentButton>
   );
 };

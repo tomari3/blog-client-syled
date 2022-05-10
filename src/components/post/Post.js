@@ -35,17 +35,21 @@ export const Post = ({ postData }) => {
     return index >= 4 ? null : <Tag key={tag._id} tagData={tag} />;
   });
 
+  const postContent = (
+    <div className="post-content">
+      <div className="post-content-details">
+        <p className="post-content-details_img">img</p>
+        <p className="post-content-details_username">{author.username}</p>
+        <p className="post-content-details_date">{longMonth(date)}</p>
+      </div>
+      <div className="post-content_tags">{tagsList}</div>
+      <p className="post-content_header">{header}</p>
+    </div>
+  );
+
   return (
     <StyledPost className="post">
-      <div className="post-content">
-        <div className="post-content-details">
-          <p className="post-content-details_img">img</p>
-          <p className="post-content-details_username">{author.username}</p>
-          <p className="post-content-details_date">{longMonth(date)}</p>
-        </div>
-        <div className="post-content_tags">{tagsList}</div>
-        <p className="post-content_header">{header}</p>
-      </div>
+      {postContent}
       <div className="post-interactions">
         <div className="post-interactions_static">
           <LikeBtn postLikes={likes} />
@@ -55,11 +59,13 @@ export const Post = ({ postData }) => {
       <CommentBtn main toggle={toggleComments} amount={comments.length} />
       {active ? (
         <ModalBasis onClick={toggleComments}>
-          <CommentSection
-            className="post-comments_modal"
-            postId={postData._id}
-            postComments={comments}
-          />
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="post-comments-modal"
+          >
+            {postContent}
+            <CommentSection postId={postData._id} postComments={comments} />
+          </div>
         </ModalBasis>
       ) : null}
     </StyledPost>

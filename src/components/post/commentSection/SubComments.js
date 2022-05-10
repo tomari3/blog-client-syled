@@ -7,11 +7,10 @@ import { longMonth } from "../../../utils/dateFormat";
 import { CommentLike } from "./CommentLike";
 import { CommentBtn } from "./CommentBtn";
 import { CommentInput } from "./CommentInput";
-import { SubComments } from "./SubComments";
 
 const BaseUrl = "http://localhost:3000/";
 
-export const Comment = ({ data }) => {
+export const SubComments = ({ data }) => {
   const [active, setActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [subComments, setSubComments] = useState(data.subComments);
@@ -50,10 +49,7 @@ export const Comment = ({ data }) => {
       </div>
       <div className="comment-interact">
         <div className="comment-interact_btn">
-          <CommentBtn
-            className={active ? "active" : ""}
-            toggle={toggleComments}
-          />
+          <CommentBtn toggle={toggleComments} />
           <CommentLike commentId={data._id} commentLikes={data.likes} />
         </div>
         {active ? (
@@ -63,7 +59,6 @@ export const Comment = ({ data }) => {
               value={inputValue}
               set={setInputValue}
             />
-            {subComments.length > 0 ? <SubComments data={subComments} /> : null}
           </>
         ) : null}
       </div>

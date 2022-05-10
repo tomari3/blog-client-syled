@@ -13,12 +13,7 @@ export const PostGallery = ({ postsData }) => {
         );
       });
 
-  return (
-    <StyledPostGallery>
-      {postGallery}
-      {postGallery}
-    </StyledPostGallery>
-  );
+  return <StyledPostGallery>{postGallery}</StyledPostGallery>;
 };
 
 export const MemoPostGallery = React.memo(PostGallery);

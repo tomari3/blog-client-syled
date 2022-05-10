@@ -12,6 +12,7 @@ export const StyledPost = styled(motion.article)`
 
   .post-content {
     flex: 1;
+    background-color: var(--secondary-bg);
   }
 
   .post-content-details {
@@ -60,5 +61,14 @@ export const StyledPost = styled(motion.article)`
     display: flex;
     gap: 1rem;
     padding: 1rem;
+  }
+
+  .post-comments-modal {
+    height: 90vh;
+    overflow-y: scroll;
+
+    .post-content {
+      padding: 1rem;
+    }
   }
 `;

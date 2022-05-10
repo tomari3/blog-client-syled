@@ -3,17 +3,16 @@ import { motion } from "framer-motion";
 
 export const StyledCommentSection = styled(motion.section)`
   --transition: all 0.1s ease;
-  background-color: blue;
-  padding: 1rem;
+  background-color: var(--secondary-bg);
 
-  width: 80vw;
+  flex: 1;
+  min-width: 350px;
+  padding: 1rem;
 
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-
-  z-index: 2;
 
   .sub {
     font-size: 0.8rem;
@@ -41,9 +40,10 @@ export const StyledCommentSection = styled(motion.section)`
 
   .comment-input {
     form {
-      display: grid;
-      grid-template-columns: 90% 10%;
+      display: flex;
+      gap: 1em;
       align-items: center;
+      width: 95%;
     }
 
     textarea {
@@ -63,65 +63,26 @@ export const StyledCommentSection = styled(motion.section)`
         outline: 1px solid var(--primary-active);
       }
     }
-
-    button {
-      aspect-ratio: 1;
-      width: 100%;
-      background-color: transparent;
-      border: 0;
-      position: relative;
-      cursor: pointer;
-      &::after {
-        --side: 3px;
-        --size: 30%;
-        content: "";
-        position: absolute;
-        width: var(--size);
-        aspect-ratio: 1;
-        border-width: var(--side) var(--side) 0 0;
-        border-style: solid;
-        border-color: var(--primary-accent);
-        transform-origin: center;
-        transform: rotate(45deg);
-        top: calc(50% - (var(--size) / 2));
-      }
-
-      &::before {
-        transition: var(--transition);
-        --side: 3px;
-        --size: 0%;
-        content: "";
-        position: absolute;
-        width: var(--size);
-        aspect-ratio: 1;
-        border-width: var(--side) 0 0 0;
-        border-style: solid;
-        border-color: var(--primary-accent);
-        transform-origin: center;
-        top: calc(50%);
-        right: 1px;
-      }
-
-      &:hover::before {
-        --size: 50%;
-      }
-    }
   }
 
   .comments {
+    padding: 1rem;
     background-color: var(--primary-bg);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
   .comment {
-    display: grid;
+    display: flex;
+    flex-direction: column;
   }
 
   .comment-details {
     display: flex;
     flex-direction: column;
+    gap: 1em;
   }
 
   .comment-details_user {

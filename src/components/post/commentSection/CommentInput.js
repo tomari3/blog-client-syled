@@ -1,3 +1,5 @@
+import { StyledSubmit } from "../../../styles/StyledButton";
+
 export const CommentInput = ({ send, value, set, main }) => {
   const styled = main ? "main" : "sub";
 
@@ -23,7 +25,11 @@ export const CommentInput = ({ send, value, set, main }) => {
           onKeyDown={resize}
           onChange={(e) => set(e.target.value)}
         />
-        <button type="submit"></button>
+        <StyledSubmit send type="submit">
+          <span></span>
+          <span></span>
+          <span></span>
+        </StyledSubmit>
       </form>
     </div>
   );

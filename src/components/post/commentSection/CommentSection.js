@@ -33,10 +33,7 @@ export const CommentSection = ({ postId, postComments, className, active }) => {
   };
 
   return (
-    <StyledCommentSection
-      onClick={(e) => e.stopPropagation()}
-      className={`${className} comments-modal `}
-    >
+    <StyledCommentSection className={`${className} comments-modal `}>
       <CommentInput
         main
         send={sendComment}
