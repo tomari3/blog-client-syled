@@ -17,10 +17,6 @@ export const StyledCommentSection = styled(motion.div)`
     user-select: none;
     cursor: pointer;
 
-    &.main {
-      border-left: 2px solid var(--primary-accent);
-    }
-
     span {
       --color: red;
       box-sizing: border-box;
@@ -42,7 +38,7 @@ export const StyledCommentSection = styled(motion.div)`
     cursor: pointer;
 
     &.main {
-      border-left: 2px solid var(--primary-accent);
+      border-left: 4px solid var(--primary-accent);
     }
   }
 
