@@ -1,13 +1,22 @@
+import React, { useState } from "react";
+
 import { StyledPost } from "../../styles/StyledPost";
 
 import { longMonth } from "../../utils/dateFormat";
 
 import { Tag } from "../tags/Tag";
 import { CommentSection } from "./commentSection/CommentSection";
+import { CommentBtn } from "./commentSection/CommentBtn";
 import { LikeBtn } from "./LikeBtn";
 import { SaveBtn } from "./SaveBtn";
 
 export const Post = ({ postData }) => {
+  const [active, setActive] = useState(false);
+
+  const toggleComments = () => {
+    setActive(!active);
+  };
+
   const {
     author,
     comments,
@@ -42,11 +51,15 @@ export const Post = ({ postData }) => {
           <SaveBtn postSaves={saves} />
         </div>
       </div>
-      <CommentSection
-        className="post_comments"
-        postId={postData._id}
-        postComments={comments}
-      />
+      <CommentBtn main toggle={toggleComments} amount={comments.length} />
+      <div className="post-comments">
+        <CommentSection
+          active={active}
+          className="post-comments_modal"
+          postId={postData._id}
+          postComments={comments}
+        />
+      </div>
     </StyledPost>
   );
 };

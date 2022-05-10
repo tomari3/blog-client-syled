@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const StyledCommentSection = styled(motion.div)`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -28,17 +29,6 @@ export const StyledCommentSection = styled(motion.div)`
       &.active {
         background-color: var(--color);
       }
-    }
-  }
-
-  .comment-btn {
-    display: flex;
-    padding: 0.2rem 0.5rem;
-    user-select: none;
-    cursor: pointer;
-
-    &.main {
-      border-left: 4px solid var(--primary-accent);
     }
   }
 
@@ -112,9 +102,10 @@ export const StyledCommentSection = styled(motion.div)`
   }
 
   .comments {
+    background-color: var(--primary-bg);
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 1rem;
   }
 
   .comment {

@@ -10,14 +10,9 @@ import { CommentInput } from "./CommentInput";
 
 const BaseUrl = "http://localhost:3000/";
 
-export const CommentSection = ({ postId, postComments, className }) => {
-  const [active, setActive] = useState(false);
+export const CommentSection = ({ postId, postComments, className, active }) => {
   const [inputValue, setInputValue] = useState("");
   const [comments, setComments] = useState(postComments);
-
-  const toggleComments = () => {
-    setActive(!active);
-  };
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -39,9 +34,8 @@ export const CommentSection = ({ postId, postComments, className }) => {
 
   return (
     <StyledCommentSection className={className}>
-      <CommentBtn main toggle={toggleComments} amount={comments.length} />
       {active ? (
-        <>
+        <div className={`${className}_comments-modal `}>
           <CommentInput
             main
             send={sendComment}
@@ -49,7 +43,7 @@ export const CommentSection = ({ postId, postComments, className }) => {
             set={setInputValue}
           />
           <Comments data={comments} />
-        </>
+        </div>
       ) : null}
     </StyledCommentSection>
   );
