@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import axios from "axios";
 
-const BaseUrl = "http://localhost:3000/";
+const BaseUrl = process.env.REACT_APP_URL;
 
 export const LikeBtn = ({ postId, postLikes }) => {
   const [active, setActive] = useState(false);

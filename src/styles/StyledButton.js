@@ -7,6 +7,8 @@ export const StyledButton = styled(motion.button)`
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  border: 1px solid black;
+  padding: 0.2rem 0.5rem;
 `;
 
 export const StyledSubmit = styled(StyledButton)`

@@ -7,6 +7,7 @@ export const StyledCommentSection = styled(motion.section)`
 
   flex: 1;
   min-width: 350px;
+  height: 100%;
   padding: 1rem;
 
   position: relative;
@@ -68,15 +69,15 @@ export const StyledCommentSection = styled(motion.section)`
   }
 
   .comments {
-    padding: 1rem;
-    background-color: var(--primary-bg);
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
   .comment {
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--primary-bg);
     display: flex;
     flex-direction: column;
   }
