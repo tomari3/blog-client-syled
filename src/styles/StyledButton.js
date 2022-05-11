@@ -6,6 +6,7 @@ export const StyledButton = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
 `;
 
 export const StyledSubmit = styled(StyledButton)`

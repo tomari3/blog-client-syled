@@ -25,7 +25,7 @@ export const CommentInput = ({ send, value, set, main }) => {
           onKeyDown={resize}
           onChange={(e) => set(e.target.value)}
         />
-        <StyledSubmit send type="submit">
+        <StyledSubmit type="submit">
           <span></span>
           <span></span>
           <span></span>

@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { Home } from "./home/Home";
 import { Header } from "./header/Header";
 import { Footer } from "./footer/Footer";
+import { PostForm } from "./post/PostForm";
 
 function LayoutsWithNavbar({ toggle }) {
   return (
@@ -26,6 +27,7 @@ export const AnimatedRoutes = ({ toggle }) => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<LayoutsWithNavbar toggle={toggle} />}>
           <Route path="/" element={<Home />} />
+          <Route path="/post/new" element={<PostForm />} />
         </Route>
       </Routes>
     </AnimatePresence>

@@ -6,5 +6,5 @@ export const StyledFooter = styled(motion.footer)`
   justify-content: center;
   align-items: center;
   height: 100px;
-  border-top: 1px solid black;
+  /* border-top: 1px solid black; */
 `;

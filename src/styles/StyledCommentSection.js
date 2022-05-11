@@ -14,6 +14,8 @@ export const StyledCommentSection = styled(motion.section)`
   flex-direction: column;
   gap: 0.5rem;
 
+  z-index: 10;
+
   .sub {
     font-size: 0.8rem;
   }

@@ -6,5 +6,6 @@ export const StyledHeader = styled(motion.header)`
   justify-content: center;
   align-items: center;
   height: 100px;
-  border-bottom: 1px solid black;
+  gap: 2rem;
+  /* border-bottom: 1px solid black; */
 `;
