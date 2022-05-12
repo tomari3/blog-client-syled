@@ -1,16 +1,29 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-export const StyledForm = styled(motion.form)`
+export const StyledForm = styled(motion.section)`
   padding: 1rem;
   background-color: var(--secondary-bg);
-  border-radius: 10px;
+  border-radius: 1rem;
   box-shadow: var(--drop-shadow) 0px 4px 50px 0px;
 
-  display: flex;
-  flex-direction: column;
+  form {
+    display: flex;
+    flex-direction: column;
 
-  gap: 1rem;
+    max-width: 350px;
+  }
+
+  .form-header {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+
+  .form-err {
+    grid-area: err;
+    font-size: 0.8em;
+    color: var(--primary-err);
+  }
 
   .form-field {
     display: grid;
@@ -24,12 +37,25 @@ export const StyledForm = styled(motion.form)`
 
     label {
       grid-area: label;
+
+      &.hide {
+        display: none;
+      }
     }
 
     input,
     textarea {
       grid-area: input;
-      padding: 0.5rem;
+      padding: 1rem;
+      border: 1px solid var(--primary-active);
+      font-size: 1.2rem;
+      border-radius: 1rem;
+    }
+
+    input {
+    }
+
+    button {
     }
 
     .form-field-detail {
@@ -40,6 +66,7 @@ export const StyledForm = styled(motion.form)`
       grid-area: err;
       font-size: 0.8em;
       color: var(--primary-err);
+      height: 3ch;
     }
   }
 `;

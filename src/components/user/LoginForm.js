@@ -44,16 +44,15 @@ export const LoginForm = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <StyledForm onSubmit={sendLogin}>
+    <StyledForm>
+      <div className="form-header">
+        <h1>login</h1>
+      </div>
+      <form onSubmit={sendLogin}>
         <div className="form-field">
-          <label htmlFor="username">username</label>
+          <label className="hide" htmlFor="username">
+            username
+          </label>
           <div className="form-field-detail"></div>
           <input
             type="text"
@@ -65,7 +64,9 @@ export const LoginForm = () => {
           <div className="form-field-err">{nameErr}</div>
         </div>
         <div className="form-field">
-          <label htmlFor="password">password</label>
+          <label className="hide" htmlFor="password">
+            password
+          </label>
           <div className="form-field-detail"></div>
           <input
             type="password"
@@ -79,7 +80,7 @@ export const LoginForm = () => {
         <StyledButton color="var(--primary-accent)" type="submit">
           login
         </StyledButton>
-      </StyledForm>
-    </div>
+      </form>
+    </StyledForm>
   );
 };

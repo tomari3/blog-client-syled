@@ -1,5 +1,10 @@
+import { StyledAuthPage } from "../../styles/StyledAuthPage";
 import { SignupForm } from "./SignupForm";
 
 export const SignupPage = () => {
-  return <SignupForm />;
+  return (
+    <StyledAuthPage>
+      <SignupForm />
+    </StyledAuthPage>
+  );
 };

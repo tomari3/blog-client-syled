@@ -8,8 +8,10 @@ export const StyledButton = styled(motion.button)`
   justify-content: center;
   background-color: ${(props) => props.color || "transparent"};
   border: 0;
-  border-radius: 5px;
-  padding: 0.5rem 0.5rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  font-weight: bold;
+  color: var(--primary-bg);
 `;
 
 export const StyledSubmit = styled(StyledButton)`

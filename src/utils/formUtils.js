@@ -1,7 +1,11 @@
 export const UPDATE_FORM = "UPDATE_FORM";
 
 export const onInputChange = (name, value, dispatch, formState) => {
-  const { hasError, error } = validateInput(name, value);
+  const { hasError, error } = validateInput(
+    name,
+    value,
+    formState.password.value
+  );
   let isFormValid = true;
 
   for (const key in formState) {
@@ -29,7 +33,11 @@ export const onInputChange = (name, value, dispatch, formState) => {
 };
 
 export const onFocusOut = (name, value, dispatch, formState) => {
-  const { hasError, error } = validateInput(name, value);
+  const { hasError, error } = validateInput(
+    name,
+    value,
+    formState.password.value
+  );
   let isFormValid = true;
   for (const key in formState) {
     const item = formState[key];
@@ -56,6 +64,9 @@ export const validateInput = (name, value, pass) => {
       if (value.trim() === "") {
         hasError = true;
         error = "name cannot be empty";
+      } else if (value.trim().length < 3) {
+        hasError = true;
+        error = "name must be longer than 3 characters";
       } else if (!/^[a-zA-Z]+$/.test(value)) {
         hasError = true;
         error = "invalid name. avoid special characters";
@@ -88,6 +99,15 @@ export const validateInput = (name, value, pass) => {
       } else if (value.trim().length < 8) {
         hasError = true;
         error = "password must be at least 8 characters";
+      } else {
+        hasError = false;
+        error = "";
+      }
+      break;
+    case "passwordConfirm":
+      if (value.trim() !== pass.trim()) {
+        hasError = true;
+        error = "passwords dont much";
       } else {
         hasError = false;
         error = "";

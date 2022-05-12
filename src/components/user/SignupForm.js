@@ -52,7 +52,11 @@ export const SignupForm = () => {
     for (const name in formState) {
       const item = formState[name];
       const { value } = item;
-      const { hasError, error } = validateInput(name, value);
+      const { hasError, error } = validateInput(
+        name,
+        value,
+        formState.password.value
+      );
 
       if (hasError) {
         isFormValid = false;
@@ -101,16 +105,18 @@ export const SignupForm = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>signup!</h1>
+    <StyledForm>
+      <div className="form-header">
+        <h1>sign up</h1>
         {showError && !formState.isFormValid && (
-          <div className="form_error">Please fill all the fields correctly</div>
+          <div className="form-err">Please fill all the fields correctly</div>
         )}
       </div>
-      <StyledForm onSubmit={(e) => formSubmitHandler(e)}>
+      <form onSubmit={(e) => formSubmitHandler(e)}>
         <div className="form-field">
-          <label htmlFor="username">username</label>
+          <label className="hide" htmlFor="username">
+            username
+          </label>
           <div className="form-field-detail"></div>
           <input
             type="text"
@@ -127,7 +133,9 @@ export const SignupForm = () => {
           <div className="form-field-err">{formState.username.error}</div>
         </div>
         <div className="form-field">
-          <label htmlFor="email">email</label>
+          <label className="hide" htmlFor="email">
+            email
+          </label>
           <div className="form-field-detail"></div>
           <input
             type="text"
@@ -144,7 +152,9 @@ export const SignupForm = () => {
           <div className="form-field-err">{formState.email.error}</div>
         </div>
         <div className="form-field">
-          <label htmlFor="password">password</label>
+          <label className="hide" htmlFor="password">
+            password
+          </label>
           <div className="form-field-detail"></div>
           <input
             type="password"
@@ -161,10 +171,12 @@ export const SignupForm = () => {
           <div className="form-field-err">{formState.password.error}</div>
         </div>
         <div className="form-field">
-          <label htmlFor="password">password</label>
+          <label className="hide" htmlFor="password">
+            password
+          </label>
           <div className="form-field-detail"></div>
           <input
-            type="passwordConfirm"
+            type="password"
             name="passwordConfirm"
             placeholder="confirm password"
             value={formState.passwordConfirm.value}
@@ -187,7 +199,7 @@ export const SignupForm = () => {
         <StyledButton color="var(--primary-accent)" type="submit">
           sign up
         </StyledButton>
-      </StyledForm>
-    </div>
+      </form>
+    </StyledForm>
   );
 };
