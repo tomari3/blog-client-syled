@@ -28,7 +28,6 @@ export const onInputChange = (name, value, dispatch, formState) => {
       error,
       isFormValid,
       touched: false,
-      active: true,
     },
   });
 };
@@ -59,7 +58,6 @@ export const onFocusOut = (name, value, dispatch, formState) => {
       hasError,
       error,
       touched: true,
-      active: false,
       isFormValid,
     },
   });
@@ -72,10 +70,10 @@ export const validateInput = (name, value, pass) => {
     case "username":
       if (value.trim() === "") {
         hasError = true;
-        error = "name cannot be empty";
+        error = "what's your username?";
       } else if (value.trim().length < 3) {
         hasError = true;
-        error = "name must be longer than 3 characters";
+        error = "at least 3 characters";
       } else if (!/^[a-zA-Z]+$/.test(value)) {
         hasError = true;
         error = "invalid name. avoid special characters";
@@ -88,7 +86,7 @@ export const validateInput = (name, value, pass) => {
     case "email":
       if (value.trim() === "") {
         hasError = true;
-        error = "must provide email";
+        error = "what's your email?";
       } else if (
         !/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(
           value
@@ -104,10 +102,10 @@ export const validateInput = (name, value, pass) => {
     case "password":
       if (value.trim() === "") {
         hasError = true;
-        error = "must provide password";
+        error = "must provide a password";
       } else if (value.trim().length < 8) {
         hasError = true;
-        error = "password must be at least 8 characters";
+        error = "at least 8 characters";
       } else {
         hasError = false;
         error = "";

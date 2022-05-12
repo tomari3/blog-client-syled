@@ -10,8 +10,7 @@ export const StyledForm = styled(motion.section)`
   form {
     display: flex;
     flex-direction: column;
-
-    max-width: 350px;
+    width: clamp(300px, 30vw, 400px);
   }
 
   .form-header {
@@ -20,9 +19,10 @@ export const StyledForm = styled(motion.section)`
   }
 
   .form-err {
-    grid-area: err;
     font-size: 0.8em;
     color: var(--primary-err);
+    height: 3ch;
+    padding-left: 0.5rem;
   }
 
   .form-field {
@@ -33,8 +33,6 @@ export const StyledForm = styled(motion.section)`
 
     align-items: center;
 
-    row-gap: 0.5rem;
-
     grid-template-areas: "label detail" "input input" "err err";
 
     position: relative;
@@ -44,11 +42,14 @@ export const StyledForm = styled(motion.section)`
       z-index: 1;
       padding-left: 1rem;
       pointer-events: none;
+      color: var(--muted-text);
 
-      transition: 0.5s all ease;
+      transition: 0.3s all ease;
+
+      position: absolute;
+      top: calc(1.2rem + 1px);
 
       &.active {
-        position: absolute;
         top: 0.5rem;
         left: 0;
         font-size: 0.8rem;
@@ -61,10 +62,14 @@ export const StyledForm = styled(motion.section)`
       padding: 1.5rem 1rem 0.5rem;
       border: 1px solid var(--primary-active);
       font-size: 1.2rem;
-      border-radius: 0.5rem;
-    }
+      border-radius: var(--primary-radius);
 
-    button {
+      &:focus + label,
+      &:focus label.active {
+        top: 0.5rem;
+        left: 0;
+        font-size: 0.8rem;
+      }
     }
 
     .form-field-detail {
@@ -76,6 +81,7 @@ export const StyledForm = styled(motion.section)`
       font-size: 0.8em;
       color: var(--primary-err);
       height: 3ch;
+      padding-left: 0.5rem;
     }
   }
 `;

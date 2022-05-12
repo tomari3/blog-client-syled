@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -21,28 +22,24 @@ const initialState = {
     touched: false,
     hasError: false,
     error: "",
-    active: false,
   },
   email: {
     value: "",
     touched: false,
     hasError: false,
     error: "",
-    active: false,
   },
   password: {
     value: "",
     touched: false,
     hasError: false,
     error: "",
-    active: false,
   },
   passwordConfirm: {
     value: "",
     touched: false,
     hasError: false,
     error: "",
-    active: false,
   },
 };
 
@@ -132,9 +129,11 @@ export const SignupForm = () => {
     <StyledForm>
       <div className="form-header">
         <h1>sign up</h1>
-        {showError && !formState.isFormValid && (
-          <div className="form-err">Please fill all the fields correctly</div>
-        )}
+        <div className="form-err">
+          {showError &&
+            !formState.isFormValid &&
+            "Please fill all the fields correctly"}
+        </div>
       </div>
       <form onSubmit={(e) => formSubmitHandler(e)}>
         <div className="form-field">
@@ -151,16 +150,14 @@ export const SignupForm = () => {
             }
           />
           <label
-            className={
-              formState.username.value || formState.username.active
-                ? "active"
-                : ""
-            }
+            className={formState.username.value ? "active" : ""}
             htmlFor="username"
           >
             username
           </label>
-          <div className="form-field-err">{formState.username.error}</div>
+          <div className="form-field-err">
+            <p>{formState.username.error}</p>
+          </div>
         </div>
         <div className="form-field">
           <div className="form-field-detail"></div>
@@ -176,14 +173,14 @@ export const SignupForm = () => {
             }
           />
           <label
-            className={
-              formState.email.value || formState.email.active ? "active" : ""
-            }
+            className={formState.email.value ? "active" : ""}
             htmlFor="email"
           >
             email
           </label>
-          <div className="form-field-err">{formState.email.error}</div>
+          <div className="form-field-err">
+            <p>{formState.email.error}</p>
+          </div>
         </div>
         <div className="form-field">
           <div className="form-field-detail"></div>
@@ -199,16 +196,14 @@ export const SignupForm = () => {
             }
           />
           <label
-            className={
-              formState.password.value || formState.password.active
-                ? "active"
-                : ""
-            }
+            className={formState.password.value ? "active" : ""}
             htmlFor="password"
           >
             password
           </label>
-          <div className="form-field-err">{formState.password.error}</div>
+          <div className="form-field-err">
+            <p>{formState.password.error}</p>
+          </div>
         </div>
         <div className="form-field">
           <div className="form-field-detail"></div>
@@ -240,11 +235,21 @@ export const SignupForm = () => {
             confirm password
           </label>
           <div className="form-field-err">
-            {formState.passwordConfirm.error}
+            <p>{formState.passwordConfirm.error}</p>
           </div>
         </div>
-        <StyledButton color="var(--primary-accent)" type="submit">
+        <StyledButton
+          $bgColor
+          $bold
+          color="var(--primary-accent)"
+          type="submit"
+        >
           sign up
+        </StyledButton>
+        <StyledButton type="button">
+          <Link to="/user/login">
+            Already have an account? <span>Sign in</span>
+          </Link>
         </StyledButton>
       </form>
     </StyledForm>

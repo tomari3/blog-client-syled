@@ -8,10 +8,24 @@ export const StyledButton = styled(motion.button)`
   justify-content: center;
   background-color: ${(props) => props.color || "transparent"};
   border: 0;
-  border-radius: 1rem;
+  border-radius: var(--primary-radius);
   padding: 1rem;
-  font-weight: bold;
-  color: var(--primary-bg);
+  font-weight: ${(props) => (props.$bold ? "bold" : "400")};
+  color: ${(props) =>
+    props.$bgColor ? "var(--secondary-bg)" : "var(--primary-text)"};
+
+  a {
+    text-decoration: none;
+    color: var(--muted-text);
+  }
+  &:hover > a {
+    color: inherit;
+  }
+
+  span {
+    font-weight: bold;
+    padding: 0 0.5ch;
+  }
 `;
 
 export const StyledSubmit = styled(StyledButton)`

@@ -7,12 +7,13 @@ export const lightTheme = {
   secondaryAccent: "#ff8e3c",
 
   primaryInput: "#fff",
-  primaryActive: "#6D6F6D",
+  primaryActive: "#dddfe2",
+  mutedText: "#90949c",
+  primaryRadius: "0.5rem",
 
   primaryErr: "red",
 
   dropShadow: "rgba(17, 12, 46, 0.05)",
-  bgOverlay: "rgba(1, 1, 1, 0.7)",
 };
 
 export const darkTheme = {

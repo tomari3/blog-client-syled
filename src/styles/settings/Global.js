@@ -19,19 +19,22 @@ export const Global = createGlobalStyle`
   body {
     background-color: var(--primary-bg);
     position: relative;
+    font-family: 'Raleway', sans-serif;
     
   }
   :root {
 
-    font-family: 'Raleway', sans-serif;
     --head-font: 'Hamlet', serif;
     
     --primary-bg: ${({ theme }) => theme.primaryBG};
     --secondary-bg: ${({ theme }) => theme.secondaryBG};
     --primary-text: ${({ theme }) => theme.primaryText};
     --primary-accent: ${({ theme }) => theme.primaryAccent};
+
     --primary-input: ${({ theme }) => theme.primaryInput};
     --primary-active: ${({ theme }) => theme.primaryActive};
+    --muted-text: ${({ theme }) => theme.mutedText};
+    --primary-radius: ${({ theme }) => theme.primaryRadius};
 
     --primary-err: ${({ theme }) => theme.primaryErr};
     

@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useReducer, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -6,79 +7,192 @@ import { MainContext } from "../../contexts/MainContext";
 import { StyledForm } from "../../styles/StyledForm";
 import { StyledButton } from "../../styles/StyledButton";
 
+import {
+  UPDATE_FORM,
+  onInputChange,
+  onFocusOut,
+  validateInput,
+} from "../../utils/formUtils";
+
 const BaseUrl = process.env.REACT_APP_URL;
 
+const initialState = {
+  username: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+  email: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+  password: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+  passwordConfirm: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+};
+
+const formsReducer = (state, action) => {
+  switch (action.type) {
+    case UPDATE_FORM:
+      const { name, value, hasError, error, touched, isFormValid } =
+        action.data;
+      return {
+        ...state,
+        [name]: { ...state[name], value, hasError, error, touched },
+        isFormValid,
+      };
+    default:
+      return state;
+  }
+};
+
 export const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [nameErr, setNameErr] = useState("");
-  const [passErr, setPassErr] = useState("");
+  const [formState, dispatch] = useReducer(formsReducer, initialState);
+
+  const [showError, setShowError] = useState(false);
 
   const { setJwt } = useContext(MainContext);
 
-  const sendLogin = async (e) => {
+  const formSubmitHandler = (e) => {
     e.preventDefault();
 
-    setNameErr("");
-    setPassErr("");
+    let isFormValid = true;
 
+    for (const name in formState) {
+      const item = formState[name];
+      const { value } = item;
+      const { hasError, error } = validateInput(
+        name,
+        value,
+        formState.password.value
+      );
+
+      if (hasError) {
+        isFormValid = false;
+      }
+      if (name) {
+        dispatch({
+          type: UPDATE_FORM,
+          data: {
+            name,
+            value,
+            hasError,
+            error,
+            touched: true,
+            isFormValid,
+          },
+        });
+      }
+    }
+
+    if (!isFormValid) {
+      setShowError(true);
+    } else {
+      sendLogin();
+    }
+
+    setTimeout(() => {
+      setShowError(false);
+    }, 5000);
+  };
+
+  const sendLogin = async () => {
     const payload = {
-      username: username,
-      password: password,
+      username: formState.username.value,
+      password: formState.password.value,
     };
-    const postUrl = BaseUrl + `users/login`;
+    const postUrl = BaseUrl + `users/signup`;
 
     try {
       const { data } = await axios.post(postUrl, payload);
       console.log(data);
       setJwt(data.token);
-      setUsername("");
-      setPassword("");
     } catch (error) {
-      handleError(error.response.data.msg);
+      console.log(error.response.data.errors);
     }
-  };
-
-  const handleError = (err) => {
-    err.includes("user") ? setNameErr(err) : setPassErr(err);
   };
 
   return (
     <StyledForm>
       <div className="form-header">
-        <h1>login</h1>
+        <h1>Sign in</h1>
+        <div className="form-err">
+          {showError &&
+            !formState.isFormValid &&
+            "Please fill all the fields correctly"}
+        </div>
       </div>
-      <form onSubmit={sendLogin}>
+      <form onSubmit={(e) => formSubmitHandler(e)}>
         <div className="form-field">
-          <label className="hide" htmlFor="username">
-            username
-          </label>
           <div className="form-field-detail"></div>
           <input
             type="text"
             name="username"
-            placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={formState.username.value}
+            onChange={(e) =>
+              onInputChange("username", e.target.value, dispatch, formState)
+            }
+            onBlur={(e) =>
+              onFocusOut("username", e.target.value, dispatch, formState)
+            }
           />
-          <div className="form-field-err">{nameErr}</div>
+          <label
+            className={formState.username.value ? "active" : ""}
+            htmlFor="username"
+          >
+            username
+          </label>
+          <div className="form-field-err">
+            <p>{formState.username.error}</p>
+          </div>
         </div>
         <div className="form-field">
-          <label className="hide" htmlFor="password">
-            password
-          </label>
           <div className="form-field-detail"></div>
           <input
             type="password"
             name="password"
-            placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formState.password.value}
+            onChange={(e) =>
+              onInputChange("password", e.target.value, dispatch, formState)
+            }
+            onBlur={(e) =>
+              onFocusOut("password", e.target.value, dispatch, formState)
+            }
           />
-          <div className="form-field-err">{passErr}</div>
+          <label
+            className={formState.password.value ? "active" : ""}
+            htmlFor="password"
+          >
+            password
+          </label>
+          <div className="form-field-err">
+            <p>{formState.password.error}</p>
+          </div>
         </div>
-        <StyledButton color="var(--primary-accent)" type="submit">
-          login
+        <StyledButton
+          $bgColor
+          $bold
+          color="var(--primary-accent)"
+          type="submit"
+        >
+          sign in
+        </StyledButton>
+        <StyledButton type="button">
+          <Link to="/user/signup">
+            Don't have an account? <span>Sign up</span>
+          </Link>
         </StyledButton>
       </form>
     </StyledForm>
