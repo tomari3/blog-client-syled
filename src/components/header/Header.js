@@ -2,20 +2,18 @@ import { Link } from "react-router-dom";
 
 import { StyledHeader } from "../../styles/StyledHeader";
 
-import { Login } from "../user/Login";
-
 export const Header = () => {
   return (
     <StyledHeader>
-      <Link to="/">header</Link>
+      <Link to="/">home</Link>
 
       <div>
         <Link to="/post/new">write a post</Link>
         <p>profile</p>
       </div>
       <div>
-        <p>login</p>
-        <p>sing up</p>
+        <Link to="/user/login">login</Link>
+        <Link to="/user/signup">sing up</Link>
       </div>
     </StyledHeader>
   );

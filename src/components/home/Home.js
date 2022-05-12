@@ -6,7 +6,7 @@ import { MemoTagsBar } from "../tags/TagsBar";
 
 import { StyledHome } from "../../styles/StyledHome";
 
-const BaseUrl = "http://localhost:3000/";
+const BaseUrl = process.env.REACT_APP_URL;
 
 export const Home = () => {
   const [data, setData] = useState([null]);

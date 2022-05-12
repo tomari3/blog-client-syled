@@ -6,6 +6,8 @@ import { Home } from "./home/Home";
 import { Header } from "./header/Header";
 import { Footer } from "./footer/Footer";
 import { PostForm } from "./post/PostForm";
+import { Login } from "./user/Login";
+import { Signup } from "./user/Signup";
 
 function LayoutsWithNavbar({ toggle }) {
   return (
@@ -27,7 +29,11 @@ export const AnimatedRoutes = ({ toggle }) => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<LayoutsWithNavbar toggle={toggle} />}>
           <Route path="/" element={<Home />} />
+
           <Route path="/post/new" element={<PostForm />} />
+
+          <Route path="/user/login" element={<Login />} />
+          <Route path="/user/signup" element={<Signup />} />
         </Route>
       </Routes>
     </AnimatePresence>
