@@ -16,10 +16,34 @@ import {
 const BaseUrl = process.env.REACT_APP_URL;
 
 const initialState = {
-  username: { value: "", touched: false, hasError: false, error: "" },
-  email: { value: "", touched: false, hasError: false, error: "" },
-  password: { value: "", touched: false, hasError: false, error: "" },
-  passwordConfirm: { value: "", touched: false, hasError: false, error: "" },
+  username: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+    active: false,
+  },
+  email: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+    active: false,
+  },
+  password: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+    active: false,
+  },
+  passwordConfirm: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+    active: false,
+  },
 };
 
 const formsReducer = (state, action) => {
@@ -114,14 +138,10 @@ export const SignupForm = () => {
       </div>
       <form onSubmit={(e) => formSubmitHandler(e)}>
         <div className="form-field">
-          <label className="hide" htmlFor="username">
-            username
-          </label>
           <div className="form-field-detail"></div>
           <input
             type="text"
             name="username"
-            placeholder="username"
             value={formState.username.value}
             onChange={(e) =>
               onInputChange("username", e.target.value, dispatch, formState)
@@ -130,17 +150,23 @@ export const SignupForm = () => {
               onFocusOut("username", e.target.value, dispatch, formState)
             }
           />
+          <label
+            className={
+              formState.username.value || formState.username.active
+                ? "active"
+                : ""
+            }
+            htmlFor="username"
+          >
+            username
+          </label>
           <div className="form-field-err">{formState.username.error}</div>
         </div>
         <div className="form-field">
-          <label className="hide" htmlFor="email">
-            email
-          </label>
           <div className="form-field-detail"></div>
           <input
             type="text"
             name="email"
-            placeholder="email"
             value={formState.email.value}
             onChange={(e) =>
               onInputChange("email", e.target.value, dispatch, formState)
@@ -149,17 +175,21 @@ export const SignupForm = () => {
               onFocusOut("email", e.target.value, dispatch, formState)
             }
           />
+          <label
+            className={
+              formState.email.value || formState.email.active ? "active" : ""
+            }
+            htmlFor="email"
+          >
+            email
+          </label>
           <div className="form-field-err">{formState.email.error}</div>
         </div>
         <div className="form-field">
-          <label className="hide" htmlFor="password">
-            password
-          </label>
           <div className="form-field-detail"></div>
           <input
             type="password"
             name="password"
-            placeholder="password"
             value={formState.password.value}
             onChange={(e) =>
               onInputChange("password", e.target.value, dispatch, formState)
@@ -168,17 +198,23 @@ export const SignupForm = () => {
               onFocusOut("password", e.target.value, dispatch, formState)
             }
           />
+          <label
+            className={
+              formState.password.value || formState.password.active
+                ? "active"
+                : ""
+            }
+            htmlFor="password"
+          >
+            password
+          </label>
           <div className="form-field-err">{formState.password.error}</div>
         </div>
         <div className="form-field">
-          <label className="hide" htmlFor="password">
-            password
-          </label>
           <div className="form-field-detail"></div>
           <input
             type="password"
             name="passwordConfirm"
-            placeholder="confirm password"
             value={formState.passwordConfirm.value}
             onChange={(e) =>
               onInputChange(
@@ -192,6 +228,17 @@ export const SignupForm = () => {
               onFocusOut("passwordConfirm", e.target.value, dispatch, formState)
             }
           />
+          <label
+            className={
+              formState.passwordConfirm.value ||
+              formState.passwordConfirm.active
+                ? "active"
+                : ""
+            }
+            htmlFor="password"
+          >
+            confirm password
+          </label>
           <div className="form-field-err">
             {formState.passwordConfirm.error}
           </div>

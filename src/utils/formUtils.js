@@ -28,6 +28,7 @@ export const onInputChange = (name, value, dispatch, formState) => {
       error,
       isFormValid,
       touched: false,
+      active: true,
     },
   });
 };
@@ -52,7 +53,15 @@ export const onFocusOut = (name, value, dispatch, formState) => {
 
   dispatch({
     type: UPDATE_FORM,
-    data: { name, value, hasError, error, touched: true, isFormValid },
+    data: {
+      name,
+      value,
+      hasError,
+      error,
+      touched: true,
+      active: false,
+      isFormValid,
+    },
   });
 };
 

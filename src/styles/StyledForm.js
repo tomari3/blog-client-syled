@@ -31,28 +31,37 @@ export const StyledForm = styled(motion.section)`
     grid-template-columns: auto auto;
     grid-template-rows: auto 1fr auto;
 
+    align-items: center;
+
     row-gap: 0.5rem;
 
     grid-template-areas: "label detail" "input input" "err err";
 
+    position: relative;
     label {
       grid-area: label;
+      grid-row: 2;
+      z-index: 1;
+      padding-left: 1rem;
+      pointer-events: none;
 
-      &.hide {
-        display: none;
+      transition: 0.5s all ease;
+
+      &.active {
+        position: absolute;
+        top: 0.5rem;
+        left: 0;
+        font-size: 0.8rem;
       }
     }
 
     input,
     textarea {
       grid-area: input;
-      padding: 1rem;
+      padding: 1.5rem 1rem 0.5rem;
       border: 1px solid var(--primary-active);
       font-size: 1.2rem;
-      border-radius: 1rem;
-    }
-
-    input {
+      border-radius: 0.5rem;
     }
 
     button {

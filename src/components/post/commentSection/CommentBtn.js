@@ -5,7 +5,7 @@ export const CommentBtn = ({ toggle, amount, main, className }) => {
 
   return (
     <StyledCommentButton
-      className={`comment-btn ${styled} ${className}`}
+      className={`comment-btn ${styled} ${className ? className : ""}`}
       onClick={toggle}
     >
       {!amount ? `comment` : `see all ${amount} comments`}

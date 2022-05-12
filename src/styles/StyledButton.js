@@ -46,8 +46,11 @@ export const StyledSubmit = styled(StyledButton)`
 `;
 
 export const StyledCommentButton = styled(StyledButton)`
+  color: var(--primary-text);
+  font-size: 0.9em;
   background-color: transparent;
   border: 0;
+  font-weight: 400;
   padding: 0.4em;
   justify-content: start;
 
