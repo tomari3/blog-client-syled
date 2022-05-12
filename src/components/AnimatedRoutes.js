@@ -6,8 +6,8 @@ import { Home } from "./home/Home";
 import { Header } from "./header/Header";
 import { Footer } from "./footer/Footer";
 import { PostForm } from "./post/PostForm";
-import { Login } from "./user/Login";
-import { Signup } from "./user/Signup";
+import { LoginPage } from "./user/LoginPage";
+import { SignupPage } from "./user/SignupPage";
 
 function LayoutsWithNavbar({ toggle }) {
   return (
@@ -32,8 +32,8 @@ export const AnimatedRoutes = ({ toggle }) => {
 
           <Route path="/post/new" element={<PostForm />} />
 
-          <Route path="/user/login" element={<Login />} />
-          <Route path="/user/signup" element={<Signup />} />
+          <Route path="/user/login" element={<LoginPage />} />
+          <Route path="/user/signup" element={<SignupPage />} />
         </Route>
       </Routes>
     </AnimatePresence>

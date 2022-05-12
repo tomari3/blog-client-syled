@@ -6,9 +6,9 @@ import { MainContext } from "../../contexts/MainContext";
 import { StyledForm } from "../../styles/StyledForm";
 import { StyledButton } from "../../styles/StyledButton";
 
-const BaseUrl = "http://localhost:3000/";
+const BaseUrl = process.env.REACT_APP_URL;
 
-export const Login = () => {
+export const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [nameErr, setNameErr] = useState("");
