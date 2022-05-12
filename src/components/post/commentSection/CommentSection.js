@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import { StyledCommentSection } from "../../../styles/StyledCommentSection";
-import { ModalBasis } from "../../../styles/ModalBasis";
 
 import { Comments } from "./Comments";
 import { CommentInput } from "./CommentInput";

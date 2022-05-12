@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -12,6 +12,17 @@ export const PostForm = () => {
   const [tags, setTags] = useState([]);
   const [status, setStatus] = useState("");
   const [isPinned, setIsPinned] = useState(Boolean);
+
+  const fetchData = async () => {
+    const getURL = BaseUrl + `post/new`;
+
+    const { data } = await axios(getURL);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const submitPost = async (e) => {
     e.preventDefault();
@@ -28,7 +39,14 @@ export const PostForm = () => {
 
     try {
       const { data } = await axios.post(postUrl, payload);
+
       console.log(data);
+
+      setHeader("");
+      setContent("");
+      setTags("");
+      setStatus("");
+      setIsPinned(Boolean);
     } catch (error) {
       console.log(error);
     }
