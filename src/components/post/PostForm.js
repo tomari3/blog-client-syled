@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { StyledButton } from "../../styles/StyledButton";
+import { StyledForm } from "../../styles/StyledForm";
 
 const BaseUrl = process.env.REACT_APP_URL;
 
@@ -61,7 +62,7 @@ export const PostForm = () => {
         alignItems: "center",
       }}
     >
-      <form onSubmit={submitPost}>
+      <StyledForm onSubmit={submitPost}>
         <div className="form-field">
           <label htmlFor="header">header</label>
           <input
@@ -97,33 +98,30 @@ export const PostForm = () => {
 
         <div className="form-field">
           <legend>Select post status</legend>
-          <div
-            style={{ opacity: 0.8, fontSize: ".8rem" }}
-            className="form-field-detail"
-          >
-            can be changed later
-          </div>
+          <div className="form-field-detail"></div>
           <div className="form-field-err"></div>
           <div>
-            <input
-              type="radio"
-              id="status"
-              name="status"
-              value="private"
-              onChange={(e) => setStatus(e.target.value)}
-            />
-            <label htmlFor="status">private</label>
-          </div>
-          <div>
-            <input
-              checked
-              type="radio"
-              id="status"
-              name="status"
-              value="public"
-              onChange={(e) => setStatus(e.target.value)}
-            />
-            <label htmlFor="pin">public</label>
+            <div>
+              <input
+                type="radio"
+                id="status"
+                name="status"
+                value="private"
+                onChange={(e) => setStatus(e.target.value)}
+              />
+              <label htmlFor="status">private</label>
+            </div>
+            <div>
+              <input
+                checked
+                type="radio"
+                id="status"
+                name="status"
+                value="public"
+                onChange={(e) => setStatus(e.target.value)}
+              />
+              <label htmlFor="pin">public</label>
+            </div>
           </div>
         </div>
 
@@ -139,8 +137,10 @@ export const PostForm = () => {
           <div className="form-field-detail"></div>
           <div className="form-field-err"></div>
         </div>
-        <StyledButton type="submit">post</StyledButton>
-      </form>
+        <StyledButton color="var(--primary-accent)" type="submit">
+          post
+        </StyledButton>
+      </StyledForm>
     </div>
   );
 };

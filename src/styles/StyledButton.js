@@ -6,16 +6,17 @@ export const StyledButton = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  border: 1px solid black;
-  padding: 0.2rem 0.5rem;
+  background-color: ${(props) => props.color || "transparent"};
+  border: 0;
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem;
 `;
 
 export const StyledSubmit = styled(StyledButton)`
-  cursor: pointer;
   --thick: 0.2rem;
-  height: 100%;
+  cursor: pointer;
   background-color: transparent;
+  height: 100%;
   border: 0;
   position: relative;
   display: flex;

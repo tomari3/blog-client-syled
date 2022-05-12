@@ -3,6 +3,8 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 
 import { MainContext } from "../../contexts/MainContext";
+import { StyledForm } from "../../styles/StyledForm";
+import { StyledButton } from "../../styles/StyledButton";
 
 const BaseUrl = "http://localhost:3000/";
 
@@ -35,28 +37,54 @@ export const Signup = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={sendSignup}>
-        <input
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">send</button>
-      </form>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <StyledForm onSubmit={sendSignup}>
+        <div className="form-field">
+          <label htmlFor="username">username</label>
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <div className="form-field-detail"></div>
+          <div className="form-field-err"></div>
+        </div>
+        <div className="form-field">
+          <label htmlFor="email">email</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div className="form-field-detail"></div>
+          <div className="form-field-err"></div>
+        </div>
+        <div className="form-field">
+          <label htmlFor="password">password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div className="form-field-detail"></div>
+          <div className="form-field-err"></div>
+        </div>
+        <StyledButton color="var(--primary-accent)" type="submit">
+          sign up
+        </StyledButton>
+      </StyledForm>
     </div>
   );
 };

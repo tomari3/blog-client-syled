@@ -33,6 +33,8 @@ export const Global = createGlobalStyle`
     --primary-input: ${({ theme }) => theme.primaryInput};
     --primary-active: ${({ theme }) => theme.primaryActive};
 
+    --primary-err: ${({ theme }) => theme.primaryErr};
+    
     --drop-shadow: ${({ theme }) => theme.dropShadow};
     --bg-overlay: ${({ theme }) => theme.bgOverlay};
     

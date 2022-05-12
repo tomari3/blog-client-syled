@@ -7,7 +7,6 @@ export const StyledCommentSection = styled(motion.section)`
 
   flex: 1;
   min-width: 350px;
-  height: 100%;
   padding: 1rem;
 
   position: relative;

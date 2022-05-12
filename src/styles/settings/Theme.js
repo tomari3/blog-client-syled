@@ -9,6 +9,8 @@ export const lightTheme = {
   primaryInput: "#fff",
   primaryActive: "#6D6F6D",
 
+  primaryErr: "red",
+
   dropShadow: "rgba(17, 12, 46, 0.05)",
   bgOverlay: "rgba(1, 1, 1, 0.7)",
 };
