@@ -1,11 +1,7 @@
 export const UPDATE_FORM = "UPDATE_FORM";
 
 export const onInputChange = (name, value, dispatch, formState) => {
-  const { hasError, error } = validateInput(
-    name,
-    value,
-    formState.password.value
-  );
+  const { hasError, error } = validateInput(name, value);
   let isFormValid = true;
 
   for (const key in formState) {
@@ -33,11 +29,7 @@ export const onInputChange = (name, value, dispatch, formState) => {
 };
 
 export const onFocusOut = (name, value, dispatch, formState) => {
-  const { hasError, error } = validateInput(
-    name,
-    value,
-    formState.password.value
-  );
+  const { hasError, error } = validateInput(name, value);
   let isFormValid = true;
   for (const key in formState) {
     const item = formState[key];
@@ -63,9 +55,11 @@ export const onFocusOut = (name, value, dispatch, formState) => {
   });
 };
 
-export const validateInput = (name, value, pass) => {
+export const validateInput = (name, value, pass = null) => {
   let hasError = false,
     error = "";
+
+  // auth
   switch (name) {
     case "username":
       if (value.trim() === "") {
@@ -118,6 +112,26 @@ export const validateInput = (name, value, pass) => {
       } else {
         hasError = false;
         error = "";
+      }
+      break;
+
+    // post
+    case "header":
+      if (value.trim() === "") {
+        hasError = true;
+        error = "must provide a header";
+      }
+      break;
+    case "content":
+      if (value.trim() === "") {
+        hasError = true;
+        error = "must provide content";
+      }
+      break;
+    case "tags":
+      if (value.trim() === "") {
+        hasError = true;
+        error = "must provide at least 1 tag";
       }
       break;
 

@@ -62,6 +62,7 @@ export const SignupForm = () => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
+  const [serverError, setSeverError] = useState("");
 
   const { setJwt } = useContext(MainContext);
 
@@ -121,7 +122,11 @@ export const SignupForm = () => {
       console.log(data);
       setJwt(data.token);
     } catch (error) {
-      console.log(error.response.data.errors);
+      setSeverError(error.response.data.msg);
+
+      setTimeout(() => {
+        setSeverError("");
+      }, 5000);
     }
   };
 
@@ -133,6 +138,7 @@ export const SignupForm = () => {
           {showError &&
             !formState.isFormValid &&
             "Please fill all the fields correctly"}
+          {serverError}
         </div>
       </div>
       <form onSubmit={(e) => formSubmitHandler(e)}>

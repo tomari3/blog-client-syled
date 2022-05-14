@@ -63,6 +63,7 @@ export const StyledForm = styled(motion.section)`
       border: 1px solid var(--primary-active);
       font-size: 1.2rem;
       border-radius: var(--primary-radius);
+      resize: none;
 
       &:focus + label,
       &:focus label.active {

@@ -1,18 +1,71 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useReducer, useContext, useEffect } from "react";
 
 import axios from "axios";
 
 import { StyledButton } from "../../styles/StyledButton";
 import { StyledForm } from "../../styles/StyledForm";
 
+import {
+  UPDATE_FORM,
+  onInputChange,
+  onFocusOut,
+  validateInput,
+} from "../../utils/formUtils";
+
+const initialState = {
+  header: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+  content: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+  tags: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+  status: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+  pinned: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+};
+
+const formsReducer = (state, action) => {
+  switch (action.type) {
+    case UPDATE_FORM:
+      const { name, value, hasError, error, touched, isFormValid } =
+        action.data;
+      return {
+        ...state,
+        [name]: { ...state[name], value, hasError, error, touched },
+        isFormValid,
+      };
+    default:
+      return state;
+  }
+};
 const BaseUrl = process.env.REACT_APP_URL;
 
 export const PostForm = () => {
-  const [header, setHeader] = useState("");
-  const [content, setContent] = useState("");
-  const [tags, setTags] = useState([]);
-  const [status, setStatus] = useState("");
-  const [isPinned, setIsPinned] = useState(Boolean);
+  const [formState, dispatch] = useReducer(formsReducer, initialState);
+
+  const [showError, setShowError] = useState(false);
+  const [serverError, setSeverError] = useState("");
 
   const fetchData = async () => {
     const getURL = BaseUrl + `post/new`;
@@ -24,17 +77,52 @@ export const PostForm = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  const submitPost = async (e) => {
+  const formSubmitHandler = (e) => {
     e.preventDefault();
 
+    let isFormValid = true;
+
+    for (const name in formState) {
+      const item = formState[name];
+      const { value } = item;
+      const { hasError, error } = validateInput(name, value);
+
+      if (hasError) {
+        isFormValid = false;
+      }
+      if (name) {
+        dispatch({
+          type: UPDATE_FORM,
+          data: {
+            name,
+            value,
+            hasError,
+            error,
+            touched: true,
+            isFormValid,
+          },
+        });
+      }
+    }
+
+    if (!isFormValid) {
+      setShowError(true);
+    } else {
+      sendPost();
+    }
+
+    setTimeout(() => {
+      setShowError(false);
+    }, 5000);
+  };
+  const sendPost = async () => {
     const payload = {
       id: "625af335160443835c688a22",
-      header: header,
-      content: content,
-      status: status,
-      isPinned: isPinned,
-      tags: tags,
+      header: formState.header.value,
+      content: formState.content.value,
+      status: formState.status.value,
+      isPinned: formState.pinned.value,
+      tags: formState.tags.value,
     };
     const postUrl = BaseUrl + `post/new`;
 
@@ -42,105 +130,102 @@ export const PostForm = () => {
       const { data } = await axios.post(postUrl, payload);
 
       console.log(data);
-
-      setHeader("");
-      setContent("");
-      setTags("");
-      setStatus("");
-      setIsPinned(Boolean);
     } catch (error) {
-      console.log(error);
+      setSeverError(error.response.data.msg);
+
+      setTimeout(() => {
+        setSeverError("");
+      }, 5000);
     }
   };
 
   return (
-    <div
-      style={{
-        margin: "0 50%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <StyledForm onSubmit={submitPost}>
+    <StyledForm onSubmit={(e) => formSubmitHandler(e)}>
+      <div className="form-header">
+        <h1>Sign in</h1>
+        <div className="form-err">
+          {showError &&
+            !formState.isFormValid &&
+            "Please fill all the fields correctly"}
+          {serverError}
+        </div>
+      </div>
+      <form>
         <div className="form-field">
-          <label htmlFor="header">header</label>
           <input
             type="text"
             name="header"
-            value={header}
-            onChange={(e) => setHeader(e.target.value)}
+            value={formState.header.value}
+            onChange={(e) =>
+              onInputChange("header", e.target.value, dispatch, formState)
+            }
+            onBlur={(e) =>
+              onFocusOut("header", e.target.value, dispatch, formState)
+            }
           />
-          <div className="form-field-err"></div>
+          <label
+            className={formState.header.value ? "active" : ""}
+            htmlFor="header"
+          >
+            header
+          </label>
+          <div className="form-field-err">
+            <p>{formState.header.error}</p>
+          </div>
         </div>
 
         <div className="form-field">
-          <label htmlFor="content">content</label>
           <textarea
             type="text"
             name="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            value={formState.content.value}
+            rows={10}
+            onChange={(e) =>
+              onInputChange("content", e.target.value, dispatch, formState)
+            }
+            onBlur={(e) =>
+              onFocusOut("content", e.target.value, dispatch, formState)
+            }
           />
-          <div className="form-field-err"></div>
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="tags">tags</label>
-          <input
-            type="text"
-            name="tags"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-          <div className="form-field-err"></div>
-        </div>
-
-        <div className="form-field">
-          <legend>Select post status</legend>
-          <div className="form-field-detail"></div>
-          <div className="form-field-err"></div>
-          <div>
-            <div>
-              <input
-                type="radio"
-                id="status"
-                name="status"
-                value="private"
-                onChange={(e) => setStatus(e.target.value)}
-              />
-              <label htmlFor="status">private</label>
-            </div>
-            <div>
-              <input
-                checked
-                type="radio"
-                id="status"
-                name="status"
-                value="public"
-                onChange={(e) => setStatus(e.target.value)}
-              />
-              <label htmlFor="pin">public</label>
-            </div>
+          <label
+            className={formState.content.value ? "active" : ""}
+            htmlFor="content"
+          >
+            content
+          </label>
+          <div className="form-field-err">
+            <p>{formState.content.error}</p>
           </div>
         </div>
 
         <div className="form-field">
           <input
-            type="checkbox"
-            id="isPinned"
-            name="isPinned"
-            value={status}
-            onChange={(e) => setIsPinned(!isPinned)}
+            className={formState.tags.value ? "active" : ""}
+            type="text"
+            name="tags"
+            value={formState.tags.value}
+            onChange={(e) =>
+              onInputChange("tags", e.target.value, dispatch, formState)
+            }
+            onBlur={(e) =>
+              onFocusOut("tags", e.target.value, dispatch, formState)
+            }
           />
-          <label htmlFor="isPinned">pin post</label>
-          <div className="form-field-detail"></div>
-          <div className="form-field-err"></div>
+          <label
+            className={formState.tags.value ? "active" : ""}
+            htmlFor="tags"
+          >
+            tags
+          </label>
+          <div className="form-field-err">
+            <p>{formState.tags.error}</p>
+          </div>
         </div>
+
         <StyledButton color="var(--primary-accent)" type="submit">
           post
         </StyledButton>
-      </StyledForm>
-    </div>
+      </form>
+    </StyledForm>
   );
 };

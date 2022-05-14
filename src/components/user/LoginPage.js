@@ -1,10 +1,10 @@
-import { StyledAuthPage } from "../../styles/StyledAuthPage";
+import { StyledLayout } from "../../styles/StyledLayout";
 import { LoginForm } from "./LoginForm";
 
 export const LoginPage = () => {
   return (
-    <StyledAuthPage>
+    <StyledLayout>
       <LoginForm />
-    </StyledAuthPage>
+    </StyledLayout>
   );
 };

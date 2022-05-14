@@ -23,19 +23,7 @@ const initialState = {
     hasError: false,
     error: "",
   },
-  email: {
-    value: "",
-    touched: false,
-    hasError: false,
-    error: "",
-  },
   password: {
-    value: "",
-    touched: false,
-    hasError: false,
-    error: "",
-  },
-  passwordConfirm: {
     value: "",
     touched: false,
     hasError: false,
@@ -62,6 +50,7 @@ export const LoginForm = () => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
+  const [serverError, setSeverError] = useState("");
 
   const { setJwt } = useContext(MainContext);
 
@@ -113,14 +102,18 @@ export const LoginForm = () => {
       username: formState.username.value,
       password: formState.password.value,
     };
-    const postUrl = BaseUrl + `users/signup`;
+    const postUrl = BaseUrl + `users/login`;
 
     try {
       const { data } = await axios.post(postUrl, payload);
       console.log(data);
       setJwt(data.token);
     } catch (error) {
-      console.log(error.response.data.errors);
+      setSeverError(error.response.data.msg);
+
+      setTimeout(() => {
+        setSeverError("");
+      }, 5000);
     }
   };
 
@@ -132,6 +125,7 @@ export const LoginForm = () => {
           {showError &&
             !formState.isFormValid &&
             "Please fill all the fields correctly"}
+          {serverError}
         </div>
       </div>
       <form onSubmit={(e) => formSubmitHandler(e)}>

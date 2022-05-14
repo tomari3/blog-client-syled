@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { Home } from "./home/Home";
 import { Header } from "./header/Header";
 import { Footer } from "./footer/Footer";
-import { PostForm } from "./post/PostForm";
+import { PostFormPage } from "./PostFormPage";
 import { LoginPage } from "./user/LoginPage";
 import { SignupPage } from "./user/SignupPage";
 
@@ -30,7 +30,7 @@ export const AnimatedRoutes = ({ toggle }) => {
         <Route path="/" element={<LayoutsWithNavbar toggle={toggle} />}>
           <Route path="/" element={<Home />} />
 
-          <Route path="/post/new" element={<PostForm />} />
+          <Route path="/post/new" element={<PostFormPage />} />
 
           <Route path="/user/login" element={<LoginPage />} />
           <Route path="/user/signup" element={<SignupPage />} />
