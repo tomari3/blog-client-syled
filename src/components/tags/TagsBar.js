@@ -2,7 +2,7 @@ import React from "react";
 import { StyledTag } from "../../styles/StyledTag";
 import { StyledTagsBar } from "../../styles/StyledTagsBar";
 
-export const TagsBar = ({ tagsData }) => {
+export const TagsBar = ({ tagsData, className }) => {
   // return the first 10
   const tagsBar = !tagsData
     ? null
@@ -13,7 +13,7 @@ export const TagsBar = ({ tagsData }) => {
       });
 
   return (
-    <StyledTagsBar>
+    <StyledTagsBar className={className}>
       <div className="title">recent tags</div>
       <div className="tags-bar">{tagsBar}</div>
     </StyledTagsBar>

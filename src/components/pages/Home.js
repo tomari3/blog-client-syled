@@ -22,8 +22,8 @@ export const Home = () => {
 
   return (
     <StyledHome>
-      <MemoTagsBar tagsData={data.tags} />
-      <MemoPostGallery postsData={data.posts} />
+      <MemoPostGallery className="home_feed column" postsData={data.posts} />
+      <MemoTagsBar className="home_tags column" tagsData={data.tags} />
     </StyledHome>
   );
 };
