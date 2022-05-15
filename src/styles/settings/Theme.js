@@ -4,6 +4,7 @@ export const lightTheme = {
   primaryText: "#0d0d0d",
 
   primaryAccent: "#d9376e",
+  accentCustom: "217, 55, 110",
   secondaryAccent: "#ff8e3c",
 
   primaryInput: "#fff",

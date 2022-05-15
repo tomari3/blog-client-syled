@@ -13,12 +13,6 @@ import {
 } from "../../utils/formUtils";
 
 const initialState = {
-  header: {
-    value: "",
-    touched: false,
-    hasError: false,
-    error: "",
-  },
   content: {
     value: "",
     touched: false,
@@ -119,7 +113,6 @@ export const PostForm = () => {
   const sendPost = async () => {
     const payload = {
       id: "625af335160443835c688a22",
-      header: formState.header.value,
       content: formState.content.value,
       status: formState.status.value,
       isPinned: formState.pinned.value,
@@ -140,12 +133,10 @@ export const PostForm = () => {
     }
   };
 
-  console.log(formState.status.value);
-
   return (
     <StyledForm onSubmit={(e) => formSubmitHandler(e)}>
       <div className="form-header">
-        <h1>Sign in</h1>
+        <h1>What's new?</h1>
         <div className="form-err">
           {showError &&
             !formState.isFormValid &&
@@ -154,29 +145,6 @@ export const PostForm = () => {
         </div>
       </div>
       <form>
-        <div className="form-field">
-          <input
-            type="text"
-            name="header"
-            value={formState.header.value}
-            onChange={(e) =>
-              onInputChange("header", e.target.value, dispatch, formState)
-            }
-            onBlur={(e) =>
-              onFocusOut("header", e.target.value, dispatch, formState)
-            }
-          />
-          <label
-            className={formState.header.value ? "active" : ""}
-            htmlFor="header"
-          >
-            header
-          </label>
-          <div className="form-field-err">
-            <p>{formState.header.error}</p>
-          </div>
-        </div>
-
         <div className="form-field">
           <textarea
             type="text"

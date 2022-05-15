@@ -116,12 +116,6 @@ export const validateInput = (name, value, pass = null) => {
       break;
 
     // post
-    case "header":
-      if (value.trim() === "") {
-        hasError = true;
-        error = "must provide a header";
-      }
-      break;
     case "content":
       if (value.trim() === "") {
         hasError = true;

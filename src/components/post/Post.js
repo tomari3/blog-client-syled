@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { StyledPost } from "../../styles/StyledPost";
 
-import { longMonth } from "../../utils/dateFormat";
+import { longMonth, timeAgo, timeToNow } from "../../utils/dateFormat";
 
 import { Tag } from "../tags/Tag";
 import { CommentSection } from "./commentSection/CommentSection";
@@ -22,7 +22,6 @@ export const Post = ({ postData }) => {
     author,
     comments,
     content,
-    header,
     date,
     isPinned,
     likes,
@@ -40,10 +39,10 @@ export const Post = ({ postData }) => {
       <div className="post-content-details">
         <p className="post-content-details_img">img</p>
         <p className="post-content-details_username">{author.username}</p>
-        <p className="post-content-details_date">{longMonth(date)}</p>
+        <p className="post-content-details_date">{timeAgo(date)}</p>
       </div>
       <div className="post-content_tags">{tagsList}</div>
-      <p className="post-content_header">{header}</p>
+      <p className="post-content_content">{content}</p>
     </div>
   );
 
@@ -51,12 +50,10 @@ export const Post = ({ postData }) => {
     <StyledPost className="post">
       {postContent}
       <div className="post-interactions">
-        <div className="post-interactions_static">
-          <LikeBtn postLikes={likes} />
-          <SaveBtn postSaves={saves} />
-        </div>
+        <LikeBtn postLikes={likes} />
+        <SaveBtn postSaves={saves} />
+        <CommentBtn main toggle={toggleComments} amount={comments.length} />
       </div>
-      <CommentBtn main toggle={toggleComments} amount={comments.length} />
       {active ? (
         <ModalBasis onClick={toggleComments}>
           <div

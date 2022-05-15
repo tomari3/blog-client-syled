@@ -11,7 +11,8 @@ export const StyledButton = styled(motion.button)`
     props.$color ? "var(--primary-accent)" : "transparent"};
   border: 0;
   border-radius: var(--primary-radius);
-  padding: 1rem;
+  padding: ${(props) => (props.$padding ? "inherit" : "1rem")};
+  font-size: ${(props) => (props.$small ? "0.8em" : "inherit")};
   font-weight: ${(props) => (props.$bold ? "bold" : "400")};
   color: ${(props) =>
     props.$color ? "var(--secondary-bg)" : "var(--primary-text)"};

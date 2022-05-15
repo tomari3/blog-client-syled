@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
 import axios from "axios";
-import { StyledButton } from "../../styles/StyledButton";
 
-const BaseUrl = process.env.REACT_APP_URL;
+import { StyledButton } from "../../../styles/StyledButton";
 
-export const LikeBtn = ({ postId, postLikes }) => {
+const BaseUrl = "http://localhost:3000/";
+
+export const LikeCommentBtn = ({ commentId, commentLikes }) => {
   const [active, setActive] = useState(false);
-  const [likes, setLikes] = useState(postLikes);
+  const [likes, setLikes] = useState(commentLikes);
 
   const toggleLike = () => {
     setActive(!active);
@@ -19,7 +20,7 @@ export const LikeBtn = ({ postId, postLikes }) => {
     const payload = {
       // userId: user._id,
     };
-    const postUrl = BaseUrl + `post/${postId}/like`;
+    const postUrl = BaseUrl + `comment/${commentId}/like/`;
 
     try {
       const { data } = await axios.post(postUrl, payload);

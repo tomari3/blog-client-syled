@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { longMonth } from "../../../utils/dateFormat";
 
-import { CommentLike } from "./CommentLike";
+import { LikeCommentBtn } from "./LikeCommentBtn";
 import { CommentBtn } from "./CommentBtn";
 import { CommentInput } from "./CommentInput";
 import { SubComments } from "./SubComments";
@@ -54,7 +54,7 @@ export const Comment = ({ data }) => {
             className={active ? "active" : ""}
             toggle={toggleComments}
           />
-          <CommentLike commentId={data._id} commentLikes={data.likes} />
+          <LikeCommentBtn commentId={data._id} commentLikes={data.likes} />
         </div>
         {active ? (
           <>

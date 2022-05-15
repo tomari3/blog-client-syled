@@ -31,6 +31,8 @@ export const Global = createGlobalStyle`
     --primary-text: ${({ theme }) => theme.primaryText};
     --primary-accent: ${({ theme }) => theme.primaryAccent};
 
+    --accent-custom: ${({ theme }) => theme.accentCustom};
+
     --primary-input: ${({ theme }) => theme.primaryInput};
     --primary-active: ${({ theme }) => theme.primaryActive};
     --muted-text: ${({ theme }) => theme.mutedText};

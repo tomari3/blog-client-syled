@@ -7,6 +7,8 @@ export const StyledPost = styled(motion.article)`
   border-radius: 10px;
   box-shadow: var(--drop-shadow) 0px 4px 50px 0px;
 
+  min-width: 350px;
+
   display: flex;
   flex-direction: column;
 
@@ -55,12 +57,47 @@ export const StyledPost = styled(motion.article)`
   }
 
   .post-interactions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .post-interactions_static {
+  .interaction-btn {
     display: flex;
-    gap: 1rem;
-    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    button {
+      transition: all 0.3s ease;
+      border-radius: 100%;
+      padding: 5px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg,
+      polygon {
+        transform: translate(0px, 1px);
+        height: 3ch;
+
+        &.Like {
+          transform: translate(0px, 2px);
+        }
+      }
+    }
+
+    &:hover {
+      button {
+        color: var(--primary-accent);
+
+        &.svg {
+          background-color: rgba(var(--accent-custom), 0.2);
+          svg path,
+          polygon {
+            stroke: var(--primary-accent);
+          }
+        }
+      }
+    }
   }
 
   .post-comments-modal {
