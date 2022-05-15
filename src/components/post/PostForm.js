@@ -77,6 +77,7 @@ export const PostForm = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
   const formSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -226,53 +227,59 @@ export const PostForm = () => {
 
         <div className="row">
           <div className="form-field">
-            <div className="checkbox-wrapper">
+            <div className="form-field-detail">
+              <span>?</span>
+              <article>
+                <p>
+                  This will make the post only visible to you, it can be changed
+                  later
+                </p>
+              </article>
+            </div>
+            <div
+              className={`checkbox-wrapper ${
+                formState.status.value ? "active" : ""
+              }`}
+            >
               <input
-                className={formState.status.value ? "active" : ""}
                 type="checkbox"
                 name="status"
                 value={formState.status.value}
                 onChange={(e) =>
-                  onInputChange("status", e.target.value, dispatch, formState)
+                  onInputChange("status", e.target.checked, dispatch, formState)
                 }
                 onBlur={(e) =>
-                  onFocusOut("status", e.target.value, dispatch, formState)
+                  onFocusOut("status", e.target.checked, dispatch, formState)
                 }
               />
               <span></span>
             </div>
-            <label
-              className={formState.status.value ? "active" : ""}
-              htmlFor="status"
-            >
-              private
-            </label>
+            <label htmlFor="status">private</label>
             <div className="form-field-err">
               <p>{formState.status.error}</p>
             </div>
           </div>
           <div className="form-field">
-            <div className="checkbox-wrapper">
+            <div className="form-field-detail"></div>
+            <div
+              className={`checkbox-wrapper ${
+                formState.pinned.value ? "active" : ""
+              }`}
+            >
               <input
-                className={formState.pinned.value ? "active" : ""}
                 type="checkbox"
                 name="pinned"
                 value={formState.pinned.value}
                 onChange={(e) =>
-                  onInputChange("pinned", e.target.value, dispatch, formState)
+                  onInputChange("pinned", e.target.checked, dispatch, formState)
                 }
                 onBlur={(e) =>
-                  onFocusOut("pinned", e.target.value, dispatch, formState)
+                  onFocusOut("pinned", e.target.checked, dispatch, formState)
                 }
               />
               <span></span>
             </div>
-            <label
-              className={formState.pinned.value ? "active" : ""}
-              htmlFor="pinned"
-            >
-              pinned
-            </label>
+            <label htmlFor="pinned">pinned</label>
             <div className="form-field-err">
               <p>{formState.pinned.error}</p>
             </div>

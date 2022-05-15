@@ -39,6 +39,7 @@ export const Global = createGlobalStyle`
     --primary-err: ${({ theme }) => theme.primaryErr};
     
     --drop-shadow: ${({ theme }) => theme.dropShadow};
+    --drop-shadow-strong: ${({ theme }) => theme.dropShadowS};
     --bg-overlay: ${({ theme }) => theme.bgOverlay};
     
     --default-transition: color 2s ease;

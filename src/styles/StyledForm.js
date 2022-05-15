@@ -62,7 +62,11 @@ export const StyledForm = styled(motion.section)`
       align-content: center;
       justify-items: center;
 
-      box-shadow: rgba(0, 0, 0, 0.35) inset 0px 5px 15px;
+      box-shadow: var(--drop-shadow-strong) inset 0px 5px 15px;
+
+      &.active {
+        background-color: var(--primary-accent);
+      }
 
       + label {
         padding: 0;
@@ -75,19 +79,18 @@ export const StyledForm = styled(motion.section)`
         border-radius: 100%;
         pointer-events: none;
         transition: 0.3s all ease;
-        grid-row: 1;
         grid-area: off;
       }
       input {
-        transition: 0.3s all ease;
-        height: var(--circle-size);
+        height: calc(var(--circle-size) * var(--times));
         aspect-ratio: 1;
         opacity: 0;
-        grid-row: 1;
         grid-area: off;
+        transform: translateX(calc(var(--times) * 1rem / 2));
 
-        &:checked,
-        :checked + span {
+        cursor: pointer;
+
+        &:checked + span {
           transform: translateX(calc(var(--times) * 1rem));
           scale: 1;
         }
@@ -135,6 +138,34 @@ export const StyledForm = styled(motion.section)`
 
     .form-field-detail {
       grid-area: detail;
+      position: relative;
+      padding: 2px 4px;
+      z-index: 10;
+      &:hover > article {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      span {
+        color: var(--muted-text);
+        cursor: pointer;
+      }
+      article {
+        top: 0;
+        position: absolute;
+        left: 1rem;
+        font-size: 0.8rem;
+        border: 1px solid black;
+        border-radius: var(--primary-radius);
+        border-top-left-radius: 0;
+        height: inherit;
+        width: max-content;
+        max-width: 10rem;
+        padding: 5px;
+        background-color: var(--primary-bg);
+        opacity: 0;
+        pointer-events: none;
+      }
     }
 
     .form-field-err {
