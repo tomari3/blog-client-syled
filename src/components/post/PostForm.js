@@ -286,12 +286,7 @@ export const PostForm = () => {
           </div>
         </div>
 
-        <StyledButton
-          $bgColor
-          $bold
-          color="var(--primary-accent)"
-          type="submit"
-        >
+        <StyledButton $color $bold>
           post
         </StyledButton>
       </form>

@@ -1,4 +1,5 @@
-import { StyledSubmit } from "../../../styles/StyledButton";
+import { StyledButton, StyledSubmit } from "../../../styles/StyledButton";
+import { Send } from "../../svgs/Send";
 
 export const CommentInput = ({ send, value, set, main }) => {
   const styled = main ? "main" : "sub";
@@ -17,7 +18,6 @@ export const CommentInput = ({ send, value, set, main }) => {
           autoCorrect="on"
           autoFocus
           maxLength={1400}
-          rows={1}
           spellCheck="true"
           wrap="hard"
           placeholder="share your thoughts"
@@ -25,11 +25,9 @@ export const CommentInput = ({ send, value, set, main }) => {
           onKeyDown={resize}
           onChange={(e) => set(e.target.value)}
         />
-        <StyledSubmit type="submit">
-          <span></span>
-          <span></span>
-          <span></span>
-        </StyledSubmit>
+        <StyledButton $color type="submit">
+          reply
+        </StyledButton>
       </form>
     </div>
   );

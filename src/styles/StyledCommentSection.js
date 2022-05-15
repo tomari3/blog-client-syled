@@ -4,17 +4,20 @@ import { motion } from "framer-motion";
 export const StyledCommentSection = styled(motion.section)`
   --transition: all 0.1s ease;
   background-color: var(--secondary-bg);
+  position: absolute;
 
-  flex: 1;
-  min-width: 350px;
+  height: 100vh;
+  width: clamp(350px, 50vw, 1000px);
   padding: 1rem;
 
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 80px 1fr;
   gap: 0.5rem;
 
   z-index: 10;
+
+  overflow-y: scroll;
 
   .sub {
     font-size: 0.8rem;
@@ -41,6 +44,11 @@ export const StyledCommentSection = styled(motion.section)`
   }
 
   .comment-input {
+    &.main {
+      border-bottom: 1px solid var(--primary-active);
+      display: flex;
+      justify-content: center;
+    }
     form {
       display: flex;
       gap: 1em;
@@ -53,13 +61,10 @@ export const StyledCommentSection = styled(motion.section)`
       font-size: 0.8rem;
       resize: none;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background-color: var(--primary-input);
       border: 0;
       border-radius: 0.5rem;
-      padding: 0.2rem 0.5rem;
+      padding: 0.5rem 0.5rem;
 
       &:focus-visible {
         outline: 1px solid var(--primary-active);

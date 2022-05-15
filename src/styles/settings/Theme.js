@@ -14,7 +14,9 @@ export const lightTheme = {
   primaryErr: "red",
 
   dropShadow: "rgba(17, 12, 46, 0.05)",
-  dropShadowS: "rgba(0, 0,0 , 0.35)",
+  dropShadowS: "rgba(0, 0,0 , 0.2)",
+
+  bgOverlay: "rgba(0, 0,0 , 0.3)",
 };
 
 export const darkTheme = {

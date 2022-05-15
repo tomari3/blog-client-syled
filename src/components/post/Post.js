@@ -47,23 +47,6 @@ export const Post = ({ postData }) => {
     </div>
   );
 
-  const modalVariants = {
-    hidden: {
-      opacity: 0,
-      backgroundColor: "transparent",
-    },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      backgroundColor: "var(--bg-overlay)",
-    },
-    exit: {
-      scale: 0,
-      opacity: 0,
-      backgroundColor: "transparent",
-    },
-  };
-
   return (
     <StyledPost className="post">
       {postContent}
@@ -75,19 +58,11 @@ export const Post = ({ postData }) => {
       </div>
       <CommentBtn main toggle={toggleComments} amount={comments.length} />
       {active ? (
-        <ModalBasis
-          variants={modalVariants}
-          initial={"hidden"}
-          animate={"visible"}
-          exit={"exit"}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          onClick={toggleComments}
-        >
+        <ModalBasis onClick={toggleComments}>
           <div
+            style={{ width: "min-content" }}
             onClick={(e) => e.stopPropagation()}
-            className="post-comments-modal"
           >
-            {postContent}
             <CommentSection postId={postData._id} postComments={comments} />
           </div>
         </ModalBasis>

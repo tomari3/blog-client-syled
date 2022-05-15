@@ -244,12 +244,7 @@ export const SignupForm = () => {
             <p>{formState.passwordConfirm.error}</p>
           </div>
         </div>
-        <StyledButton
-          $bgColor
-          $bold
-          color="var(--primary-accent)"
-          type="submit"
-        >
+        <StyledButton $bold $color>
           sign up
         </StyledButton>
         <StyledButton type="button">

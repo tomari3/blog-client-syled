@@ -64,7 +64,6 @@ export const StyledPost = styled(motion.article)`
   }
 
   .post-comments-modal {
-    height: 90vh;
     overflow-y: scroll;
 
     .post-content {

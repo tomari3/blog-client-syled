@@ -175,12 +175,7 @@ export const LoginForm = () => {
             <p>{formState.password.error}</p>
           </div>
         </div>
-        <StyledButton
-          $bgColor
-          $bold
-          color="var(--primary-accent)"
-          type="submit"
-        >
+        <StyledButton $color $bold>
           sign in
         </StyledButton>
         <StyledButton type="button">
