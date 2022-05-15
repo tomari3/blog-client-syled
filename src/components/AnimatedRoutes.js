@@ -2,10 +2,10 @@ import { useLocation, Routes, Route, Outlet } from "react-router-dom";
 
 import { AnimatePresence } from "framer-motion";
 
-import { Home } from "./home/Home";
 import { Header } from "./header/Header";
 import { Footer } from "./footer/Footer";
-import { PostFormPage } from "./PostFormPage";
+import { Home } from "./pages/Home";
+import { PostFormPage } from "./pages/PostFormPage";
 import { LoginPage } from "./user/LoginPage";
 import { SignupPage } from "./user/SignupPage";
 

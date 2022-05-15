@@ -1,5 +1,5 @@
-import { StyledLayout } from "../styles/StyledLayout";
-import { PostForm } from "./post/PostForm";
+import { StyledLayout } from "../../styles/StyledLayout";
+import { PostForm } from "../post/PostForm";
 
 export const PostFormPage = () => {
   return (
