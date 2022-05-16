@@ -1,6 +1,6 @@
 export const lightTheme = {
-  primaryBG: "#fffffe",
-  secondaryBG: "#eff0f3",
+  primaryBG: "#FAFAFA",
+  secondaryBG: "#FFFFFF",
   primaryText: "#0d0d0d",
 
   primaryAccent: "#d9376e",

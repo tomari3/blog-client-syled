@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { StyledPost } from "../../styles/StyledPost";
 
-import { longMonth, timeAgo, timeToNow } from "../../utils/dateFormat";
+import { timeAgo } from "../../utils/dateFormat";
 
 import { Tag } from "../tags/Tag";
 import { CommentSection } from "./commentSection/CommentSection";

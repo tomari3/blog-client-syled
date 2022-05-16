@@ -2,41 +2,57 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const StyledPost = styled(motion.article)`
+  cursor: pointer;
   padding: 1rem;
   background-color: var(--secondary-bg);
-  border-radius: 10px;
-  box-shadow: var(--drop-shadow) 0px 4px 50px 0px;
-
   min-width: 350px;
-
   display: flex;
   flex-direction: column;
 
+  transition: filter 0.2s ease;
+
+  border: 1px solid var(--primary-active);
+  border-bottom: 0;
+
+  &:last-child {
+    border: 1px solid var(--primary-active);
+  }
+
+  &:hover {
+    filter: brightness(0.97);
+  }
+
   .post-content {
     flex: 1;
-    background-color: var(--secondary-bg);
+    border-bottom: 1px solid var(--primary-active);
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   .post-content-details {
     display: grid;
     grid-template-columns: min-content 1fr;
-    grid-template-rows: min-content 1fr;
+    grid-template-rows: 1.5rem 1fr;
     grid-template-areas: "img username" "img date";
 
-    column-gap: 0.5rem;
+    column-gap: 1rem;
   }
 
   .post-content-details_username {
     grid-area: username;
+    text-transform: capitalize;
+    padding: 4px;
   }
 
   .post-content-details_date {
     grid-area: date;
+    font-size: 0.8rem;
+    padding: 0 0 0 4px;
   }
 
   .post-content-details_img {
     grid-area: img;
-    height: 3rem;
+    height: 100%;
     aspect-ratio: 1;
     background-color: var(--primary-accent);
     border-radius: 100%;

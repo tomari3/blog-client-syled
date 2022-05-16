@@ -7,7 +7,6 @@ export const StyledPostGallery = styled(motion.section)`
   gap: 1rem; */
 
   display: flex;
-  gap: clamp(0.2rem, 2vmin, 3vmin);
   flex-wrap: wrap;
 
   > article {
