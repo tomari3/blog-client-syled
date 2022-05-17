@@ -12,7 +12,7 @@ import { CommentInput } from "./commentSection/CommentInput";
 import { CommentSection } from "./commentSection/CommentSection";
 
 export const Post = ({ postData }) => {
-  const [commentsData, setCommentsData] = useState();
+  const [commentsData, setCommentsData] = useState(postData.comments);
   const [commentModal, setCommentModal] = useState(false);
   const [commentsModal, setCommentsModal] = useState(false);
 
@@ -62,7 +62,11 @@ export const Post = ({ postData }) => {
         <CommentInput setCommentsData={setCommentsData} postId={_id} />
       ) : null}
       {commentsModal ? (
-        <CommentSection commentsData={commentsData} postId={_id} />
+        <CommentSection
+          commentsData={commentsData}
+          setCommentsData={setCommentsData}
+          postId={_id}
+        />
       ) : null}
     </StyledPost>
   );

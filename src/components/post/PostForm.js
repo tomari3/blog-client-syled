@@ -7,6 +7,7 @@ import { StyledForm } from "../../styles/StyledForm";
 
 import {
   UPDATE_FORM,
+  RESET_FORM,
   onInputChange,
   onFocusOut,
   validateInput,
@@ -55,7 +56,7 @@ const formsReducer = (state, action) => {
 };
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const PostForm = ({ className }) => {
+export const PostForm = ({ className, setPostsData }) => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
@@ -122,7 +123,8 @@ export const PostForm = ({ className }) => {
 
     try {
       const { data } = await axios.post(postUrl, payload);
-
+      setPostsData((prevData) => [data, ...prevData]);
+      dispatch({ type: RESET_FORM });
       console.log(data);
     } catch (error) {
       setSeverError(error.response.data.msg);

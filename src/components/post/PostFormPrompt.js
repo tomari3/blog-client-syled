@@ -4,7 +4,7 @@ import { PostForm } from "./PostForm";
 import { ModalBasis } from "../../styles/ModalBasis";
 import { StyledForm } from "../../styles/StyledForm";
 
-export const PostFormPrompt = () => {
+export const PostFormPrompt = ({ setPostsData }) => {
   const [active, setActive] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ export const PostFormPrompt = () => {
       </div>
       {active ? (
         <ModalBasis onClick={() => setActive(!active)}>
-          <PostForm className="wide" />
+          <PostForm setPostsData={setPostsData} className="wide" />
         </ModalBasis>
       ) : null}
     </>

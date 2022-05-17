@@ -12,13 +12,16 @@ import { PostFormPrompt } from "../post/PostFormPrompt";
 const BaseUrl = process.env.REACT_APP_URL;
 
 export const Home = () => {
-  const [data, setData] = useState([null]);
-  const { width: w, height } = useWindowDimensions();
+  const [tagsData, setTagsData] = useState([]);
+  const [postsData, setPostsData] = useState([]);
+  const { width: w } = useWindowDimensions();
 
   const fetchData = async () => {
-    const { data } = await axios(BaseUrl);
-    setData(data);
-    console.log(data);
+    const {
+      data: { posts, tags },
+    } = await axios(BaseUrl);
+    setTagsData(tags);
+    setPostsData(posts);
   };
 
   useEffect(() => {
@@ -30,18 +33,18 @@ export const Home = () => {
     l: w > 1200,
     LEFT: (
       <div key={"l"} className="l">
-        <MemoTagsBar tagsData={data.tags} />
+        <MemoTagsBar tagsData={tagsData} />
       </div>
     ),
     MIDDLE: (
       <div key={"m"} className="m">
-        <PostFormPrompt />
-        <MemoPostGallery postsData={data.posts} />
+        <PostFormPrompt setPostsData={setPostsData} />
+        <MemoPostGallery postsData={postsData} />
       </div>
     ),
     RIGHT: (
       <div key={"r"} className="r">
-        <MemoTagsBar tagsData={data.tags} />
+        <MemoTagsBar tagsData={tagsData} />
       </div>
     ),
   };

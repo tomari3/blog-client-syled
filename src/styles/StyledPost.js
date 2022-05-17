@@ -18,10 +18,6 @@ export const StyledPost = styled(motion.article)`
     border: 1px solid var(--primary-active);
   }
 
-  &:hover {
-    filter: brightness(0.97);
-  }
-
   .post-content {
     flex: 1;
     border-bottom: 1px solid var(--primary-active);
