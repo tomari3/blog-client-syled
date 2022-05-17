@@ -5,20 +5,17 @@ import { StyledPost } from "../../styles/StyledPost";
 import { timeAgo } from "../../utils/dateFormat";
 
 import { Tag } from "../tags/Tag";
-import { CommentSection } from "./commentSection/CommentSection";
 import { CommentBtn } from "./commentSection/CommentBtn";
 import { LikeBtn } from "./LikeBtn";
 import { SaveBtn } from "./SaveBtn";
-import { ModalBasis } from "../../styles/ModalBasis";
+import { CommentInput } from "./commentSection/CommentInput";
 
 export const Post = ({ postData }) => {
-  const [active, setActive] = useState(false);
-
-  const toggleComments = () => {
-    setActive(!active);
-  };
+  const [commentModal, setCommentModal] = useState(false);
+  const [commentsModal, setCommentsModal] = useState(false);
 
   const {
+    _id,
     author,
     comments,
     content,
@@ -52,18 +49,13 @@ export const Post = ({ postData }) => {
       <div className="post-interactions">
         <LikeBtn postLikes={likes} />
         <SaveBtn postSaves={saves} />
-        <CommentBtn main toggle={toggleComments} amount={comments.length} />
+        <CommentBtn
+          main
+          toggleComment={() => setCommentModal(!commentModal)}
+          amount={comments.length}
+        />
       </div>
-      {active ? (
-        <ModalBasis onClick={toggleComments}>
-          <div
-            style={{ width: "min-content" }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <CommentSection postId={postData._id} postComments={comments} />
-          </div>
-        </ModalBasis>
-      ) : null}
+      {commentModal ? <CommentInput postId={_id} /> : null}
     </StyledPost>
   );
 };

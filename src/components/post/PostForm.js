@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 
 import axios from "axios";
 
@@ -55,7 +55,7 @@ const formsReducer = (state, action) => {
 };
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const PostForm = () => {
+export const PostForm = ({ className }) => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
@@ -134,7 +134,11 @@ export const PostForm = () => {
   };
 
   return (
-    <StyledForm onSubmit={(e) => formSubmitHandler(e)}>
+    <StyledForm
+      className={className}
+      onClick={(e) => e.stopPropagation()}
+      onSubmit={(e) => formSubmitHandler(e)}
+    >
       <div className="form-header">
         <h1>What's new?</h1>
         <div className="form-err">

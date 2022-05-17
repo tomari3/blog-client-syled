@@ -1,26 +1,24 @@
 import { StyledButton } from "../../../styles/StyledButton";
 
-export const CommentBtn = ({ toggle, amount, main, className }) => {
-  const styled = main ? "main" : "sub";
-
+export const CommentBtn = ({
+  toggleComment,
+  toggleComments,
+  amount,
+  className,
+}) => {
   return (
     <div className="interaction-btn">
       <StyledButton
         $padding
         $small
-        className={`amount ${styled} ${className ? className : ""}`}
-        onClick={toggle}
+        className={`amount `}
+        onClick={toggleComments}
       >
         <div>
           <p>{!amount ? "" : amount}</p>
         </div>
       </StyledButton>
-      <StyledButton
-        $padding
-        $small
-        className={`svg ${styled} ${className ? className : ""}`}
-        onClick={toggle}
-      >
+      <StyledButton $padding $small className={`svg `} onClick={toggleComment}>
         <div>
           <svg
             aria-label="Comment"

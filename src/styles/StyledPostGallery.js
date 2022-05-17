@@ -8,7 +8,6 @@ export const StyledPostGallery = styled(motion.section)`
 
   display: flex;
   flex-wrap: wrap;
-
   > article {
     flex: 1 1 350px;
   }

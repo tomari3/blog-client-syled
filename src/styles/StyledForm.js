@@ -2,21 +2,48 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const StyledForm = styled(motion.section)`
+  --small: 0.8rem;
+  --rem: 1rem;
+
   padding: 1rem;
   background-color: var(--secondary-bg);
   border-radius: 1rem;
   box-shadow: var(--drop-shadow) 0px 4px 50px 0px;
 
+  &.wide {
+  }
+
+  &.inline {
+    --small: 0.6rem;
+    --rem: 0.8rem;
+
+    border-radius: 0;
+    border-top: 1px solid var(--primary-active);
+    background-color: inherit;
+    box-shadow: none;
+    padding: 1rem 0 0 0;
+    margin: 1rem 0 0 0;
+    font-size: 0.8rem;
+    .form-field {
+      textarea,
+      input {
+        border-radius: 2rem;
+      }
+    }
+    .form-field-err {
+      height: auto;
+    }
+  }
+
   form {
     display: flex;
     flex-direction: column;
-    width: clamp(300px, 30vw, 400px);
   }
 
   .row {
     display: flex;
     justify-content: space-evenly;
-    gap: 1rem;
+    gap: var(--rem);
   }
 
   .form-header {
@@ -113,25 +140,24 @@ export const StyledForm = styled(motion.section)`
         + label {
           grid-row: 2;
           position: absolute;
-          top: calc(1.2rem + 1px);
+          top: calc(var(--rem) * 1.2 + 1px);
 
           &.active {
-            top: 0.5rem;
+            top: calc(var(--rem) / 2);
             left: 0;
-            font-size: 0.8rem;
+            font-size: var(--small);
           }
         }
         &:focus + label {
-          top: 0.5rem;
+          top: calc(var(--rem) / 2);
           left: 0;
-          font-size: 0.8rem;
+          font-size: var(--small);
         }
       }
 
       grid-area: input;
-      padding: 1.5rem 1rem 0.5rem;
+      padding: calc(var(--rem) * 1.5) calc(var(--rem)) calc(var(--rem) / 2);
       border: 1px solid var(--primary-active);
-      font-size: 1.2rem;
       border-radius: var(--primary-radius);
       resize: none;
     }

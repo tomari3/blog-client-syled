@@ -1,34 +1,139 @@
-import { StyledButton, StyledSubmit } from "../../../styles/StyledButton";
-import { Send } from "../../svgs/Send";
+import React, { useState, useReducer, useContext, useEffect } from "react";
 
-export const CommentInput = ({ send, value, set, main }) => {
-  const styled = main ? "main" : "sub";
+import axios from "axios";
 
-  const resize = (e) => {
-    e.target.style.height = "inherit";
-    e.target.style.height = `${e.target.scrollHeight}px`;
+import { StyledForm } from "../../../styles/StyledForm";
+
+import {
+  UPDATE_FORM,
+  RESET_FORM,
+  onInputChange,
+  onFocusOut,
+  validateInput,
+} from "../../../utils/formUtils";
+
+const initialState = {
+  content: {
+    value: "",
+    touched: false,
+    hasError: false,
+    error: "",
+  },
+};
+
+const formsReducer = (state, action) => {
+  switch (action.type) {
+    case UPDATE_FORM:
+      const { name, value, hasError, error, touched, isFormValid } =
+        action.data;
+      return {
+        ...state,
+        [name]: { ...state[name], value, hasError, error, touched },
+        isFormValid,
+      };
+    case RESET_FORM:
+      return initialState;
+    default:
+      return state;
+  }
+};
+const BaseUrl = process.env.REACT_APP_URL;
+
+export const CommentInput = ({ postId }) => {
+  const [formState, dispatch] = useReducer(formsReducer, initialState);
+
+  const [showError, setShowError] = useState(false);
+  const [serverError, setSeverError] = useState("");
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+
+    let isFormValid = true;
+
+    for (const name in formState) {
+      const item = formState[name];
+      const { value } = item;
+      const { hasError, error } = validateInput(name, value);
+
+      if (hasError) {
+        isFormValid = false;
+      }
+      if (name) {
+        dispatch({
+          type: UPDATE_FORM,
+          data: {
+            name,
+            value,
+            hasError,
+            error,
+            touched: true,
+            isFormValid,
+          },
+        });
+      }
+    }
+
+    if (!isFormValid) {
+      setShowError(true);
+    } else {
+      sendComment();
+    }
+
+    setTimeout(() => {
+      setShowError(false);
+    }, 5000);
+  };
+  const sendComment = async () => {
+    const payload = {
+      id: "625af335160443835c688a22",
+      content: formState.content.value,
+    };
+    const postUrl = BaseUrl + `post/${postId}/comment`;
+
+    try {
+      const { data } = await axios.post(postUrl, payload);
+
+      console.log(data);
+    } catch (error) {
+      setSeverError(error.response.data.msg);
+
+      setTimeout(() => {
+        setSeverError("");
+      }, 5000);
+    }
   };
 
   return (
-    <div className={`comment-input ${styled}`}>
-      <form onSubmit={send}>
-        <textarea
-          type="text"
-          autoComplete="on"
-          autoCorrect="on"
-          autoFocus
-          maxLength={1400}
-          spellCheck="true"
-          wrap="hard"
-          placeholder="share your thoughts"
-          value={value}
-          onKeyDown={resize}
-          onChange={(e) => set(e.target.value)}
-        />
-        <StyledButton $color type="submit">
-          reply
-        </StyledButton>
-      </form>
+    <div className={`comment-input`}>
+      <StyledForm className="inline">
+        <form onSubmit={formSubmitHandler}>
+          <div className="form-field">
+            <input
+              spellCheck="true"
+              type="text"
+              name="content"
+              value={formState.content.value}
+              onChange={(e) =>
+                onInputChange("content", e.target.value, dispatch, formState)
+              }
+              onBlur={(e) =>
+                onFocusOut("content", e.target.value, dispatch, formState)
+              }
+            />
+            <label
+              className={formState.content.value ? "active" : ""}
+              htmlFor="content"
+            >
+              Write a reply...
+            </label>
+            {showError && !formState.isFormValid ? (
+              <div className="form-field-err">
+                <p>{serverError || formState.content.error}</p>
+              </div>
+            ) : null}
+          </div>
+        </form>
+      </StyledForm>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { StyledPostGallery } from "../../styles/StyledPostGallery";
 
 import { Post } from "./Post";
 
-export const PostGallery = ({ postsData, className }) => {
+export const PostGallery = ({ postsData }) => {
   const postGallery = !postsData
     ? null
     : postsData.map((postData, index) => {
@@ -13,9 +13,7 @@ export const PostGallery = ({ postsData, className }) => {
         );
       });
 
-  return (
-    <StyledPostGallery className={className}>{postGallery}</StyledPostGallery>
-  );
+  return <StyledPostGallery>{postGallery}</StyledPostGallery>;
 };
 
 export const MemoPostGallery = React.memo(PostGallery);

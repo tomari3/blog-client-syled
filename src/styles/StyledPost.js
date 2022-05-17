@@ -42,6 +42,11 @@ export const StyledPost = styled(motion.article)`
     grid-area: username;
     text-transform: capitalize;
     padding: 4px;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .post-content-details_date {
@@ -116,11 +121,9 @@ export const StyledPost = styled(motion.article)`
     }
   }
 
-  .post-comments-modal {
-    overflow-y: scroll;
-
-    .post-content {
-      padding: 1rem;
+  .comment-input {
+    form {
+      display: flex;
     }
   }
 `;
