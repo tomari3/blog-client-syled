@@ -8,8 +8,7 @@ import { Comments } from "./Comments";
 
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const CommentSection = ({ postId }) => {
-  const [inputValue, setInputValue] = useState("");
+export const CommentSection = ({ postId, commentsData }) => {
   const [data, setData] = useState();
 
   const fetchData = async () => {
@@ -27,26 +26,9 @@ export const CommentSection = ({ postId }) => {
     fetchData();
   }, []);
 
-  const sendComment = async (e) => {
-    e.preventDefault();
-
-    const payload = {
-      content: inputValue,
-    };
-    const postUrl = BaseUrl + `post/${postId}/comment`;
-
-    try {
-      const { data } = await axios.post(postUrl, payload);
-      console.log(data);
-      setData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <StyledCommentSection>
-      <Comments data={data} />
+      <Comments data={commentsData ? commentsData : data} />
     </StyledCommentSection>
   );
 };

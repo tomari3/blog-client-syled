@@ -10,7 +10,8 @@ export const StyledButton = styled(motion.button)`
   background-color: ${(props) =>
     props.$color ? "var(--primary-accent)" : "transparent"};
   border: 0;
-  border-radius: var(--primary-radius);
+  border-radius: ${(props) =>
+    props.$round ? "calc(var(--primary-radius)*3)" : "var(--primary-radius)"};
   padding: ${(props) => (props.$padding ? "inherit" : "1rem")};
   font-size: ${(props) => (props.$small ? "0.8em" : "inherit")};
   font-weight: ${(props) => (props.$bold ? "bold" : "400")};

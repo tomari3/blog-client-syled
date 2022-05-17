@@ -8,7 +8,7 @@ export const lightTheme = {
   secondaryAccent: "#ff8e3c",
 
   primaryInput: "#fff",
-  primaryActive: "#dddfe2",
+  primaryActive: "#ebedf1 ",
   mutedText: "#90949c",
   primaryRadius: "0.5rem",
 

@@ -3,6 +3,7 @@ import React, { useState, useReducer } from "react";
 import axios from "axios";
 
 import { StyledForm } from "../../../styles/StyledForm";
+import { StyledButton } from "../../../styles/StyledButton";
 
 import {
   UPDATE_FORM,
@@ -39,7 +40,7 @@ const formsReducer = (state, action) => {
 };
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const CommentInput = ({ postId }) => {
+export const CommentInput = ({ postId, setCommentsData }) => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
@@ -92,7 +93,7 @@ export const CommentInput = ({ postId }) => {
 
     try {
       const { data } = await axios.post(postUrl, payload);
-
+      setCommentsData(data);
       console.log(data);
     } catch (error) {
       setSeverError(error.response.data.msg);
@@ -142,6 +143,11 @@ export const CommentInput = ({ postId }) => {
               </div>
             ) : null}
           </div>
+          {formState.content.value ? (
+            <StyledButton $small $round $color $bold $padding>
+              reply
+            </StyledButton>
+          ) : null}
         </form>
       </StyledForm>
     </div>

@@ -17,7 +17,6 @@ export const StyledForm = styled(motion.section)`
   &.inline {
     --small: 0.6rem;
     --rem: 0.8rem;
-
     border-radius: 0;
     border-top: 1px solid var(--primary-active);
     background-color: inherit;
@@ -28,11 +27,17 @@ export const StyledForm = styled(motion.section)`
     .form-field {
       textarea,
       input {
-        border-radius: 2rem;
+        border-radius: calc(var(--primary-radius) * 3);
       }
     }
     .form-field-err {
       height: auto;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 0.8rem;
+      width: min-content;
     }
   }
 
@@ -175,6 +180,10 @@ export const StyledForm = styled(motion.section)`
       resize: none;
       overflow: hidden;
       word-wrap: break-word;
+
+      &:focus-visible {
+        outline: 1px solid var(--primary-active);
+      }
     }
 
     .form-field-detail {
