@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
 import { StyledCommentSection } from "../../../styles/StyledCommentSection";
 
 import { Comments } from "./Comments";
-import { CommentInput } from "./CommentInput";
 
-const BaseUrl = "http://localhost:3000/";
+const BaseUrl = process.env.REACT_APP_URL;
 
-export const CommentSection = ({ postId, postComments, className, active }) => {
+export const CommentSection = ({ postId }) => {
   const [inputValue, setInputValue] = useState("");
-  const [comments, setComments] = useState(postComments);
+  const [data, setData] = useState();
+
+  const fetchData = async () => {
+    const payload = {};
+    const postUrl = BaseUrl + `post/${postId}/comments`;
+
+    try {
+      const { data } = await axios.post(postUrl, payload);
+      console.log(data);
+      setData(data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const sendComment = async (e) => {
     e.preventDefault();
@@ -24,22 +38,15 @@ export const CommentSection = ({ postId, postComments, className, active }) => {
     try {
       const { data } = await axios.post(postUrl, payload);
       console.log(data);
-      setComments(data);
-      setInputValue("");
+      setData(data);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <StyledCommentSection className={`${className} comments-modal `}>
-      <CommentInput
-        main
-        send={sendComment}
-        value={inputValue}
-        set={setInputValue}
-      />
-      <Comments data={comments} />
+    <StyledCommentSection>
+      <Comments data={data} />
     </StyledCommentSection>
   );
 };

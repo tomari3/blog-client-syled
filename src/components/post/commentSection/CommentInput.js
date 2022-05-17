@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 
 import axios from "axios";
 
@@ -103,12 +103,22 @@ export const CommentInput = ({ postId }) => {
     }
   };
 
+  const textAreaAdjust = (el) => {
+    el = el.target;
+    el.style.height =
+      el.scrollHeight > el.clientHeight ? el.scrollHeight + "px" : "";
+  };
+
   return (
     <div className={`comment-input`}>
       <StyledForm className="inline">
         <form onSubmit={formSubmitHandler}>
           <div className="form-field">
-            <input
+            <textarea
+              onInputCapture={(e) => textAreaAdjust(e)}
+              rows={1}
+              wrap="hard"
+              autoFocus
               spellCheck="true"
               type="text"
               name="content"

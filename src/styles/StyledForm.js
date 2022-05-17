@@ -173,6 +173,8 @@ export const StyledForm = styled(motion.section)`
       border: 1px solid var(--primary-active);
       border-radius: var(--primary-radius);
       resize: none;
+      overflow: hidden;
+      word-wrap: break-word;
     }
 
     .form-field-detail {

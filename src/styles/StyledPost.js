@@ -125,5 +125,6 @@ export const StyledPost = styled(motion.article)`
     form {
       display: flex;
     }
+    padding-bottom: 2px;
   }
 `;

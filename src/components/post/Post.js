@@ -9,6 +9,7 @@ import { CommentBtn } from "./commentSection/CommentBtn";
 import { LikeBtn } from "./LikeBtn";
 import { SaveBtn } from "./SaveBtn";
 import { CommentInput } from "./commentSection/CommentInput";
+import { CommentSection } from "./commentSection/CommentSection";
 
 export const Post = ({ postData }) => {
   const [commentModal, setCommentModal] = useState(false);
@@ -52,10 +53,12 @@ export const Post = ({ postData }) => {
         <CommentBtn
           main
           toggleComment={() => setCommentModal(!commentModal)}
+          toggleComments={() => setCommentsModal(!commentsModal)}
           amount={comments.length}
         />
       </div>
       {commentModal ? <CommentInput postId={_id} /> : null}
+      {commentsModal ? <CommentSection postId={_id} /> : null}
     </StyledPost>
   );
 };

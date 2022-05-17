@@ -1,11 +1,6 @@
 import { StyledButton } from "../../../styles/StyledButton";
 
-export const CommentBtn = ({
-  toggleComment,
-  toggleComments,
-  amount,
-  className,
-}) => {
+export const CommentBtn = ({ toggleComment, toggleComments, amount }) => {
   return (
     <div className="interaction-btn">
       <StyledButton

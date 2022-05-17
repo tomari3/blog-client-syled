@@ -2,76 +2,11 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const StyledCommentSection = styled(motion.section)`
-  --transition: all 0.1s ease;
-  background-color: var(--secondary-bg);
-  position: absolute;
-
-  height: 100vh;
-  width: clamp(350px, 50vw, 1000px);
-  padding: 1rem;
-
-  position: relative;
-  display: grid;
-  grid-template-rows: 80px 1fr;
-  gap: 0.5rem;
-
-  z-index: 10;
-
-  overflow-y: scroll;
-
-  .sub {
-    font-size: 0.8rem;
-  }
-
-  .like-btn {
-    display: flex;
-    padding: 0.2rem 0.5rem;
-    user-select: none;
-    cursor: pointer;
-
-    span {
-      --color: red;
-      box-sizing: border-box;
-      height: 100%;
-      aspect-ratio: 1;
-      border-radius: 100%;
-      border: 1px solid var(--color);
-
-      &.active {
-        background-color: var(--color);
-      }
-    }
-  }
-
-  .comment-input {
-    &.main {
-      border-bottom: 1px solid var(--primary-active);
-      display: flex;
-      justify-content: center;
-    }
-    form {
-      display: flex;
-      gap: 1em;
-      align-items: center;
-      width: 95%;
-    }
-
-    textarea {
-      transition: var(--transition);
-      font-size: 0.8rem;
-      resize: none;
-      width: 100%;
-      background-color: var(--primary-input);
-      border: 0;
-      border-radius: 0.5rem;
-      padding: 0.5rem 0.5rem;
-
-      &:focus-visible {
-        outline: 1px solid var(--primary-active);
-      }
-    }
-  }
-
+  font-size: 0.8rem;
+  padding: 1rem 0;
+  transition: filter 0.2s ease;
+  border-top: 1px solid var(--primary-active);
+  margin-top: 1rem;
   .comments {
     display: flex;
     flex-direction: column;
@@ -79,59 +14,60 @@ export const StyledCommentSection = styled(motion.section)`
   }
 
   .comment {
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: var(--primary-bg);
-    display: flex;
-    flex-direction: column;
-  }
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "side content" "side interaction";
+    gap: 0.5rem;
+    .comment-side {
+      grid-area: side;
 
-  .comment-details {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-  }
-
-  .comment-details_user {
-    font-size: 0.7rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    > * {
-      cursor: pointer;
+      .comment-side_line {
+      }
+      .comment-side_img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--primary-accent);
+        height: 2rem;
+        aspect-ratio: 1;
+        border-radius: 100%;
+        grid-area: img;
+      }
     }
-  }
+    .comment-content {
+      background-color: var(--primary-active);
+      padding: 0.5rem 2rem 0.5rem 0.5rem;
+      border-radius: var(--primary-radius);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      .comment-content_name {
+        text-transform: capitalize;
+        font-weight: bold;
 
-  .comment-details_user_img {
-    height: 2rem;
-    aspect-ratio: 1;
-    background-color: var(--primary-accent);
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .comment-interaction {
+      font-size: 0.9em;
+      grid-area: interaction;
+      display: flex;
+      gap: 0.5rem;
+      color: var(--muted-text);
 
-  .comment-details_user_name {
-    font-size: 1rem;
-  }
+      .b {
+        font-weight: bold;
+        text-transform: capitalize;
 
-  .comment-details_user_date {
-    opacity: 0.6;
-  }
-
-  .comment-details_content {
-    padding: 0.5rem 0 0.5rem 0.5rem;
-  }
-
-  .comment-interact {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .comment-interact_btn {
-    display: flex;
-    justify-content: space-between;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .w {
+      }
+    }
   }
 `;
