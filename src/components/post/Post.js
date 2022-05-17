@@ -55,7 +55,7 @@ export const Post = ({ postData }) => {
           main
           toggleComment={() => setCommentModal(!commentModal)}
           toggleComments={() => setCommentsModal(!commentsModal)}
-          amount={comments.length}
+          amount={commentsData.length}
         />
       </div>
       {commentModal ? (

@@ -16,11 +16,12 @@ export const CommentSection = ({ postId, commentsData, setCommentsData }) => {
     try {
       const { data } = await axios.get(postUrl, payload);
       setCommentsData(data);
-      console.log(data);
     } catch (error) {}
   };
-
   useEffect(() => {
+    if (commentsData[0]._id) {
+      return;
+    }
     fetchData();
   }, []);
 

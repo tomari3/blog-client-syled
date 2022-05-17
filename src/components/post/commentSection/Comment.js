@@ -7,7 +7,6 @@ import { timeAgo } from "../../../utils/dateFormat";
 const BaseUrl = process.env.REACT_APP_URL;
 
 export const Comment = ({ data }) => {
-  console.log(data);
   const {
     author: { username },
     _id,

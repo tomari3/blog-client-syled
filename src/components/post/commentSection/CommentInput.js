@@ -95,10 +95,11 @@ export const CommentInput = ({ postId, setCommentsData }) => {
       const { data } = await axios.post(postUrl, payload);
 
       setCommentsData(data);
+      console.log(data);
       dispatch({ type: RESET_FORM });
     } catch (error) {
       console.log(error);
-      setSeverError(error.response.data.msg);
+      // setSeverError(error.response.data.msg);
 
       setTimeout(() => {
         setSeverError("");
