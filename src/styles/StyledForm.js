@@ -11,6 +11,7 @@ export const StyledForm = styled(motion.section)`
   box-shadow: var(--drop-shadow) 0px 4px 50px 0px;
 
   &.wide {
+    width: 500px;
   }
 
   &.inline {
@@ -69,6 +70,18 @@ export const StyledForm = styled(motion.section)`
     grid-template-areas: "label detail" "input input" "err err";
 
     position: relative;
+
+    &.fake {
+      cursor: pointer;
+
+      * {
+        pointer-events: none;
+      }
+
+      &:hover {
+        filter: brightness(0.97);
+      }
+    }
 
     .checkbox-wrapper {
       --circle-size: 200%;
