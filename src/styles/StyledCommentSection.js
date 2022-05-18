@@ -52,21 +52,33 @@ export const StyledCommentSection = styled(motion.section)`
       }
     }
     .comment-interaction {
-      font-size: 0.9em;
       grid-area: interaction;
+      font-size: 0.9em;
       display: flex;
-      gap: 0.5rem;
+      align-items: center;
+      justify-content: space-between;
       color: var(--muted-text);
+    }
 
-      .b {
-        font-weight: bold;
-        text-transform: capitalize;
+    .comment-interaction_date {
+      align-self: flex-end;
+    }
 
-        &:hover {
-          text-decoration: underline;
-        }
+    .comment-interaction_btn {
+      gap: 0.5rem;
+      display: flex;
+    }
+    .comment-interaction_btn_btn {
+      &.liked {
+        color: var(--primary-accent);
       }
-      .w {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .comment-interaction_btn_amount {
+      display: flex;
+      p {
       }
     }
   }

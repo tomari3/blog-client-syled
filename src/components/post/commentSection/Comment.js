@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 
-import axios from "axios";
+import { LikeCommentBtn } from "./LikeCommentBtn";
+import { ReplyCommentBtn } from "./replyCommentBtn";
 
 import { timeAgo } from "../../../utils/dateFormat";
 
-const BaseUrl = process.env.REACT_APP_URL;
+export const Comment = ({ commentData }) => {
+  const [likesData, setLikesData] = useState(commentData.likes);
+  const [subCommentsData, setSubCommentsData] = useState(
+    commentData.subComments
+  );
 
-export const Comment = ({ data }) => {
   const {
     author: { username },
     _id,
     content,
     date,
-    likes,
-    parent,
-    subComments,
-  } = data;
-
-  const likesNum = likes.length > 0 ? likes.length : null;
-  const replyNum = subComments.length > 0 ? subComments.length : null;
+    parent: postId,
+  } = commentData;
 
   return (
     <div className="comment">
@@ -31,9 +30,21 @@ export const Comment = ({ data }) => {
         <p className="comment-content_content">{content}</p>
       </div>
       <div className="comment-interaction">
-        <span className="b">like {likesNum}</span>
-        <span className="b">reply {replyNum}</span>
-        <span className="w">{timeAgo(date)}</span>
+        <div className="comment-interaction_btn">
+          <LikeCommentBtn
+            likesData={likesData}
+            setLikesData={setLikesData}
+            commentId={_id}
+            postId={postId}
+          />
+          <ReplyCommentBtn
+            subCommentsData={subCommentsData}
+            setSubCommentsData={setSubCommentsData}
+            commentId={_id}
+            postId={postId}
+          />
+        </div>
+        <span className="comment-interaction_date">{timeAgo(date)}</span>
       </div>
     </div>
   );

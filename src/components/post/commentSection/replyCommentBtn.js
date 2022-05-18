@@ -4,28 +4,26 @@ import axios from "axios";
 
 import { StyledButton } from "../../../styles/StyledButton";
 
-const BaseUrl = process.env.REACT_APP_URL;
+const BaseUrl = "http://localhost:3000/";
 
-export const LikeCommentBtn = ({
+export const ReplyCommentBtn = ({
   postId,
   commentId,
-  likesData,
-  setLikesData,
+  subCommentsData,
+  setSubCommentsData,
 }) => {
-  const liked = likesData.find((l) => l === process.env.REACT_APP_ID);
-
   const sendLike = async (e) => {
     e.preventDefault();
 
     const payload = {
-      id: process.env.REACT_APP_ID,
+      // userId: user._id,
     };
     const postUrl = BaseUrl + `comment/${commentId}/like/`;
 
     try {
       const { data } = await axios.post(postUrl, payload);
       console.log(data);
-      setLikesData(data);
+      setSubCommentsData(data);
     } catch (error) {
       console.log(error);
     }
@@ -34,14 +32,12 @@ export const LikeCommentBtn = ({
   return (
     <>
       <StyledButton onMouseDown={sendLike} $bold $padding $muted>
-        <div className={`comment-interaction_btn_btn ${liked ? "liked" : ""}`}>
-          {liked ? "liked" : "like"}
-        </div>
+        <div className="comment-interaction_btn_btn">reply</div>
       </StyledButton>
-      {likesData.length ? (
+      {subCommentsData.length ? (
         <StyledButton className="comment-interaction_btn_amount" $padding>
           <div>
-            <p>{likesData.length ? likesData.length : null}</p>
+            <p>{subCommentsData.length ? subCommentsData.length : null}</p>
           </div>
         </StyledButton>
       ) : null}

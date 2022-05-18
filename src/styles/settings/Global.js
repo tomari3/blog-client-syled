@@ -18,6 +18,7 @@ export const Global = createGlobalStyle`
 
   body {
     background-color: var(--primary-bg);
+    color: var(--primary-text);
     position: relative;
     font-family: 'Raleway', sans-serif;
     

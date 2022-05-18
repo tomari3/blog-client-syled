@@ -5,7 +5,7 @@ export const Comments = ({ data }) => {
     <p>loading</p>
   ) : (
     data.map((comment) => {
-      return <Comment key={comment._id} data={comment} />;
+      return <Comment key={comment._id} commentData={comment} />;
     })
   );
 

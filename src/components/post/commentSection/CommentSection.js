@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import axios from "axios";
 
@@ -23,6 +23,7 @@ export const CommentSection = ({ postId, commentsData, setCommentsData }) => {
       return;
     }
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

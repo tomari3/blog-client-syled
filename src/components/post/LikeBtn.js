@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import axios from "axios";
 import { StyledButton } from "../../styles/StyledButton";
@@ -6,13 +6,13 @@ import { StyledButton } from "../../styles/StyledButton";
 const BaseUrl = process.env.REACT_APP_URL;
 
 export const LikeBtn = ({ postId, likesData, setLikesData }) => {
-  const liked = likesData.find((l) => l === "625af335160443835c688a22");
+  const liked = likesData.find((l) => l === process.env.REACT_APP_ID);
 
   const sendLike = async (e) => {
     e.preventDefault();
 
     const payload = {
-      id: "625af335160443835c688a22",
+      id: process.env.REACT_APP_ID,
     };
     const postUrl = BaseUrl + `post/${postId}/like`;
 
@@ -33,7 +33,7 @@ export const LikeBtn = ({ postId, likesData, setLikesData }) => {
         </div>
       </StyledButton>
       <StyledButton
-        onClick={sendLike}
+        onMouseDown={sendLike}
         className={`svg ${liked ? "liked" : ""}`}
         $padding
         $small

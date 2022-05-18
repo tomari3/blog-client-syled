@@ -17,6 +17,7 @@ export const StyledButton = styled(motion.button)`
   font-weight: ${(props) => (props.$bold ? "bold" : "400")};
   color: ${(props) =>
     props.$color ? "var(--secondary-bg)" : "var(--primary-text)"};
+  color: ${(props) => (props.$muted ? "var(--muted-text)" : "")};
 
   a {
     text-decoration: none;
