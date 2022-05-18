@@ -92,8 +92,9 @@ export const StyledPost = styled(motion.article)`
       align-items: center;
       justify-content: center;
 
-      &.liked {
-        path {
+      &:is(.liked, .saved) {
+        path,
+        polygon {
           stroke: var(--primary-accent);
           fill: var(--primary-accent);
         }
