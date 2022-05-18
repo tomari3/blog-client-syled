@@ -91,6 +91,14 @@ export const StyledPost = styled(motion.article)`
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &.liked {
+        path {
+          stroke: var(--primary-accent);
+          fill: var(--primary-accent);
+        }
+      }
+
       svg,
       polygon {
         transform: translate(0px, 1px);

@@ -12,22 +12,12 @@ import { CommentInput } from "./commentSection/CommentInput";
 import { CommentSection } from "./commentSection/CommentSection";
 
 export const Post = ({ postData }) => {
+  const [likesData, setLikesData] = useState(postData.likes);
   const [commentsData, setCommentsData] = useState(postData.comments);
   const [commentModal, setCommentModal] = useState(false);
   const [commentsModal, setCommentsModal] = useState(false);
 
-  const {
-    _id,
-    author,
-    comments,
-    content,
-    date,
-    isPinned,
-    likes,
-    saves,
-    status,
-    tags,
-  } = postData;
+  const { _id, author, content, date, saves, tags } = postData;
 
   const tagsList = tags.map((tag, index) => {
     return index >= 4 ? null : <Tag key={tag._id} tagData={tag} />;
@@ -49,7 +39,11 @@ export const Post = ({ postData }) => {
     <StyledPost className="post">
       {postContent}
       <div className="post-interactions">
-        <LikeBtn postLikes={likes} />
+        <LikeBtn
+          likesData={likesData}
+          setLikesData={setLikesData}
+          postId={_id}
+        />
         <SaveBtn postSaves={saves} />
         <CommentBtn
           main

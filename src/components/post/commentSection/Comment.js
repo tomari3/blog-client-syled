@@ -14,8 +14,11 @@ export const Comment = ({ data }) => {
     date,
     likes,
     parent,
-    SubComments,
+    subComments,
   } = data;
+
+  const likesNum = likes.length > 0 ? likes.length : null;
+  const replyNum = subComments.length > 0 ? subComments.length : null;
 
   return (
     <div className="comment">
@@ -28,8 +31,8 @@ export const Comment = ({ data }) => {
         <p className="comment-content_content">{content}</p>
       </div>
       <div className="comment-interaction">
-        <span className="b">like</span>
-        <span className="b">reply</span>
+        <span className="b">like {likesNum}</span>
+        <span className="b">reply {replyNum}</span>
         <span className="w">{timeAgo(date)}</span>
       </div>
     </div>

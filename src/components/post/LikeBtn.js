@@ -5,26 +5,21 @@ import { StyledButton } from "../../styles/StyledButton";
 
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const LikeBtn = ({ postId, postLikes }) => {
-  const [active, setActive] = useState(false);
-  const [likes, setLikes] = useState(postLikes);
-
-  const toggleLike = () => {
-    setActive(!active);
-  };
+export const LikeBtn = ({ postId, likesData, setLikesData }) => {
+  const liked = likesData.find((l) => l === "625af335160443835c688a22");
 
   const sendLike = async (e) => {
     e.preventDefault();
 
     const payload = {
-      // userId: user._id,
+      id: "625af335160443835c688a22",
     };
     const postUrl = BaseUrl + `post/${postId}/like`;
 
     try {
       const { data } = await axios.post(postUrl, payload);
+      setLikesData(data);
       console.log(data);
-      setLikes(data);
     } catch (error) {
       console.log(error);
     }
@@ -34,10 +29,15 @@ export const LikeBtn = ({ postId, postLikes }) => {
     <div className="interaction-btn">
       <StyledButton className="amount" $padding $small>
         <div>
-          <p>{!likes.length}</p>
+          <p>{likesData.length > 0 ? likesData.length : null}</p>
         </div>
       </StyledButton>
-      <StyledButton className="svg" $padding $small>
+      <StyledButton
+        onClick={sendLike}
+        className={`svg ${liked ? "liked" : ""}`}
+        $padding
+        $small
+      >
         <div>
           <svg
             aria-label="Like"
