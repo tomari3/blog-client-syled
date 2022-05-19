@@ -40,7 +40,7 @@ const formsReducer = (state, action) => {
 };
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const CommentInput = ({ postId, setCommentsData }) => {
+export const SubCommentInput = ({ commentId, setSubCommentsData }) => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
@@ -89,13 +89,13 @@ export const CommentInput = ({ postId, setCommentsData }) => {
       id: "625af335160443835c688a22",
       content: formState.content.value,
     };
-    const postUrl = BaseUrl + `post/${postId}/comment`;
+    const postUrl = BaseUrl + `comment/${commentId}/comment`;
 
     try {
       const { data } = await axios.post(postUrl, payload);
 
-      setCommentsData(data);
-      // console.log(data);
+      setSubCommentsData(data);
+      console.log(data);
       dispatch({ type: RESET_FORM });
     } catch (error) {
       console.log(error);
@@ -115,7 +115,7 @@ export const CommentInput = ({ postId, setCommentsData }) => {
 
   return (
     <div className={`comment-input`}>
-      <StyledForm className="inline">
+      <StyledForm className="sub">
         <form onSubmit={formSubmitHandler}>
           <div className="form-field">
             <textarea
@@ -148,7 +148,7 @@ export const CommentInput = ({ postId, setCommentsData }) => {
           </div>
           {formState.content.value ? (
             <StyledButton $small $round $color $bold $padding>
-              reply
+              {">"}
             </StyledButton>
           ) : null}
         </form>

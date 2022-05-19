@@ -41,6 +41,30 @@ export const StyledForm = styled(motion.section)`
     }
   }
 
+  &.sub {
+    padding: 0;
+    --small: 0.6rem;
+    --rem: 0.4rem;
+    background-color: inherit;
+    box-shadow: none;
+    font-size: 0.8rem;
+    .form-field {
+      textarea,
+      input {
+        border-radius: calc(var(--primary-radius) * 5);
+      }
+    }
+    .form-field-err {
+      height: auto;
+    }
+
+    /* button {
+      margin-top: 1rem;
+      padding: 0.5rem 0.8rem;
+      width: min-content;
+    } */
+  }
+
   form {
     display: flex;
     flex-direction: column;

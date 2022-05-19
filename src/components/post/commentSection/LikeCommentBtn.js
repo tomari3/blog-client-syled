@@ -24,7 +24,7 @@ export const LikeCommentBtn = ({
 
     try {
       const { data } = await axios.post(postUrl, payload);
-      console.log(data);
+      // console.log(data);
       setLikesData(data);
     } catch (error) {
       console.log(error);

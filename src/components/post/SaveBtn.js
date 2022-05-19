@@ -19,7 +19,7 @@ export const SaveBtn = ({ postId, savesData, setSavesData }) => {
     try {
       const { data } = await axios.post(postUrl, payload);
       setSavesData(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }

@@ -19,9 +19,8 @@ export const LikeBtn = ({ postId, likesData, setLikesData }) => {
     try {
       const { data } = await axios.post(postUrl, payload);
       setLikesData(data);
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

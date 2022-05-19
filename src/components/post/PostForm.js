@@ -66,7 +66,7 @@ export const PostForm = ({ className, setPostsData }) => {
     const getURL = BaseUrl + `post/new`;
 
     const { data } = await axios(getURL);
-    console.log(data);
+    // console.log(data);
   };
 
   useEffect(() => {
@@ -125,7 +125,7 @@ export const PostForm = ({ className, setPostsData }) => {
       const { data } = await axios.post(postUrl, payload);
       setPostsData((prevData) => [data, ...prevData]);
       dispatch({ type: RESET_FORM });
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       setSeverError(error.response.data.msg);
 

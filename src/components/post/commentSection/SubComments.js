@@ -1,35 +1,32 @@
 import React, { useEffect } from "react";
 
 import axios from "axios";
-
-import { StyledCommentSection } from "../../../styles/StyledCommentSection";
 import { Comments } from "./Comments";
 
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const CommentSection = ({ postId, commentsData, setCommentsData }) => {
-  // console.log(commentsData);
-
+export const SubComments = ({
+  commentId,
+  subCommentsData,
+  setSubCommentsData,
+}) => {
   const fetchData = async () => {
     const payload = {};
-    const postUrl = BaseUrl + `post/${postId}/comments`;
+    const postUrl = BaseUrl + `comment/${commentId}/comments`;
 
     try {
       const { data } = await axios.get(postUrl, payload);
-      setCommentsData(data);
+      setSubCommentsData(data);
     } catch (error) {}
   };
+
   useEffect(() => {
-    if (commentsData[0]._id) {
+    if (subCommentsData[0]._id) {
       return;
     }
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  return (
-    <StyledCommentSection>
-      {<Comments data={commentsData} />}
-    </StyledCommentSection>
-  );
+  // console.log(subCommentsData);
+  return <Comments data={subCommentsData} sub={true} />;
 };

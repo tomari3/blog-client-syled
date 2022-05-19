@@ -106,7 +106,7 @@ export const LoginForm = () => {
 
     try {
       const { data } = await axios.post(postUrl, payload);
-      console.log(data);
+      // console.log(data);
       setJwt(data.token);
     } catch (error) {
       setSeverError(error.response.data.msg);
