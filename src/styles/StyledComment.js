@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 export const StyledComment = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
+
   .comment {
     display: grid;
     grid-template-columns: 35px 1fr;
@@ -12,18 +13,65 @@ export const StyledComment = styled(motion.div)`
     grid-template-areas: "up comment" "down interaction";
     gap: 0.5rem;
   }
-  .sub-comments {
-    font-size: 0.9em;
+  .comment-section_sub-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .comments_sub-comment {
+    &:not(:last-child) {
+      .comment-side-down {
+        grid-area: down;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        position: relative;
+        .comment-side-down_line {
+          &::after,
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: inherit;
+            height: 100%;
+            background-color: inherit;
+          }
+          &::after {
+            bottom: -100%;
+          }
+          &::before {
+            bottom: 50%;
+          }
+        }
+      }
+    }
+  }
+  .sub-comment {
+    --margin: 0.2rem;
     display: grid;
     grid-template-columns: 35px 30px 1fr;
     grid-template-rows: auto auto 1fr;
     grid-template-areas: "down up comment" "down up interaction";
-    gap: 0.5rem;
+    gap: 0.25rem;
     .comment-content {
-      margin-top: 1rem;
+      margin-top: var(--margin);
     }
     .comment-side-up {
-      margin-top: 1rem;
+      margin-top: var(--margin);
+    }
+
+    .comment-side-down {
+      grid-area: down;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      .comment-side-down_line {
+        display: block;
+        background-color: var(--primary-active);
+        width: 2px;
+        height: 100%;
+        position: relative;
+      }
     }
   }
 
@@ -39,18 +87,6 @@ export const StyledComment = styled(motion.div)`
     aspect-ratio: 1;
     border-radius: 100%;
     grid-area: img;
-  }
-  .comment-side-down {
-    grid-area: down;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    span {
-      display: block;
-      background-color: var(--primary-active);
-      width: 2px;
-      height: 100%;
-    }
   }
 
   .comment-content {
@@ -99,10 +135,15 @@ export const StyledComment = styled(motion.div)`
     display: flex;
     p {
     }
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .comment-input {
-    margin-left: 35px;
+    margin-left: 2.5rem;
+    padding: 0;
+    width: calc(100% - 2rem);
     form {
       display: grid;
       grid-template-columns: 1fr auto;

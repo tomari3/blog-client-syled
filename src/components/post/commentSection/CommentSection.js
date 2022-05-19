@@ -28,7 +28,7 @@ export const CommentSection = ({ postId, commentsData, setCommentsData }) => {
   }, []);
 
   return (
-    <StyledCommentSection>
+    <StyledCommentSection className="post_comment-section">
       {<Comments data={commentsData} />}
     </StyledCommentSection>
   );

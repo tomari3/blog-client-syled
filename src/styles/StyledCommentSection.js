@@ -7,9 +7,9 @@ export const StyledCommentSection = styled(motion.section)`
   padding-top: 1rem;
   border-top: 1px solid var(--primary-active);
   margin-top: 1rem;
-  .comments {
+  .comment-section_comments {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 `;

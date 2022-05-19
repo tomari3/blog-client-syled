@@ -25,8 +25,10 @@ export const Comment = ({ commentData, sub }) => {
   } = commentData;
 
   return (
-    <StyledComment>
-      <div className={sub ? "sub-comments" : "comment"}>
+    <StyledComment
+      className={sub ? "comments_sub-comment" : "comments_comment"}
+    >
+      <div className={sub ? "sub-comment" : "comment"}>
         <div className="comment-side-up">
           <p className="comment-side-up_img">img</p>
         </div>

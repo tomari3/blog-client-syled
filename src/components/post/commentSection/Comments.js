@@ -9,5 +9,9 @@ export const Comments = ({ data, sub }) => {
     })
   );
 
-  return <div className="comments">{comments}</div>;
+  return (
+    <div className={`comment-section_${sub ? "sub-" : ""}comments`}>
+      {comments}
+    </div>
+  );
 };
