@@ -1,10 +1,5 @@
-import { StyledLayout } from "../../styles/StyledLayout";
-import { PostForm } from "../post/PostForm";
+import { Loading } from "../svgs/Loading";
 
 export const PostFormPage = () => {
-  return (
-    <StyledLayout>
-      <PostForm />
-    </StyledLayout>
-  );
+  return <Loading />;
 };

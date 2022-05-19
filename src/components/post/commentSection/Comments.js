@@ -1,8 +1,9 @@
 import { Comment } from "./Comment";
+import { Loading } from "../../svgs/Loading";
 
 export const Comments = ({ data, sub }) => {
   const comments = !(data[0] instanceof Object) ? (
-    <p>loading</p>
+    <Loading />
   ) : (
     data.map((comment) => {
       return <Comment key={comment._id} commentData={comment} sub={sub} />;
