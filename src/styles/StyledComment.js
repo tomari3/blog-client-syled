@@ -36,14 +36,12 @@ export const StyledComment = styled(motion.div)`
             height: 100%;
             background-color: inherit;
           }
-          &::after {
-            bottom: -100%;
-          }
-          &::before {
-            bottom: 50%;
-          }
         }
       }
+    }
+
+    .comment-section_sub-comments {
+      margin-left: 0.5em;
     }
   }
   .sub-comment {

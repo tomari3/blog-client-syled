@@ -36,6 +36,8 @@ export const Post = ({ postData }) => {
     </div>
   );
 
+  const amount = commentsData.length;
+
   return (
     <StyledPost className="post">
       {postContent}
@@ -54,7 +56,7 @@ export const Post = ({ postData }) => {
           main
           toggleComment={() => setCommentModal(!commentModal)}
           toggleComments={() => setCommentsModal(!commentsModal)}
-          amount={commentsData.length}
+          amount={amount}
         />
       </div>
       {commentModal ? (
