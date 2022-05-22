@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react";
 
-import axios from "../../utils/axios";
+import { axiosPrivate } from "../../utils/axios";
 
 import { StyledButton } from "../../styles/StyledButton";
 import { StyledForm } from "../../styles/StyledForm";
@@ -64,7 +64,7 @@ export const PostForm = ({ className, setPostsData }) => {
   const fetchData = async () => {
     const getURL = `post/new`;
 
-    const { data } = await axios(getURL);
+    const { data } = await axiosPrivate(getURL);
     console.log(data);
   };
 
@@ -112,7 +112,6 @@ export const PostForm = ({ className, setPostsData }) => {
   };
   const sendPost = async () => {
     const payload = {
-      id: "625af335160443835c688a22",
       content: formState.content.value,
       status: formState.status.value,
       isPinned: formState.pinned.value,
@@ -121,12 +120,13 @@ export const PostForm = ({ className, setPostsData }) => {
     const postUrl = `post/new`;
 
     try {
-      const { data } = await axios.post(postUrl, payload);
+      const { data } = await axiosPrivate.post(postUrl, payload);
       setPostsData((prevData) => [data, ...prevData]);
       dispatch({ type: RESET_FORM });
       // console.log(data);
     } catch (error) {
-      setSeverError(error.response.data.msg);
+      console.log(error);
+      setSeverError(error.response.data);
 
       setTimeout(() => {
         setSeverError("");

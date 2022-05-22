@@ -28,7 +28,7 @@ export const Post = ({ postData }) => {
     <div className="post-content">
       <div className="post-content-details">
         <p className="post-content-details_img">img</p>
-        <p className="post-content-details_username">{author.username}</p>
+        <p className="post-content-details_username">{author?.username}</p>
         <p className="post-content-details_date">{timeAgo(date)}</p>
       </div>
       <div className="post-content_tags">{tagsList}</div>

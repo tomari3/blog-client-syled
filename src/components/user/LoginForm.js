@@ -103,7 +103,8 @@ export const LoginForm = () => {
       const { data } = await axios.post(postUrl, payload);
       console.log(data);
     } catch (error) {
-      setSeverError(error.response.data.msg);
+      console.log(error);
+      // setSeverError(error.response.data.msg);
 
       setTimeout(() => {
         setSeverError("");
@@ -114,7 +115,7 @@ export const LoginForm = () => {
   return (
     <StyledForm>
       <div className="form-header">
-        <h1>Sign in</h1>
+        <h1>log in</h1>
         <div className="form-err">
           {showError &&
             !formState.isFormValid &&
@@ -170,7 +171,7 @@ export const LoginForm = () => {
           </div>
         </div>
         <StyledButton $color $bold>
-          sign in
+          log in
         </StyledButton>
         <StyledButton type="button">
           <Link to="/user/signup">
