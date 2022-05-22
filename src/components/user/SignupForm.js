@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 import { Link } from "react-router-dom";
 
-import axios from "axios";
+import axios from "../../utils/axios";
 
 import { StyledForm } from "../../styles/StyledForm";
 import { StyledButton } from "../../styles/StyledButton";
@@ -12,8 +12,6 @@ import {
   onFocusOut,
   validateInput,
 } from "../../utils/formUtils";
-
-const BaseUrl = process.env.REACT_APP_URL;
 
 const initialState = {
   username: {
@@ -112,11 +110,11 @@ export const SignupForm = () => {
       email: formState.email.value,
       password: formState.password.value,
     };
-    const postUrl = BaseUrl + `users/signup`;
+    const postUrl = `users/signup`;
 
     try {
       const { data } = await axios.post(postUrl, payload);
-      // console.log(data);
+      console.log(data);
     } catch (error) {
       setSeverError(error.response.data.msg);
 

@@ -15,9 +15,11 @@ export const Home = () => {
   const { width: w } = useWindowDimensions();
 
   const fetchData = async () => {
-    const { data } = await axios.get("/");
-    setTagsData(data.tags);
-    setPostsData(data.posts);
+    const {
+      data: { posts, tags },
+    } = await axios.get("/");
+    setTagsData(tags);
+    setPostsData(posts);
   };
 
   useEffect(() => {

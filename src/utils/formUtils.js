@@ -107,9 +107,7 @@ export const validateInput = (name, value, pass = null) => {
       }
       break;
     case "passwordConfirm":
-      if (value.trim() !== pass.trim()) {
-        hasError = true;
-        error = "passwords dont much";
+      if (value.trim()) {
       } else {
         hasError = false;
         error = "";
