@@ -48,7 +48,7 @@ const formsReducer = (state, action) => {
 };
 
 export const LoginForm = () => {
-  const { setAuth, persist, setPersist } = useAuth();
+  const { auth, setAuth, persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -116,12 +116,14 @@ export const LoginForm = () => {
     const postUrl = `auth/login`;
 
     try {
-      const { data } = await axios.post(postUrl, payload, {
+      const {
+        data: { _id, username, accessToken },
+      } = await axios.post(postUrl, payload, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      console.log(data);
-      setAuth(payload.username, payload.password, data?.accessToken);
+      setAuth({ _id, username, accessToken });
+      console.log(_id);
       dispatch({ type: RESET_FORM });
       navigate(from, { replace: true });
     } catch (error) {
@@ -158,6 +160,7 @@ export const LoginForm = () => {
           <input
             ref={userRef}
             type="text"
+            autoComplete="off"
             name="username"
             value={formState.username.value}
             onChange={(e) =>
