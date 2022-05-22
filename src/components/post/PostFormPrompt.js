@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import { PostForm } from "./PostForm";
 import { ModalBasis } from "../../styles/ModalBasis";
 import { StyledForm } from "../../styles/StyledForm";
+import { useAuth } from "../../hooks/useAuth";
 
 export const PostFormPrompt = ({ setPostsData }) => {
   const [active, setActive] = useState(false);
-
+  const { auth } = useAuth();
   return (
     <>
       <div style={{ padding: "1rem 0" }}>
         <div>
-          <p>HEY</p>
+          <p>HEY {auth}</p>
         </div>
         <StyledForm onClick={() => setActive(!active)} className="inline">
           <div className="form-field fake">

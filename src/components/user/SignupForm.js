@@ -110,7 +110,7 @@ export const SignupForm = () => {
       email: formState.email.value,
       password: formState.password.value,
     };
-    const postUrl = `users/signup`;
+    const postUrl = `auth/signup`;
 
     try {
       const { data } = await axios.post(postUrl, payload);

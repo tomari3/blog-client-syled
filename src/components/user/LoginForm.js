@@ -113,7 +113,7 @@ export const LoginForm = () => {
       username: formState.username.value,
       password: formState.password.value,
     };
-    const postUrl = `users/login`;
+    const postUrl = `auth/login`;
 
     try {
       const { data } = await axios.post(postUrl, payload, {
