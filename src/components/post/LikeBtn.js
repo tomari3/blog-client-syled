@@ -1,9 +1,8 @@
 import React from "react";
 
-import axios from "axios";
-import { StyledButton } from "../../styles/StyledButton";
+import axios from "../../utils/axios";
 
-const BaseUrl = process.env.REACT_APP_URL;
+import { StyledButton } from "../../styles/StyledButton";
 
 export const LikeBtn = ({ postId, likesData, setLikesData }) => {
   const liked = likesData.find((l) => l === process.env.REACT_APP_ID);
@@ -14,7 +13,7 @@ export const LikeBtn = ({ postId, likesData, setLikesData }) => {
     const payload = {
       id: process.env.REACT_APP_ID,
     };
-    const postUrl = BaseUrl + `post/${postId}/like`;
+    const postUrl = `post/${postId}/like`;
 
     try {
       const { data } = await axios.post(postUrl, payload);

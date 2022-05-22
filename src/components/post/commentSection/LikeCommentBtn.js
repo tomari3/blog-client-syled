@@ -1,10 +1,8 @@
 import React from "react";
 
-import axios from "axios";
+import axios from "../../../utils/axios";
 
 import { StyledButton } from "../../../styles/StyledButton";
-
-const BaseUrl = process.env.REACT_APP_URL;
 
 export const LikeCommentBtn = ({
   postId,
@@ -20,7 +18,7 @@ export const LikeCommentBtn = ({
     const payload = {
       id: process.env.REACT_APP_ID,
     };
-    const postUrl = BaseUrl + `comment/${commentId}/like/`;
+    const postUrl = `comment/${commentId}/like/`;
 
     try {
       const { data } = await axios.post(postUrl, payload);

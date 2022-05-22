@@ -1,10 +1,4 @@
-import React, { useEffect } from "react";
-
-import axios from "axios";
-
 import { StyledButton } from "../../../styles/StyledButton";
-
-const BaseUrl = process.env.REACT_APP_URL;
 
 export const ReplyCommentBtn = ({ amount, toggleComment, toggleComments }) => {
   return (

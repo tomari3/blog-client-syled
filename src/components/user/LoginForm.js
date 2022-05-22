@@ -1,9 +1,8 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useState, useReducer } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
 
-import { MainContext } from "../../contexts/MainContext";
 import { StyledForm } from "../../styles/StyledForm";
 import { StyledButton } from "../../styles/StyledButton";
 
@@ -51,8 +50,6 @@ export const LoginForm = () => {
 
   const [showError, setShowError] = useState(false);
   const [serverError, setSeverError] = useState("");
-
-  const { setJwt } = useContext(MainContext);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -107,7 +104,6 @@ export const LoginForm = () => {
     try {
       const { data } = await axios.post(postUrl, payload);
       // console.log(data);
-      setJwt(data.token);
     } catch (error) {
       setSeverError(error.response.data.msg);
 

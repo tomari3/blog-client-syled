@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 
@@ -9,19 +9,15 @@ import { MemoPostGallery } from "../post/PostGallery";
 import { MemoTagsBar } from "../tags/TagsBar";
 import { PostFormPrompt } from "../post/PostFormPrompt";
 
-const BaseUrl = process.env.REACT_APP_URL;
-
 export const Home = () => {
   const [tagsData, setTagsData] = useState([]);
   const [postsData, setPostsData] = useState([]);
   const { width: w } = useWindowDimensions();
 
   const fetchData = async () => {
-    const {
-      data: { posts, tags },
-    } = await axios(BaseUrl);
-    setTagsData(tags);
-    setPostsData(posts);
+    const { data } = await axios.get("/");
+    setTagsData(data.tags);
+    setPostsData(data.posts);
   };
 
   useEffect(() => {

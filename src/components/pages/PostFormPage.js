@@ -1,4 +1,4 @@
-import { Loading } from "../svgs/Loading";
+import { Loading } from "../Loading";
 
 export const PostFormPage = () => {
   return <Loading />;

@@ -1,6 +1,6 @@
 import React, { useState, useReducer } from "react";
 
-import axios from "axios";
+import axios from "../../../utils/axios";
 
 import { StyledForm } from "../../../styles/StyledForm";
 import { StyledButton } from "../../../styles/StyledButton";
@@ -38,7 +38,6 @@ const formsReducer = (state, action) => {
       return state;
   }
 };
-const BaseUrl = process.env.REACT_APP_URL;
 
 export const SubCommentInput = ({
   commentId,
@@ -94,7 +93,7 @@ export const SubCommentInput = ({
       id: "625af335160443835c688a22",
       content: formState.content.value,
     };
-    const postUrl = BaseUrl + `comment/${commentId}/comment`;
+    const postUrl = `comment/${commentId}/comment`;
 
     try {
       const { data } = await axios.post(postUrl, payload);

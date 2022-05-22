@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 
-import axios from "axios";
-import { Comments } from "./Comments";
+import axios from "../../../utils/axios";
 
-const BaseUrl = process.env.REACT_APP_URL;
+import { Comments } from "./Comments";
 
 export const SubComments = ({
   commentId,
@@ -12,7 +11,7 @@ export const SubComments = ({
 }) => {
   const fetchData = async () => {
     const payload = {};
-    const postUrl = BaseUrl + `comment/${commentId}/comments`;
+    const postUrl = `comment/${commentId}/comments`;
 
     try {
       const { data } = await axios.get(postUrl, payload);

@@ -1,9 +1,8 @@
 import React from "react";
 
-import axios from "axios";
-import { StyledButton } from "../../styles/StyledButton";
+import axios from "../../utils/axios";
 
-const BaseUrl = "http://localhost:3000/";
+import { StyledButton } from "../../styles/StyledButton";
 
 export const SaveBtn = ({ postId, savesData, setSavesData }) => {
   const saved = savesData.find((s) => s === "625af335160443835c688a22");
@@ -14,7 +13,7 @@ export const SaveBtn = ({ postId, savesData, setSavesData }) => {
     const payload = {
       id: "625af335160443835c688a22",
     };
-    const postUrl = BaseUrl + `post/${postId}/save`;
+    const postUrl = `post/${postId}/save`;
 
     try {
       const { data } = await axios.post(postUrl, payload);

@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react";
 
-import axios from "axios";
+import axios from "../../utils/axios";
 
 import { StyledButton } from "../../styles/StyledButton";
 import { StyledForm } from "../../styles/StyledForm";
@@ -54,7 +54,6 @@ const formsReducer = (state, action) => {
       return state;
   }
 };
-const BaseUrl = process.env.REACT_APP_URL;
 
 export const PostForm = ({ className, setPostsData }) => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
@@ -63,10 +62,10 @@ export const PostForm = ({ className, setPostsData }) => {
   const [serverError, setSeverError] = useState("");
 
   const fetchData = async () => {
-    const getURL = BaseUrl + `post/new`;
+    const getURL = `post/new`;
 
     const { data } = await axios(getURL);
-    // console.log(data);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -119,7 +118,7 @@ export const PostForm = ({ className, setPostsData }) => {
       isPinned: formState.pinned.value,
       tags: formState.tags.value,
     };
-    const postUrl = BaseUrl + `post/new`;
+    const postUrl = `post/new`;
 
     try {
       const { data } = await axios.post(postUrl, payload);

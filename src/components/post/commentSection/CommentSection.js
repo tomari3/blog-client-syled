@@ -1,18 +1,14 @@
 import React, { useEffect } from "react";
 
-import axios from "axios";
+import axios from "../../../utils/axios";
 
 import { StyledCommentSection } from "../../../styles/StyledCommentSection";
 import { Comments } from "./Comments";
 
-const BaseUrl = process.env.REACT_APP_URL;
-
 export const CommentSection = ({ postId, commentsData, setCommentsData }) => {
-  // console.log(commentsData);
-
   const fetchData = async () => {
     const payload = {};
-    const postUrl = BaseUrl + `post/${postId}/comments`;
+    const postUrl = `post/${postId}/comments`;
 
     try {
       const { data } = await axios.get(postUrl, payload);
