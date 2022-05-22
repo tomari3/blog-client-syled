@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const StyledComment = styled(motion.div)`
+  --side: 35px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -19,35 +20,22 @@ export const StyledComment = styled(motion.div)`
     gap: 0.5rem;
   }
   .comments_sub-comment {
-    &:not(:last-child) {
-      .comment-side-down {
-        grid-area: down;
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        position: relative;
-        .comment-side-down_line {
-          &::after,
-          &::before {
-            content: "";
-            display: block;
-            position: absolute;
-            width: inherit;
-            height: 100%;
-            background-color: inherit;
-          }
-        }
-      }
+    .comment-side-down {
+      grid-area: down;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      position: relative;
     }
 
     .comment-section_sub-comments {
-      margin-left: 0.5em;
+      margin-left: var(--side);
     }
   }
   .sub-comment {
     --margin: 0.2rem;
     display: grid;
-    grid-template-columns: 35px 30px 1fr;
+    grid-template-columns: var(--side) 30px 1fr;
     grid-template-rows: auto auto 1fr;
     grid-template-areas: "down up comment" "down up interaction";
     gap: 0.25rem;
@@ -64,11 +52,36 @@ export const StyledComment = styled(motion.div)`
       width: 100%;
       justify-content: center;
       .comment-side-down_line {
+        --border: 10px;
         display: block;
         background-color: var(--primary-active);
-        width: 2px;
-        height: 100%;
+        height: calc(var(--side) - var(--border));
         position: relative;
+        transform: translateY(calc(var(--side) / -2));
+        &:first-child {
+          width: 2px;
+          &::after,
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: inherit;
+            background-color: inherit;
+          }
+          &::after {
+            height: var(--side);
+            width: calc(var(--side) / 2.5);
+            background-color: transparent;
+            border-style: solid;
+            border-color: var(--primary-active);
+            border-width: 0 0 2px 2px;
+            border-bottom-left-radius: var(--border);
+          }
+          &::before {
+            height: 100%;
+            bottom: 100%;
+          }
+        }
       }
     }
   }

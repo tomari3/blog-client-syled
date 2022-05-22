@@ -40,7 +40,12 @@ const formsReducer = (state, action) => {
 };
 const BaseUrl = process.env.REACT_APP_URL;
 
-export const SubCommentInput = ({ commentId, setSubCommentsData }) => {
+export const SubCommentInput = ({
+  commentId,
+  setSubCommentsData,
+  toggleComment,
+  toggleComments,
+}) => {
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
@@ -95,6 +100,8 @@ export const SubCommentInput = ({ commentId, setSubCommentsData }) => {
       const { data } = await axios.post(postUrl, payload);
 
       setSubCommentsData(data);
+      toggleComment();
+      toggleComments();
       console.log(data);
       dispatch({ type: RESET_FORM });
     } catch (error) {

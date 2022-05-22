@@ -60,7 +60,12 @@ export const Post = ({ postData }) => {
         />
       </div>
       {commentModal ? (
-        <CommentInput setCommentsData={setCommentsData} postId={_id} />
+        <CommentInput
+          toggleComment={() => setCommentModal(!commentModal)}
+          toggleComments={() => setCommentsModal(!commentsModal)}
+          setCommentsData={setCommentsData}
+          postId={_id}
+        />
       ) : null}
       {commentsModal ? (
         <CommentSection

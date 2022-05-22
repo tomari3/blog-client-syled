@@ -34,6 +34,7 @@ export const Comment = ({ commentData, sub }) => {
         </div>
         <div className="comment-side-down">
           <span className="comment-side-down_line"></span>
+          <span className="comment-side-down_line"></span>
         </div>
         <div className="comment-content">
           <p className="comment-content_name">{username}</p>
@@ -58,6 +59,8 @@ export const Comment = ({ commentData, sub }) => {
       </div>
       {commentModal ? (
         <SubCommentInput
+          toggleComment={() => setCommentModal(!commentModal)}
+          toggleComments={() => setCommentsModal(!commentsModal)}
           setSubCommentsData={setSubCommentsData}
           commentId={_id}
         />
