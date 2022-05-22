@@ -5,7 +5,7 @@ export const useRefreshToken = () => {
   const { setAuth } = useAuth();
 
   const refresh = async () => {
-    const { data } = await axios.get("/refresh", {
+    const { data } = await axios.get("users/refresh", {
       withCredentials: true,
     });
     setAuth((prev) => {
