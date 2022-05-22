@@ -1,13 +1,15 @@
-import React, { useState, useReducer } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useReducer, useEffect, useRef } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import axios from "../../utils/axios";
+import { useAuth } from "../../hooks/useAuth";
 
 import { StyledForm } from "../../styles/StyledForm";
 import { StyledButton } from "../../styles/StyledButton";
 
 import {
   UPDATE_FORM,
+  RESET_FORM,
   onInputChange,
   onFocusOut,
   validateInput,
@@ -38,16 +40,30 @@ const formsReducer = (state, action) => {
         [name]: { ...state[name], value, hasError, error, touched },
         isFormValid,
       };
+    case RESET_FORM:
+      return initialState;
     default:
       return state;
   }
 };
 
 export const LoginForm = () => {
+  const { setAuth, persist, setPersist } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
   const [serverError, setSeverError] = useState("");
+
+  const userRef = useRef();
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -100,17 +116,30 @@ export const LoginForm = () => {
     const postUrl = `users/login`;
 
     try {
-      const { data } = await axios.post(postUrl, payload);
+      const { data } = await axios.post(postUrl, payload, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
       console.log(data);
+      setAuth(payload.username, payload.password, data?.accessToken);
+      dispatch({ type: RESET_FORM });
+      navigate(from, { replace: true });
     } catch (error) {
-      console.log(error);
-      // setSeverError(error.response.data.msg);
+      console.error(error);
 
       setTimeout(() => {
         setSeverError("");
       }, 5000);
     }
   };
+
+  const togglePersist = () => {
+    setPersist((prev) => !prev);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("persist", persist);
+  }, [persist]);
 
   return (
     <StyledForm>
@@ -127,6 +156,7 @@ export const LoginForm = () => {
         <div className="form-field">
           <div className="form-field-detail"></div>
           <input
+            ref={userRef}
             type="text"
             name="username"
             value={formState.username.value}
@@ -168,6 +198,19 @@ export const LoginForm = () => {
           </label>
           <div className="form-field-err">
             <p>{formState.password.error}</p>
+          </div>
+        </div>
+        <div className="form-field">
+          <div className="form-field-detail"></div>
+          <input
+            type="checkbox"
+            name="persist"
+            onChange={togglePersist}
+            checked={persist}
+          />
+          <label htmlFor="persist">trust this device</label>
+          <div className="form-field-err">
+            <p>{}</p>
           </div>
         </div>
         <StyledButton $color $bold>
