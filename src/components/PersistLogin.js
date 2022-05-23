@@ -29,8 +29,8 @@ export const PersistLogin = () => {
 
   useEffect(() => {
     console.log(auth);
-    console.log(`isLoading: ${isLoading}`);
-    console.log(`aT: ${JSON.stringify(auth?.accessToken)}`);
+    // console.log(`isLoading: ${isLoading}`);
+    // console.log(`aT: ${JSON.stringify(auth?.accessToken)}`);
   }, [auth, isLoading]);
 
   return <>{!persist ? <Outlet /> : isLoading ? <p>loading</p> : <Outlet />}</>;
