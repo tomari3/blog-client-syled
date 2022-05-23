@@ -1,25 +1,20 @@
-import { useLocation, Routes, Route, Outlet } from "react-router-dom";
+import { useLocation, Routes, Route } from "react-router-dom";
 
 import { AnimatePresence } from "framer-motion";
 
-import { Header } from "./header/Header";
-import { Footer } from "./footer/Footer";
+import { Layout } from "./Layout";
+import { PersistLogin } from "./PersistLogin";
 import { Home } from "./pages/Home";
-import { PostFormPage } from "./pages/PostFormPage";
-import { LoginPage } from "./user/LoginPage";
-import { SignupPage } from "./user/SignupPage";
+import { SignupPage } from "./pages/SignupPage";
+import { LoginPage } from "./pages/LoginPage";
+import { RequireAuth } from "./RequireAuth";
+import { Unauthorized } from "./pages/Unauthorized";
 
-function LayoutsWithNavbar({ toggle }) {
-  return (
-    <>
-      <Header toggle={toggle} />
-
-      <Outlet />
-
-      <Footer />
-    </>
-  );
-}
+const ROLES = {
+  User: 2001,
+  Editor: 1984,
+  Admin: 5150,
+};
 
 export const AnimatedRoutes = ({ toggle }) => {
   const location = useLocation();
@@ -27,13 +22,16 @@ export const AnimatedRoutes = ({ toggle }) => {
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<LayoutsWithNavbar toggle={toggle} />}>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Layout toggle={toggle} />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<SignupPage />} />
+          <Route path="unauthorized" element={<Unauthorized />} />
 
-          <Route path="/post/new" element={<PostFormPage />} />
-
-          <Route path="/user/login" element={<LoginPage />} />
-          <Route path="/user/signup" element={<SignupPage />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
+              <Route path="/" element={<Home />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </AnimatePresence>

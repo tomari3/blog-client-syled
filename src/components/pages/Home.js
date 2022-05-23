@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../utils/axios";
-
-import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 
 import { StyledHome } from "../../styles/StyledHome";
 
@@ -9,15 +6,19 @@ import { MemoPostGallery } from "../post/PostGallery";
 import { MemoTagsBar } from "../tags/TagsBar";
 import { PostFormPrompt } from "../post/PostFormPrompt";
 
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+
 export const Home = () => {
   const [tagsData, setTagsData] = useState([]);
   const [postsData, setPostsData] = useState([]);
   const { width: w } = useWindowDimensions();
+  const axiosPrivate = useAxiosPrivate();
 
   const fetchData = async () => {
     const {
-      data: { posts, tags },
-    } = await axios.get("/");
+      data: { tags, posts },
+    } = await axiosPrivate.get("posts");
     setTagsData(tags);
     setPostsData(posts);
   };

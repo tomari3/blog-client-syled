@@ -7,13 +7,12 @@ import { useAuth } from "./useAuth";
 
 export const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
-  const auth = useAuth();
-
+  const { auth } = useAuth();
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {
-          config.headers["Authorization"] = auth.accessToken;
+          config.headers["Authorization"] = `${auth?.accessToken}`;
         }
         return config;
       },
@@ -24,10 +23,10 @@ export const useAxiosPrivate = () => {
       (response) => response,
       async (error) => {
         const prevRequest = error?.config;
-        if (error?.response?.status === 403 && !prevRequest.sent) {
+        if (error?.response?.status === 403 && !prevRequest?.sent) {
           prevRequest.sent = true;
           const newAccessToken = await refresh();
-          prevRequest.headers["Authorization"] = newAccessToken;
+          prevRequest.headers["Authorization"] = `${newAccessToken}`;
           return axiosPrivate(prevRequest);
         }
         return Promise.reject(error);

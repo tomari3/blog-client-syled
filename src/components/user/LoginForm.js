@@ -48,7 +48,7 @@ const formsReducer = (state, action) => {
 };
 
 export const LoginForm = () => {
-  const { auth, setAuth, persist, setPersist } = useAuth();
+  const { setAuth, persist, setPersist } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -117,13 +117,12 @@ export const LoginForm = () => {
 
     try {
       const {
-        data: { _id, username, accessToken },
+        data: { _id, username, accessToken, roles },
       } = await axios.post(postUrl, payload, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      setAuth({ _id, username, accessToken });
-      console.log(_id);
+      setAuth({ _id, username, accessToken, roles });
       dispatch({ type: RESET_FORM });
       navigate(from, { replace: true });
     } catch (error) {
