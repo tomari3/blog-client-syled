@@ -15,7 +15,6 @@ export const Comment = ({ commentData, sub }) => {
   const [subCommentsData, setSubCommentsData] = useState(
     commentData?.subComments
   );
-
   const {
     author: { username },
     _id,
@@ -32,10 +31,7 @@ export const Comment = ({ commentData, sub }) => {
         <div className="comment-side-up">
           <p className="comment-side-up_img">img</p>
         </div>
-        <div className="comment-side-down">
-          <span className="comment-side-down_line"></span>
-          <span className="comment-side-down_line"></span>
-        </div>
+
         <div className="comment-content">
           <p className="comment-content_name">{username}</p>
           <p className="comment-content_content">{content}</p>
@@ -57,6 +53,11 @@ export const Comment = ({ commentData, sub }) => {
           <span className="comment-interaction_date">{timeAgo(date)}</span>
         </div>
       </div>
+      {subCommentsData?.length ? (
+        <div className="comment_line">
+          <span></span>
+        </div>
+      ) : null}
       {commentModal ? (
         <SubCommentInput
           closeInput={() => setCommentModal(false)}
