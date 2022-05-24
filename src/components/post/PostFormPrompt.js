@@ -12,7 +12,7 @@ export const PostFormPrompt = ({ setPostsData }) => {
     <>
       <div style={{ padding: "1rem 0" }}>
         <div>
-          <p>HEY {auth?.username}</p>
+          <p>Hey {auth?.username}</p>
         </div>
         <StyledForm onClick={() => setActive(!active)} className="inline">
           <div className="form-field fake">
