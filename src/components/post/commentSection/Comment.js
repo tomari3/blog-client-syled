@@ -11,9 +11,9 @@ import { SubComments } from "./SubComments";
 export const Comment = ({ commentData, sub }) => {
   const [commentModal, setCommentModal] = useState(false);
   const [commentsModal, setCommentsModal] = useState(false);
-  const [likesData, setLikesData] = useState(commentData.likes);
+  const [likesData, setLikesData] = useState(commentData?.likes);
   const [subCommentsData, setSubCommentsData] = useState(
-    commentData.subComments
+    commentData?.subComments
   );
 
   const {
@@ -50,7 +50,7 @@ export const Comment = ({ commentData, sub }) => {
             />
             <ReplyCommentBtn
               amount={subCommentsData.length}
-              toggleComment={() => setCommentModal(!commentModal)}
+              toggleInput={() => setCommentModal(!commentModal)}
               toggleComments={() => setCommentsModal(!commentsModal)}
             />
           </div>
@@ -59,8 +59,8 @@ export const Comment = ({ commentData, sub }) => {
       </div>
       {commentModal ? (
         <SubCommentInput
-          toggleComment={() => setCommentModal(!commentModal)}
-          toggleComments={() => setCommentsModal(!commentsModal)}
+          closeInput={() => setCommentModal(false)}
+          openComments={() => setCommentsModal(true)}
           setSubCommentsData={setSubCommentsData}
           commentId={_id}
         />

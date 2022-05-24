@@ -1,9 +1,9 @@
 import { StyledButton } from "../../../styles/StyledButton";
 
-export const ReplyCommentBtn = ({ amount, toggleComment, toggleComments }) => {
+export const ReplyCommentBtn = ({ amount, toggleInput, toggleComments }) => {
   return (
     <>
-      <StyledButton onClick={toggleComment} $bold $padding $muted>
+      <StyledButton onClick={toggleInput} $bold $padding $muted>
         <div className="comment-interaction_btn_btn">reply</div>
       </StyledButton>
       {amount ? (

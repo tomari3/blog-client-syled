@@ -139,6 +139,7 @@ export const SignupForm = () => {
         <div className="form-field">
           <div className="form-field-detail"></div>
           <input
+            autoComplete="off"
             type="text"
             name="username"
             value={formState.username.value}
@@ -242,7 +243,7 @@ export const SignupForm = () => {
           sign up
         </StyledButton>
         <StyledButton type="button">
-          <Link to="/user/login">
+          <Link to="/login">
             Already have an account? <span>Sign in</span>
           </Link>
         </StyledButton>

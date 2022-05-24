@@ -219,7 +219,7 @@ export const LoginForm = () => {
           log in
         </StyledButton>
         <StyledButton type="button">
-          <Link to="/user/signup">
+          <Link to="/signup">
             Don't have an account? <span>Sign up</span>
           </Link>
         </StyledButton>

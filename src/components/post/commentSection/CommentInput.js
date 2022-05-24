@@ -43,8 +43,8 @@ const formsReducer = (state, action) => {
 export const CommentInput = ({
   postId,
   setCommentsData,
-  toggleComment,
-  toggleComments,
+  closeInput,
+  openComments,
 }) => {
   const { auth } = useAuth();
 
@@ -100,10 +100,10 @@ export const CommentInput = ({
 
     try {
       const { data } = await axiosPrivate.post(postUrl, payload);
-      // console.log(data);
+      console.log(data);
       setCommentsData(data);
-      toggleComment();
-      toggleComments();
+      closeInput();
+      openComments();
       dispatch({ type: RESET_FORM });
     } catch (error) {
       console.log(error);

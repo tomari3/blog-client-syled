@@ -13,10 +13,11 @@ export const SubComments = ({
 
   const fetchData = async () => {
     const payload = {};
-    const postUrl = `posts/comment/${commentId}/comments`;
+    const postUrl = `posts/comments/${commentId}/comments`;
 
     try {
       const { data } = await axiosPrivate.get(postUrl, payload);
+      console.log(data);
       setSubCommentsData(data);
     } catch (error) {}
   };

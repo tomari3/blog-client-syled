@@ -22,7 +22,7 @@ export const LikeCommentBtn = ({
     const payload = {
       id: auth?._id,
     };
-    const postUrl = `posts/comment/${commentId}/like/`;
+    const postUrl = `posts/comments/${commentId}/like/`;
 
     try {
       const { data } = await axiosPrivate.post(postUrl, payload);

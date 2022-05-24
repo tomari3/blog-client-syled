@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from "react";
 
-import axios from "../../../utils/axios";
+import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
+import { useAuth } from "../../../hooks/useAuth";
 
 import { StyledForm } from "../../../styles/StyledForm";
 import { StyledButton } from "../../../styles/StyledButton";
@@ -42,9 +43,12 @@ const formsReducer = (state, action) => {
 export const SubCommentInput = ({
   commentId,
   setSubCommentsData,
-  toggleComment,
-  toggleComments,
+  closeInput,
+  openComments,
 }) => {
+  const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
+
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
@@ -90,18 +94,17 @@ export const SubCommentInput = ({
   };
   const sendComment = async () => {
     const payload = {
-      id: "625af335160443835c688a22",
+      id: auth?._id,
       content: formState.content.value,
     };
-    const postUrl = `comment/${commentId}/comment`;
+    const postUrl = `posts/comments/${commentId}/comments`;
 
     try {
-      const { data } = await axios.post(postUrl, payload);
+      const { data } = await axiosPrivate.post(postUrl, payload);
 
       setSubCommentsData(data);
-      toggleComment();
-      toggleComments();
-      console.log(data);
+      closeInput();
+      openComments();
       dispatch({ type: RESET_FORM });
     } catch (error) {
       console.log(error);
