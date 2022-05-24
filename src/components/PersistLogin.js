@@ -28,7 +28,7 @@ export const PersistLogin = () => {
   }, [auth?.accessToken, persist, refresh]);
 
   useEffect(() => {
-    console.log(auth);
+    // console.log(auth);
     // console.log(`isLoading: ${isLoading}`);
     // console.log(`aT: ${JSON.stringify(auth?.accessToken)}`);
   }, [auth, isLoading]);

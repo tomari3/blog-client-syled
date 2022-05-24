@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 
-import axios from "../../../utils/axios";
+import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
 
 import { StyledCommentSection } from "../../../styles/StyledCommentSection";
 import { Comments } from "./Comments";
 
 export const CommentSection = ({ postId, commentsData, setCommentsData }) => {
+  const axiosPrivate = useAxiosPrivate();
+
   const fetchData = async () => {
     const payload = {};
-    const postUrl = `post/${postId}/comments`;
+    const postUrl = `posts/${postId}/comments`;
 
     try {
-      const { data } = await axios.get(postUrl, payload);
+      const { data } = await axiosPrivate.get(postUrl, payload);
       setCommentsData(data);
     } catch (error) {}
   };

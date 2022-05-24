@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import axios from "../../../utils/axios";
+import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
 
 import { Comments } from "./Comments";
 
@@ -9,12 +9,14 @@ export const SubComments = ({
   subCommentsData,
   setSubCommentsData,
 }) => {
+  const axiosPrivate = useAxiosPrivate();
+
   const fetchData = async () => {
     const payload = {};
-    const postUrl = `comment/${commentId}/comments`;
+    const postUrl = `posts/comment/${commentId}/comments`;
 
     try {
-      const { data } = await axios.get(postUrl, payload);
+      const { data } = await axiosPrivate.get(postUrl, payload);
       setSubCommentsData(data);
     } catch (error) {}
   };

@@ -16,11 +16,10 @@ export const Home = () => {
   const axiosPrivate = useAxiosPrivate();
 
   const fetchData = async () => {
-    const {
-      data: { tags, posts },
-    } = await axiosPrivate.get("posts");
-    setTagsData(tags);
-    setPostsData(posts);
+    const postUrl = `posts`;
+
+    const { data } = await axiosPrivate.get(postUrl);
+    setPostsData(data);
   };
 
   useEffect(() => {

@@ -1,22 +1,26 @@
 import React from "react";
 
-import axios from "../../utils/axios";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useAuth } from "../../hooks/useAuth";
 
 import { StyledButton } from "../../styles/StyledButton";
 
 export const SaveBtn = ({ postId, savesData, setSavesData }) => {
-  const saved = savesData.find((s) => s === "625af335160443835c688a22");
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+
+  const saved = savesData.find((s) => s === auth?._id);
 
   const sendSave = async (e) => {
     e.preventDefault();
 
     const payload = {
-      id: "625af335160443835c688a22",
+      id: auth?._id,
     };
-    const postUrl = `post/${postId}/save`;
+    const postUrl = `posts/${postId}/save`;
 
     try {
-      const { data } = await axios.post(postUrl, payload);
+      const { data } = await axiosPrivate.post(postUrl, payload);
       setSavesData(data);
       // console.log(data);
     } catch (error) {

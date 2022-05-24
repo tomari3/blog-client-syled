@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from "react";
 
-import axios from "../../../utils/axios";
+import { axiosPrivate } from "../../../utils/axios";
+import { useAuth } from "../../../hooks/useAuth";
 
 import { StyledForm } from "../../../styles/StyledForm";
 import { StyledButton } from "../../../styles/StyledButton";
@@ -45,6 +46,8 @@ export const CommentInput = ({
   toggleComment,
   toggleComments,
 }) => {
+  const { auth } = useAuth();
+
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
@@ -90,18 +93,17 @@ export const CommentInput = ({
   };
   const sendComment = async () => {
     const payload = {
-      id: "625af335160443835c688a22",
+      id: auth?._id,
       content: formState.content.value,
     };
-    const postUrl = `post/${postId}/comment`;
+    const postUrl = `posts/${postId}/comments`;
 
     try {
-      const { data } = await axios.post(postUrl, payload);
-
+      const { data } = await axiosPrivate.post(postUrl, payload);
+      // console.log(data);
       setCommentsData(data);
       toggleComment();
       toggleComments();
-      // console.log(data);
       dispatch({ type: RESET_FORM });
     } catch (error) {
       console.log(error);

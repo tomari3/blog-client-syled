@@ -1,6 +1,7 @@
 import React from "react";
 
-import axios from "../../../utils/axios";
+import { useAxiosPrivate } from "../../../hooks/useAxiosPrivate";
+import { useAuth } from "../../../hooks/useAuth";
 
 import { StyledButton } from "../../../styles/StyledButton";
 
@@ -10,18 +11,21 @@ export const LikeCommentBtn = ({
   likesData,
   setLikesData,
 }) => {
-  const liked = likesData.find((l) => l === process.env.REACT_APP_ID);
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+
+  const liked = likesData.find((l) => l === auth?._id);
 
   const sendLike = async (e) => {
     e.preventDefault();
 
     const payload = {
-      id: process.env.REACT_APP_ID,
+      id: auth?._id,
     };
-    const postUrl = `comment/${commentId}/like/`;
+    const postUrl = `posts/comment/${commentId}/like/`;
 
     try {
-      const { data } = await axios.post(postUrl, payload);
+      const { data } = await axiosPrivate.post(postUrl, payload);
       // console.log(data);
       setLikesData(data);
     } catch (error) {

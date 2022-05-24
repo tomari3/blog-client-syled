@@ -1,6 +1,7 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 
-import { axiosPrivate } from "../../utils/axios";
+import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
+import { useAuth } from "../../hooks/useAuth";
 
 import { StyledButton } from "../../styles/StyledButton";
 import { StyledForm } from "../../styles/StyledForm";
@@ -56,21 +57,13 @@ const formsReducer = (state, action) => {
 };
 
 export const PostForm = ({ className, setPostsData }) => {
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
   const [showError, setShowError] = useState(false);
   const [serverError, setSeverError] = useState("");
-
-  const fetchData = async () => {
-    const getURL = `post/new`;
-
-    const { data } = await axiosPrivate(getURL);
-    console.log(data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -110,14 +103,16 @@ export const PostForm = ({ className, setPostsData }) => {
       setShowError(false);
     }, 5000);
   };
+
   const sendPost = async () => {
     const payload = {
+      id: auth?._id,
       content: formState.content.value,
       status: formState.status.value,
       isPinned: formState.pinned.value,
       tags: formState.tags.value,
     };
-    const postUrl = `post/new`;
+    const postUrl = `posts`;
 
     try {
       const { data } = await axiosPrivate.post(postUrl, payload);
