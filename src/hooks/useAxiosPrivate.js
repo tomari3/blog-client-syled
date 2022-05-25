@@ -8,6 +8,7 @@ import { useAuth } from "./useAuth";
 export const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
   const { auth } = useAuth();
+
   useEffect(() => {
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {

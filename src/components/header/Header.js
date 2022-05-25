@@ -1,28 +1,21 @@
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/useAuth";
-import { axiosPrivate } from "../../utils/axios";
+import { useLogout } from "../../hooks/useLogout";
 
-import { StyledHeader } from "../../styles/StyledHeader";
 import { StyledButton } from "../../styles/StyledButton";
+import { StyledHeader } from "../../styles/StyledHeader";
 
 export const Header = () => {
-  const { auth } = useAuth();
-  const logout = async () => {
-    const payload = {
-      id: auth?._id,
-    };
-    const postUrl = `auth/logout`;
+  const { auth, setAuth } = useAuth();
+  // const navigate = useNavigate();
+  const logout = useLogout();
 
-    try {
-      const result = await axiosPrivate.get(postUrl, payload);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-
-      setTimeout(() => {}, 5000);
-    }
+  const signOut = async () => {
+    await logout();
+    setAuth({});
   };
+
   return (
     <StyledHeader>
       <Link to="/">home</Link>
@@ -36,7 +29,7 @@ export const Header = () => {
         <div>
           <Link to="/profile">profile</Link>
           <br />
-          <StyledButton onClick={logout}>logout</StyledButton>
+          <StyledButton onClick={signOut}>Sign out</StyledButton>
         </div>
       )}
     </StyledHeader>

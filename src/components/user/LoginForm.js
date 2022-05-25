@@ -116,15 +116,13 @@ export const LoginForm = () => {
     const postUrl = `auth/login`;
 
     try {
-      const {
-        data: { _id, username, accessToken, roles },
-      } = await axios.post(postUrl, payload, {
+      const { data } = await axios.post(postUrl, payload, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      setAuth({ _id, username, accessToken, roles });
+      setAuth(data);
       dispatch({ type: RESET_FORM });
-      navigate(from, { replace: true });
+      navigate("/");
     } catch (error) {
       console.error(error);
 
