@@ -2,13 +2,15 @@ import { useLocation, Routes, Route } from "react-router-dom";
 
 import { AnimatePresence } from "framer-motion";
 
+import { RequireAuth } from "./auth/RequireAuth";
+import { PersistLogin } from "./auth/PersistLogin";
+
 import { Layout } from "./Layout";
-import { PersistLogin } from "./PersistLogin";
-import { Home } from "./pages/Home";
+
+import { HomePage } from "./pages/HomePage";
 import { SignupPage } from "./pages/SignupPage";
 import { LoginPage } from "./pages/LoginPage";
-import { RequireAuth } from "./RequireAuth";
-import { Unauthorized } from "./pages/Unauthorized";
+import { UnauthorizedPage } from "./pages/UnauthorizedPage";
 
 const ROLES = {
   User: 2001,
@@ -16,7 +18,7 @@ const ROLES = {
   Admin: 5150,
 };
 
-export const AnimatedRoutes = ({ toggle }) => {
+export const AllRoutes = ({ toggle }) => {
   const location = useLocation();
 
   return (
@@ -25,11 +27,11 @@ export const AnimatedRoutes = ({ toggle }) => {
         <Route path="/" element={<Layout toggle={toggle} />}>
           <Route path="login" element={<LoginPage />} />
           <Route path="signup" element={<SignupPage />} />
-          <Route path="unauthorized" element={<Unauthorized />} />
+          <Route path="unauthorized" element={<UnauthorizedPage />} />
 
           <Route element={<PersistLogin />}>
             <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<HomePage />} />
             </Route>
           </Route>
         </Route>

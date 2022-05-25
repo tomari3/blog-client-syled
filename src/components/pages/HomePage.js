@@ -9,7 +9,7 @@ import { PostFormPrompt } from "../post/PostFormPrompt";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 import { useAxiosPrivate } from "../../hooks/useAxiosPrivate";
 
-export const Home = () => {
+export const HomePage = () => {
   const [tagsData, setTagsData] = useState([]);
   const [postsData, setPostsData] = useState([]);
   const { width: w } = useWindowDimensions();

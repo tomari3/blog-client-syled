@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./styles/settings/Theme";
 import { Global } from "./styles/settings/Global";
 
-import { AnimatedRoutes } from "./components/AnimatedRoutes";
+import { AllRoutes } from "./components/Routes";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -23,7 +23,7 @@ function App() {
       <>
         <Global />
         <HashRouter basename="/">
-          <AnimatedRoutes toggle={toggleTheme} />
+          <AllRoutes toggle={toggleTheme} />
         </HashRouter>
       </>
     </ThemeProvider>

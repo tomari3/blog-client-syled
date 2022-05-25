@@ -1,5 +1,5 @@
 import { StyledLayout } from "../../styles/StyledLayout";
-import { LoginForm } from "../user/LoginForm";
+import { LoginForm } from "../auth/LoginForm";
 
 export const LoginPage = () => {
   return (
