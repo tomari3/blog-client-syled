@@ -6,7 +6,7 @@ import { StyledForm } from "../../styles/StyledForm";
 import { useAuth } from "../../hooks/useAuth";
 
 export const PostFormPrompt = ({ setPostsData }) => {
-  const [active, setActive] = useState(false);
+  const [postModal, setPostModal] = useState(false);
   const { auth } = useAuth();
   return (
     <>
@@ -14,16 +14,20 @@ export const PostFormPrompt = ({ setPostsData }) => {
         <div>
           <p>Hey {auth?.username}</p>
         </div>
-        <StyledForm onClick={() => setActive(!active)} className="inline">
+        <StyledForm onClick={() => setPostModal(!postModal)} className="inline">
           <div className="form-field fake">
             <input spellCheck="true" type="text" name="content" disabled />
             <label htmlFor="content">Whats on your mind ?</label>
           </div>
         </StyledForm>
       </div>
-      {active ? (
-        <ModalBasis onClick={() => setActive(!active)}>
-          <PostForm setPostsData={setPostsData} className="wide" />
+      {postModal ? (
+        <ModalBasis onClick={() => setPostModal(!postModal)}>
+          <PostForm
+            setPostsData={setPostsData}
+            setPostModal={() => setPostModal(false)}
+            className="wide"
+          />
         </ModalBasis>
       ) : null}
     </>

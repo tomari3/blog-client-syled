@@ -56,7 +56,7 @@ const formsReducer = (state, action) => {
   }
 };
 
-export const PostForm = ({ className, setPostsData }) => {
+export const PostForm = ({ className, setPostsData, setPostModal }) => {
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
 
@@ -118,6 +118,7 @@ export const PostForm = ({ className, setPostsData }) => {
       const { data } = await axiosPrivate.post(postUrl, payload);
       setPostsData((prevData) => [data, ...prevData]);
       dispatch({ type: RESET_FORM });
+      setPostModal();
       // console.log(data);
     } catch (error) {
       console.log(error);
