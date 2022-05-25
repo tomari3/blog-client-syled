@@ -8,7 +8,6 @@ import { StyledHeader } from "../../styles/StyledHeader";
 
 export const Header = () => {
   const { auth, setAuth } = useAuth();
-  // const navigate = useNavigate();
   const logout = useLogout();
 
   const signOut = async () => {

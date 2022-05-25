@@ -52,7 +52,7 @@ export const LoginForm = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const referer = (location.state && location.state.referer) || "/";
 
   const [formState, dispatch] = useReducer(formsReducer, initialState);
 
@@ -122,7 +122,7 @@ export const LoginForm = () => {
       });
       setAuth(data);
       dispatch({ type: RESET_FORM });
-      navigate("/");
+      navigate(referer, { replace: true });
     } catch (error) {
       console.error(error);
 
