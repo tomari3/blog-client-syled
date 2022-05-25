@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 
 export const StyledHeader = styled(motion.header)`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 70px;
   gap: 2rem;
+  background-color: var(--secondary-bg);
   /* border-bottom: 1px solid black; */
 `;

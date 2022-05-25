@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <StyledHeader>
-      <Link to="/">home</Link>
+      <Link to="/">BHFC</Link>
 
       {!auth?.username ? (
         <div>
@@ -25,11 +25,12 @@ export const Header = () => {
           <Link to="/signup">sing up</Link>
         </div>
       ) : (
-        <div>
-          <Link to="/profile">profile</Link>
-          <br />
-          <StyledButton onClick={signOut}>Sign out</StyledButton>
-        </div>
+        <>
+          <StyledButton as={Link} to="/profile">
+            profile
+          </StyledButton>
+          <StyledButton onClick={signOut}>Log out</StyledButton>
+        </>
       )}
     </StyledHeader>
   );
