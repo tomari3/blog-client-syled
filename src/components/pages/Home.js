@@ -15,7 +15,7 @@ export const Home = () => {
   const { width: w } = useWindowDimensions();
   const axiosPrivate = useAxiosPrivate();
 
-  const fetchData = async () => {
+  const fetchPosts = async () => {
     const postUrl = `posts`;
 
     const { data } = await axiosPrivate.get(postUrl);
@@ -23,7 +23,7 @@ export const Home = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchPosts();
   }, []);
 
   const e = {

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { axiosPrivate } from "../../utils/axios";
+
 import { StyledPost } from "../../styles/StyledPost";
 
 import { timeAgo } from "../../utils/dateFormat";
@@ -38,10 +40,17 @@ export const Post = ({ postData }) => {
 
   const amount = commentsData.length;
 
+  const fetchPost = async () => {
+    const postUrl = `posts/${_id}`;
+
+    const { data } = await axiosPrivate.get(postUrl);
+    console.log(data);
+  };
+
   return (
-    <StyledPost className="post">
+    <StyledPost onClick={fetchPost} className="post">
       {postContent}
-      <div className="post-interactions">
+      <div onClick={(e) => e.stopPropagation()} className="post-interactions">
         <LikeBtn
           likesData={likesData}
           setLikesData={setLikesData}
@@ -61,6 +70,7 @@ export const Post = ({ postData }) => {
       </div>
       {commentModal ? (
         <CommentInput
+          onClick={(e) => e.stopPropagation()}
           closeInput={() => setCommentModal(false)}
           openComments={() => setCommentsModal(true)}
           setCommentsData={setCommentsData}
@@ -69,6 +79,7 @@ export const Post = ({ postData }) => {
       ) : null}
       {commentsModal ? (
         <CommentSection
+          onClick={(e) => e.stopPropagation()}
           commentsData={commentsData}
           setCommentsData={setCommentsData}
           postId={_id}
