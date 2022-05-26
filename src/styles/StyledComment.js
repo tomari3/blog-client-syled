@@ -39,7 +39,7 @@ export const StyledComment = styled(motion.div)`
           width: 0.8rem;
           border-width: 0 0 var(--line) var(--line);
           border-style: solid;
-          border-color: var(--primary-active);
+          border-color: var(--primaryDark);
           border-bottom-left-radius: 0.5rem;
         }
       }
@@ -57,7 +57,7 @@ export const StyledComment = styled(motion.div)`
       position: absolute;
       width: 2px;
       height: calc(100% - 2rem - 5px);
-      background-color: var(--primary-active);
+      background-color: var(--primaryDark);
     }
   }
   .comment-section_sub-comments {
@@ -79,7 +79,7 @@ export const StyledComment = styled(motion.div)`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-accent);
+    background-color: var(--accent);
     aspect-ratio: 1;
     border-radius: 100%;
     grid-area: img;
@@ -87,9 +87,9 @@ export const StyledComment = styled(motion.div)`
 
   .comment-content {
     grid-area: comment;
-    background-color: var(--primary-active);
+    background-color: var(--primaryDark);
     padding: 0.5rem 2rem 0.5rem 0.5rem;
-    border-radius: var(--primary-radius);
+    border-radius: var(--radiusSmall);
 
     .comment-content_name {
       text-transform: capitalize;
@@ -106,7 +106,7 @@ export const StyledComment = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: var(--muted-text);
+    color: var(--textLighter);
   }
 
   .comment-interaction_btn {
@@ -116,7 +116,7 @@ export const StyledComment = styled(motion.div)`
 
   .comment-interaction_btn_btn {
     &.liked {
-      color: var(--primary-accent);
+      color: var(--accent);
     }
     &:hover {
       text-decoration: underline;

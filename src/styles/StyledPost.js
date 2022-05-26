@@ -4,23 +4,21 @@ import { motion } from "framer-motion";
 export const StyledPost = styled(motion.article)`
   cursor: pointer;
   padding: 1rem;
-  background-color: var(--secondary-bg);
+  background-color: var(--primaryLighter);
   min-width: 350px;
   display: flex;
   flex-direction: column;
 
-  transition: filter 0.2s ease;
-
-  border: 1px solid var(--primary-active);
+  border: 1px solid var(--primaryDark);
   border-bottom: 0;
 
   &:last-child {
-    border: 1px solid var(--primary-active);
+    border: 1px solid var(--primaryDark);
   }
 
   .post-content {
     flex: 1;
-    border-bottom: 1px solid var(--primary-active);
+    border-bottom: 1px solid var(--primaryDark);
     padding-bottom: 2rem;
     margin-bottom: 1rem;
   }
@@ -55,7 +53,7 @@ export const StyledPost = styled(motion.article)`
     grid-area: img;
     height: 100%;
     aspect-ratio: 1;
-    background-color: var(--primary-accent);
+    background-color: var(--accent);
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -95,8 +93,8 @@ export const StyledPost = styled(motion.article)`
       &:is(.liked, .saved) {
         path,
         polygon {
-          stroke: var(--primary-accent);
-          fill: var(--primary-accent);
+          stroke: var(--accent);
+          fill: var(--accent);
         }
       }
 
@@ -113,13 +111,13 @@ export const StyledPost = styled(motion.article)`
 
     &:hover {
       button {
-        color: var(--primary-accent);
+        color: var(--accent);
 
         &.svg {
-          background-color: rgba(var(--accent-custom), 0.2);
+          background-color: var(--accentSofter);
           svg path,
           polygon {
-            stroke: var(--primary-accent);
+            stroke: var(--accent);
           }
         }
       }

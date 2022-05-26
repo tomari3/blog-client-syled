@@ -7,6 +7,6 @@ export const StyledHeader = styled(motion.header)`
   align-items: center;
   height: 70px;
   gap: 2rem;
-  background-color: var(--secondary-bg);
+  background-color: var(--primaryLighter);
   /* border-bottom: 1px solid black; */
 `;

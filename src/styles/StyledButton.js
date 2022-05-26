@@ -8,16 +8,15 @@ export const StyledButton = styled(motion.button)`
   align-items: center;
   justify-content: center;
   background-color: ${(props) =>
-    props.$color ? "var(--primary-accent)" : "transparent"};
+    props.$color ? "var(--accent)" : "transparent"};
   border: 0;
   border-radius: ${(props) =>
-    props.$round ? "calc(var(--primary-radius)*3)" : "var(--primary-radius)"};
+    props.$round ? "var(--radius)" : "var(--radiusSmaller)"};
   padding: ${(props) => (props.$padding ? "inherit" : "1rem")};
   font-size: ${(props) => (props.$small ? "0.8em" : "inherit")};
   font-weight: ${(props) => (props.$bold ? "bold" : "400")};
-  color: ${(props) =>
-    props.$color ? "var(--secondary-bg)" : "var(--primary-text)"};
-  color: ${(props) => (props.$muted ? "var(--muted-text)" : "")};
+  color: ${(props) => (props.$color ? "var(--primaryLighter)" : "var(--text)")};
+  color: ${(props) => (props.$muted ? "var(--textLight)" : "")};
 
   a {
     text-decoration: none;

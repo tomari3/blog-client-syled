@@ -6,9 +6,9 @@ export const StyledForm = styled(motion.section)`
   --rem: 1rem;
 
   padding: 1rem;
-  background-color: var(--secondary-bg);
-  border-radius: 1rem;
-  box-shadow: var(--drop-shadow) 0px 4px 50px 0px;
+  background-color: var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadowLight) 0px 4px 50px 0px;
 
   &.wide {
     width: 500px;
@@ -18,16 +18,15 @@ export const StyledForm = styled(motion.section)`
     --small: 0.6rem;
     --rem: 0.8rem;
     border-radius: 0;
-    border-top: 1px solid var(--primary-active);
+    border-top: 1px solid var(--primaryDark);
     background-color: inherit;
     box-shadow: none;
     padding: 1rem 0 0 0;
     margin: 1rem 0 0 0;
-    font-size: 0.8rem;
     .form-field {
       textarea,
       input {
-        border-radius: calc(var(--primary-radius) * 3);
+        border-radius: calc(var(--radiusBigger));
       }
     }
     .form-field-err {
@@ -44,14 +43,14 @@ export const StyledForm = styled(motion.section)`
   &.sub {
     padding: 0;
     --small: 0.6rem;
-    --rem: 0.4rem;
+    --rem: 0.5rem;
     background-color: inherit;
     box-shadow: none;
     font-size: 0.8rem;
     .form-field {
       textarea,
       input {
-        border-radius: calc(var(--primary-radius) * 5);
+        border-radius: calc(var(--radiusHuge));
       }
     }
     .form-field-err {
@@ -83,7 +82,7 @@ export const StyledForm = styled(motion.section)`
 
   .form-err {
     font-size: 0.8em;
-    color: var(--primary-err);
+    color: var(--error);
     height: 3ch;
     padding-left: 0.5rem;
   }
@@ -97,7 +96,7 @@ export const StyledForm = styled(motion.section)`
     align-items: center;
 
     grid-template-areas: "label detail" "input input" "err err";
-
+    width: 100%;
     position: relative;
 
     &.fake {
@@ -108,7 +107,9 @@ export const StyledForm = styled(motion.section)`
       }
 
       &:hover {
-        filter: brightness(0.97);
+        .input {
+          background-color: var(--primaryDarker);
+        }
       }
     }
 
@@ -131,10 +132,10 @@ export const StyledForm = styled(motion.section)`
       align-content: center;
       justify-items: center;
 
-      box-shadow: var(--drop-shadow-strong) inset 0px 5px 15px;
+      box-shadow: var(--shadowDark) inset 0px 5px 15px;
 
       &.active {
-        background-color: var(--primary-accent);
+        background-color: var(--accent);
       }
 
       + label {
@@ -171,7 +172,7 @@ export const StyledForm = styled(motion.section)`
       z-index: 1;
       padding-left: 1rem;
       pointer-events: none;
-      color: var(--muted-text);
+      color: var(--textLighter);
 
       transition: 0.3s all ease;
     }
@@ -199,14 +200,14 @@ export const StyledForm = styled(motion.section)`
 
       grid-area: input;
       padding: calc(var(--rem) * 1.5) calc(var(--rem)) calc(var(--rem) / 2);
-      border: 1px solid var(--primary-active);
-      border-radius: var(--primary-radius);
+      border: 1px solid var(--primaryDark);
+      border-radius: var(--radius);
       resize: none;
       overflow: hidden;
       word-wrap: break-word;
 
       &:focus-visible {
-        outline: 1px solid var(--primary-active);
+        outline: 1px solid var(--primaryDark);
       }
     }
 
@@ -221,7 +222,7 @@ export const StyledForm = styled(motion.section)`
       }
 
       span {
-        color: var(--muted-text);
+        color: var(--textLighter);
         cursor: pointer;
       }
       article {
@@ -230,13 +231,13 @@ export const StyledForm = styled(motion.section)`
         left: 1rem;
         font-size: 0.8rem;
         border: 1px solid black;
-        border-radius: var(--primary-radius);
+        border-radius: var(--radius);
         border-top-left-radius: 0;
         height: inherit;
         width: max-content;
         max-width: 10rem;
         padding: 5px;
-        background-color: var(--primary-bg);
+        background-color: var(--primary);
         opacity: 0;
         pointer-events: none;
       }
@@ -245,7 +246,7 @@ export const StyledForm = styled(motion.section)`
     .form-field-err {
       grid-area: err;
       font-size: 0.8em;
-      color: var(--primary-err);
+      color: var(--error);
       height: 3ch;
       padding-left: 0.5rem;
     }

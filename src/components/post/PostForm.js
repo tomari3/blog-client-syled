@@ -170,7 +170,7 @@ export const PostForm = ({ className, setPostsData, setPostModal }) => {
           </div>
         </div>
 
-        <div className="form-field">
+        {/* <div className="form-field">
           <input
             className={formState.tags.value ? "active" : ""}
             type="text"
@@ -253,7 +253,7 @@ export const PostForm = ({ className, setPostsData, setPostModal }) => {
               <p>{formState.pinned.error}</p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <StyledButton $color $bold>
           post

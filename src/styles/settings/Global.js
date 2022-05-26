@@ -17,8 +17,8 @@ export const Global = createGlobalStyle`
   }
 
   body {
-    background-color: var(--primary-bg);
-    color: var(--primary-text);
+    background-color: var(--primary);
+    color: var(text);
     position: relative;
     font-family: 'Raleway', sans-serif;
     
@@ -27,27 +27,58 @@ export const Global = createGlobalStyle`
 
     --head-font: 'Hamlet', serif;
     
-    --primary-bg: ${({ theme }) => theme.primaryBG};
-    --secondary-bg: ${({ theme }) => theme.secondaryBG};
-    --primary-text: ${({ theme }) => theme.primaryText};
-    --primary-accent: ${({ theme }) => theme.primaryAccent};
+    --primaryLighter: ${({ theme }) => theme.primaryLighter};
+    --primaryLight: ${({ theme }) => theme.primaryLight};
+    --primary: ${({ theme }) => theme.primary};
+    --primaryDark: ${({ theme }) => theme.primaryDark};
+    --primaryDarker: ${({ theme }) => theme.primaryDarker};
 
-    --accent-custom: ${({ theme }) => theme.accentCustom};
+    --accentSofter: ${({ theme }) => theme.accentSofter};
+    --accentSoft: ${({ theme }) => theme.accentSoft};
+    --accentLighter: ${({ theme }) => theme.accentLighter};
+    --accentLight: ${({ theme }) => theme.accentLight};
+    --accent: ${({ theme }) => theme.accent};
+    --accentDark: ${({ theme }) => theme.accentDark};
+    --accentDarker: ${({ theme }) => theme.accentDarker};
 
-    --primary-input: ${({ theme }) => theme.primaryInput};
-    --primary-active: ${({ theme }) => theme.primaryActive};
-    --muted-text: ${({ theme }) => theme.mutedText};
-    --primary-radius: ${({ theme }) => theme.primaryRadius};
+    --textLighter: ${({ theme }) => theme.textLighter};
+    --textLight: ${({ theme }) => theme.textLight};
+    --text: ${({ theme }) => theme.text};
+    --textDark: ${({ theme }) => theme.textDark};
+    --textDarker: ${({ theme }) => theme.textDarker};
 
-    --primary-err: ${({ theme }) => theme.primaryErr};
-    
-    --drop-shadow: ${({ theme }) => theme.dropShadow};
-    --drop-shadow-strong: ${({ theme }) => theme.dropShadowS};
-    --bg-overlay: ${({ theme }) => theme.bgOverlay};
-    
+    --successLighter: ${({ theme }) => theme.successLighter};
+    --successLight: ${({ theme }) => theme.successLight};
+    --success: ${({ theme }) => theme.success};
+    --successDark: ${({ theme }) => theme.successDark};
+    --successDarker: ${({ theme }) => theme.successDarker};
+
+    --errorLighter: ${({ theme }) => theme.errorLighter};
+    --errorLight: ${({ theme }) => theme.errorLight};
+    --error: ${({ theme }) => theme.error};
+    --errorDark: ${({ theme }) => theme.errorDark};
+    --errorDarker: ${({ theme }) => theme.errorDarker};
+
+    --shadowLighter: ${({ theme }) => theme.shadowLighter};
+    --shadowLight: ${({ theme }) => theme.shadowLight};
+    --shadow: ${({ theme }) => theme.shadow};
+    --shadowDark: ${({ theme }) => theme.shadowDark};
+    --shadowDarker: ${({ theme }) => theme.shadowDarker};
+
+    --paddingSmaller: ${({ theme }) => theme.paddingSmaller};
+    --paddingSmall: ${({ theme }) => theme.paddingSmall};
+    --padding: ${({ theme }) => theme.padding};
+    --paddingBig: ${({ theme }) => theme.paddingBig};
+    --paddingBigger: ${({ theme }) => theme.paddingBigger};
+
+    --radiusSmaller: ${({ theme }) => theme.radiusSmaller};
+    --radiusSmall: ${({ theme }) => theme.radiusSmall};
+    --radius: ${({ theme }) => theme.radius};
+    --radiusBig: ${({ theme }) => theme.radiusBig};
+    --radiusBigger: ${({ theme }) => theme.radiusBigger};
+    --radiusHuge: ${({ theme }) => theme.radiusHuge};
+
     --default-transition: color 2s ease;
-    
-    --bg-opacity: ${({ theme }) => theme.bgOpacity};;    
 
 
    

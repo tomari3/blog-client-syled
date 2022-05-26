@@ -2,20 +2,15 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const StyledProfilePage = styled(motion.main)`
-  --pbg: var(--primary-bg);
-  --sbg: var(--secondary-bg);
-  --pac: var(--primary-accent);
-  --pat: var(--primary-active);
-
-  margin: auto auto;
+  margin: 2rem auto;
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-areas: "details suggestions";
   gap: 2rem;
 
   & > section {
-    border: 1px solid var(--pat);
-    background-color: var(--sbg);
+    border: 1px solid var(--primaryDark);
+    background-color: var(--primaryLighter);
   }
 
   .user {
@@ -30,8 +25,9 @@ export const StyledProfilePage = styled(motion.main)`
 
   .user_details_image-wrapper {
     grid-area: image;
-    height: 150px;
+    height: 200px;
     position: relative;
+    background-color: var(--accentSofter);
   }
 
   .user_details_image-wrapper_image {
@@ -39,14 +35,14 @@ export const StyledProfilePage = styled(motion.main)`
     position: absolute;
     bottom: calc(var(--width) * -1 / 3);
     left: calc(15% - (var(--width) / 2));
-    background-color: var(--pac);
+    background-color: var(--accent);
     aspect-ratio: 1;
     width: var(--width);
     border-radius: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 5px solid var(--pbg);
+    border: 5px solid var(--primaryLighter);
   }
 
   .user_details_image-wrapper_actions {

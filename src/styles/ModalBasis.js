@@ -15,5 +15,5 @@ export const ModalBasis = styled(motion.div)`
   justify-content: center;
   align-items: center;
 
-  background-color: var(--bg-overlay);
+  background-color: var(--shadowDark);
 `;
