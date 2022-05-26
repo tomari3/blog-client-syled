@@ -11,6 +11,7 @@ import { HomePage } from "./pages/HomePage";
 import { SignupPage } from "./pages/SignupPage";
 import { LoginPage } from "./pages/LoginPage";
 import { UnauthorizedPage } from "./pages/UnauthorizedPage";
+import { ProfilePage } from "./pages/ProfilePage";
 
 const ROLES = {
   User: 2001,
@@ -32,6 +33,7 @@ export const AllRoutes = ({ toggle }) => {
           <Route element={<PersistLogin />}>
             <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
               <Route path="/" element={<HomePage />} />
+              <Route path="/profile" element={<ProfilePage />} />
             </Route>
           </Route>
         </Route>

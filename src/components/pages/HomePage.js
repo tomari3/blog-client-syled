@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { StyledHome } from "../../styles/StyledHome";
+import { StyledHomePage } from "../../styles/StyledHomePage";
 
 import { MemoPostGallery } from "../post/PostGallery";
 import { MemoTagsBar } from "../tags/TagsBar";
@@ -15,16 +15,17 @@ export const HomePage = () => {
   const { width: w } = useWindowDimensions();
   const axiosPrivate = useAxiosPrivate();
 
-  const fetchPosts = async () => {
-    const postUrl = `posts`;
-
-    const { data } = await axiosPrivate.get(postUrl);
-    setPostsData(data);
-  };
-
   useEffect(() => {
+    // console.log("___POSTS___");
+    const fetchPosts = async () => {
+      const postUrl = `posts`;
+
+      const { data } = await axiosPrivate.get(postUrl);
+      setPostsData(data);
+      setTagsData([]); // TODO fetch tags
+    };
     fetchPosts();
-  }, []);
+  }, [axiosPrivate]);
 
   const e = {
     m: w > 500,
@@ -48,11 +49,11 @@ export const HomePage = () => {
   };
 
   return (
-    <StyledHome>
+    <StyledHomePage>
       {{
         [e.m]: [e.LEFT, e.MIDDLE],
         [e.l]: [e.LEFT, e.MIDDLE, e.RIGHT],
       }[true] || e.MIDDLE}
-    </StyledHome>
+    </StyledHomePage>
   );
 };

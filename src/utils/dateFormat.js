@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 const units = ["year", "month", "week", "day", "hour", "minute", "second"];
 
 export const longMonth = (date) => {
-  return DateTime.fromISO(date).toFormat("yyyy LLL dd");
+  return DateTime.fromISO(date).toFormat("dd LLL yyyy");
 };
 
 export const timeAgo = (date) => {

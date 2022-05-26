@@ -1,5 +1,5 @@
 export const lightTheme = {
-  primaryBG: "#FAFAFA",
+  primaryBG: "hsl(0, 0%, 94%)",
   secondaryBG: "#FFFFFF",
   primaryText: "#0d0d0d",
 
