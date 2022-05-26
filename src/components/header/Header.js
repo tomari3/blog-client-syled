@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { useLogout } from "../../hooks/useLogout";
 
+import { ProfileMenu } from "./ProfileMenu";
+
 import { StyledButton } from "../../styles/StyledButton";
 import { StyledHeader } from "../../styles/StyledHeader";
 
@@ -16,22 +18,31 @@ export const Header = () => {
   };
 
   return (
-    <StyledHeader>
-      <Link to="/">BHFC</Link>
-
-      {!auth?.username ? (
-        <div>
-          <Link to="/login">login</Link>
-          <Link to="/signup">sing up</Link>
-        </div>
-      ) : (
-        <>
-          <StyledButton as={Link} to="/profile">
-            profile
+    <StyledHeader className="Header">
+      <div className="header">
+        <div className="header_logo">
+          <StyledButton as={Link} to="/">
+            BHFC
           </StyledButton>
-          <StyledButton onClick={signOut}>Log out</StyledButton>
-        </>
-      )}
+        </div>
+        <div className="header_search">
+          <input />
+        </div>
+        <nav className="header_nav">
+          {!auth?.username ? (
+            <>
+              <Link to="/login">login</Link>
+              <Link to="/signup">sing up</Link>
+            </>
+          ) : (
+            <div className="header_nav_profile-menu">
+              <ProfileMenu />
+            </div>
+          )}
+        </nav>
+      </div>
+
+      {!auth?.username ? <div></div> : <></>}
     </StyledHeader>
   );
 };

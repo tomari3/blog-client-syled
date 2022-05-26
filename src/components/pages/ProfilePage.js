@@ -28,7 +28,7 @@ export const ProfilePage = () => {
   }, [auth?._id, auth?.username, axiosPrivate]);
 
   return (
-    <StyledProfilePage>
+    <StyledProfilePage className="ProfilePage">
       <section className="user">
         <section className="user_details">
           <div className="user_details_image-wrapper">

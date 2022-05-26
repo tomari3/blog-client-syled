@@ -49,7 +49,7 @@ export const HomePage = () => {
   };
 
   return (
-    <StyledHomePage>
+    <StyledHomePage className="HomePage">
       {{
         [e.m]: [e.LEFT, e.MIDDLE],
         [e.l]: [e.LEFT, e.MIDDLE, e.RIGHT],

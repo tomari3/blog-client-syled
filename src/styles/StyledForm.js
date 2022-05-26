@@ -169,7 +169,6 @@ export const StyledForm = styled(motion.section)`
 
     label {
       grid-area: label;
-      z-index: 1;
       padding-left: 1rem;
       pointer-events: none;
       color: var(--textLighter);

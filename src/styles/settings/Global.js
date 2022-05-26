@@ -23,10 +23,11 @@ export const Global = createGlobalStyle`
     font-family: 'Raleway', sans-serif;
     
   }
+  a, a:link, a:visited, a:focus, a:hover, a:active{
+text-decoration:none; 
+  }
   :root {
 
-    --head-font: 'Hamlet', serif;
-    
     --primaryLighter: ${({ theme }) => theme.primaryLighter};
     --primaryLight: ${({ theme }) => theme.primaryLight};
     --primary: ${({ theme }) => theme.primary};
